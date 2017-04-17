@@ -1,0 +1,43 @@
+@{
+    ViewBag.Title = "Billing History";
+}
+@section Scripts{
+    <script src="@Url.Content("~/Angular/Billing/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Billing/Controller.js")"></script>
+}
+
+<section ng-controller="BillingController" ng-init="InitializeBillingHistoryView()">
+    <h3 class="text-center billing-plan-title">Billing History</h3>
+
+    <section class="col-lg-10 col-md-5 col-sm-12 col-xs-12 col-lg-offset-1">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <div class="card">
+                <div class="content">
+                    <table class="table table-hover"> 
+                        <thead> 
+                            <tr> 
+                                <th>Date</th> 
+                                <th>Amount</th> 
+                                <th>Status</th> 
+                                <th>Brand</th>
+                                <th>Card</th>
+                            </tr> 
+                        </thead> 
+                        <tbody> 
+                            <tr ng-repeat="Charge in UserCharges"> 
+                                <th scope="row">{{Charge.created | stripeDate}}</th> 
+                                <td>${{Charge.amount | stripeAmount : ','}}</td> 
+                                <td>{{Charge.status | capitalize}}</td> 
+                                <td>{{Charge.source.brand}}</td>
+                                <td>**** **** **** {{Charge.source.last4}}</td> 
+                            </tr> 
+                        </tbody> 
+                    </table>
+                </div>
+            </div>
+        </div>
+               
+    </section>
+
+    
+</section>

@@ -1,0 +1,104 @@
+@{
+    ViewBag.Title = "Insights";
+}
+
+@section Scripts{
+    <script src="@Url.Content("~/Angular/Insights/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Insights/Controller.js")"></script>
+}
+
+<section ng-controller="InsightsController" ng-init="InitializeView()">
+
+<div class="container-fluid">
+    <div class="row">
+        <h3 class="text-center" style="margin-bottom: 30px;">Please choose one you want</h3>
+    </div>
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <a href="@Url.Action("Treemap")?Id=@ViewBag.Id">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="icon-big icon-danger text-center">
+                                    <i class="ti-mouse"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer" style="text-align:center;">
+                            <hr>
+                            <div class="stats">
+                                Heatmaps
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <a href="@Url.Action("Recordings")?Id=@ViewBag.Id">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="icon-big icon-info text-center">
+                                    <i class="ti-video-camera"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer" style="text-align:center;">
+                            <hr>
+                            <div class="stats">
+                                Recordings
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <a href="@Url.Action("RAT")?Id=@ViewBag.Id">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="icon-big text-center">
+                                    <i class="ti-eye"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer" style="text-align:center;">
+                            <hr>
+                            <div class="stats">
+                                Remote Administration Tool
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <a href="@Url.Action("FormAnalysis")?Id=@ViewBag.Id">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-12">
+                                <div class="icon-big icon-warning text-center">
+                                    <i class="ti-pencil-alt"></i>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer" style="text-align:center;">
+                            <hr>
+                            <div class="stats">
+                                Form Analysis
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+    </div>
+</div>
+
+</section>

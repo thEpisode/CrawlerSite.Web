@@ -1,0 +1,21 @@
+@{
+    ViewBag.Title = "Users";
+}
+
+<section ng-controller="UserController" ng-init="InitializeDeleteView()">
+    <div class="card col-sm-6 col-sm-offset-3">
+        <h2 class="text-center">Are you sure to delete permanently <span>{{ User.FirstName }} {{ User.LastName }}</span>?</h2>
+
+        <form class="form-horizontal text-center" ng-submit="DeleteUser()">
+            <input type="submit" value="Yes" class="btn btn-danger btn-wd btn-fill" />
+
+            <a href="@Url.Action("Index")" class="btn btn-danger btn-wd">No</a>
+        </form>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="@Url.Content("~/Angular/User/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Site/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/User/Controller.js")"></script>
+}

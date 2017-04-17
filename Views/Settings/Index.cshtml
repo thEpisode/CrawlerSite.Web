@@ -1,0 +1,12 @@
+@{
+    ViewBag.Title = "Home";
+}
+
+@section Scripts{
+    <script src="@Url.Content("~/Angular/Dashboard/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Dashboard/Controller.js")"></script>
+}
+
+<section ng-controller="DashboardController" ng-init="InitializeIndexView()">
+
+</section>

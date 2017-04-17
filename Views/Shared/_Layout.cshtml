@@ -1,0 +1,422 @@
+<!doctype html>
+<html ng-app="Flinger" lang="en">
+
+<head>
+	<meta charset="utf-8" />
+	<title>@ViewBag.Title | Flinger</title>
+
+	<link rel="apple-touch-icon" sizes="76x76" href="assets/img/apple-icon.png">
+	<link rel="icon" type="image/png" sizes="96x96" href="assets/img/favicon.png">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+
+	<meta content='width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0' name='viewport' />
+	<meta name="viewport" content="width=device-width" />
+
+	<script src="~/js/main.js"></script>
+	<script src="~/js/auth_daemon.js"></script>
+	<script>if (localStorage.getItem("auth_token") == null) { $Flinger.LogOut() }</script>
+	<script>
+		const SETTINGS = {
+			rebound: {
+				tension: 26,
+				friction: 10
+			},
+			spinner: {
+				id: 'spinner',
+				radius: 90,
+				sides: 3,
+				depth: 4,
+				colors: {
+					//background: '#231E76',
+					//stroke: '#231E76',
+					background: '#f0f0f0',
+					stroke: '#D61010',
+					base: null,
+					child: '#f1b3b3'
+				},
+				alwaysForward: true, // When false the spring will reverse normally.
+				restAt: 0.5, // A number from 0.1 to 0.9 || null for full rotation
+				renderBase: false
+			}
+		};
+
+	</script>
+
+<script src="~/js/loader.js"></script>
+
+<environment names="Development">
+	<!-- Bootstrap core CSS     -->
+	<link href="~/dashboard-assets/css/bootstrap.min.css" rel="stylesheet" />
+
+	<!-- Animation library for notifications   -->
+	<link href="~/dashboard-assets/css/animate.min.css" rel="stylesheet" />
+
+	<!--  Paper Dashboard core CSS    -->
+	<link href="~/dashboard-assets/css/paper-dashboard.css" rel="stylesheet" />
+
+	<!--  CSS for Demo Purpose, don't include it in your project     -->
+	<link href="~/dashboard-assets/css/demo.css" rel="stylesheet" />
+
+	<!--  Fonts and icons     -->
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link href="~/dashboard-assets/css/themify-icons.css" rel="stylesheet">
+
+
+	<link href="~/css/site.css" rel="stylesheet" />
+	<link href="~/dashboard-assets/css/main.css" rel="stylesheet" />
+
+	<link rel="stylesheet" type="text/css" href="~/css/dialog.css" />
+
+	<link rel="stylesheet" type="text/css" href="~/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" />
+	<link rel="stylesheet" type="text/css" href="~/lib/izitoast/dist/css/iziToast.css" />
+</environment>
+<environment names="Staging,Production">
+	<!-- Bootstrap core CSS     -->
+	<link href="~/dashboard-assets/css/bootstrap.min.css" rel="stylesheet" />
+
+	<!-- Animation library for notifications   -->
+	<link href="~/dashboard-assets/css/animate.min.css" rel="stylesheet" />
+
+	<!--  Paper Dashboard core CSS    -->
+	<link href="~/dashboard-assets/css/paper-dashboard.css" rel="stylesheet" />
+
+	<!--  CSS for Demo Purpose, don't include it in your project     -->
+	<link href="~/dashboard-assets/css/demo.css" rel="stylesheet" />
+
+	<!--  Fonts and icons     -->
+	<link href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet">
+	<link href='https://fonts.googleapis.com/css?family=Muli:400,300' rel='stylesheet' type='text/css'>
+	<link href="~/dashboard-assets/css/themify-icons.css" rel="stylesheet">
+
+
+	<link href="~/css/site.css" rel="stylesheet" />
+	<link href="~/dashboard-assets/css/main.css" rel="stylesheet" />
+
+	<link rel="stylesheet" type="text/css" href="~/css/dialog.css" />
+
+	<link rel="stylesheet" type="text/css" href="~/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.css" />
+	<link rel="stylesheet" type="text/css" href="~/lib/izitoast/dist/css/iziToast.css" />
+</environment>
+
+</head>
+
+<body>
+	<div class="wrapper">
+		<div class="sidebar" data-background-color="white" data-active-color="danger">
+
+			<div class="sidebar-wrapper">
+				<div class="logo">
+					<a href="@Url.Action("Index","Dashboard")" class="simple-text logo-color">
+                        Crawler Site
+                    </a>
+				</div>
+
+				<ul class="nav navigation-handler">
+					<li class="active" data-path="home">
+						<a href="@Url.Action("Index", "Dashboard")">
+							<i class="ti-home"></i>
+							<p>Home</p>
+						</a>
+					</li>
+					<li data-path="add-site">
+						<a href="@Url.Action("Add", "Site")">
+							<i class="ti-plus"></i>
+							<p>Add Site</p>
+						</a>
+					</li>
+					<li data-path="site">
+						<a href="@Url.Action("Index", "Site")">
+							<i class="ti-world"></i>
+							<p>Sites</p>
+						</a>
+					</li>
+					<li data-path="user">
+						<a href="@Url.Action("Index", "User")">
+							<i class="ti-user"></i>
+							<p>Users</p>
+						</a>
+					</li>
+					<li data-path="ip">
+						<a href="@Url.Action("Index", "Ip")">
+							<i class="ti-filter"></i>
+							<p>Connection Filtering</p>
+						</a>
+					</li>
+					<li data-path="billing">
+						<a href="@Url.Action("Index", "Billing")">
+							<i class="ti-credit-card"></i>
+							<p>Billing</p>
+						</a>
+					</li>
+
+					<li class="active-pro">
+						<a href="javascript: $Flinger.LogOut()">
+							<i class="ti-close"></i>
+							<p>Exit</p>
+						</a>
+					</li>
+				</ul>
+			</div>
+		</div>
+
+		<div class="main-panel">
+			<nav class="navbar navbar-default">
+				<div class="container-fluid">
+					<div class="navbar-header">
+						<button type="button" class="navbar-toggle">
+                            <span class="sr-only">Toggle navigation</span>
+                            <span class="icon-bar bar1"></span>
+                            <span class="icon-bar bar2"></span>
+                            <span class="icon-bar bar3"></span>
+                        </button>
+						<!--<a class="navbar-brand" href="#">Dashboard</a>-->
+					</div>
+					<div class="collapse navbar-collapse">
+						<ul class="nav navbar-nav navbar-right">
+							<li class="dropdown" ng-controller="NotificationController" ng-init="InitializeIndexView()">
+								<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+									<i class="ti-bell"></i>
+									<p>Notifications</p>
+									<b class="caret"></b>
+								</a>
+								<ul class="dropdown-menu" ng-show="NoNotifications">
+									<li><a href="#">You have no notifications</a></li>
+								</ul>
+								<ul class="dropdown-menu" ng-hide="NoNotifications">
+									<li ng-repeat="Notification in Notifications" ng-show="$index<10"><a href="@Url.Action("Detail", "Notification")?Id={{Notification._id}}">{{Notification.ShortMessage}}</a></li>
+									<div class="separator"></div>
+									<li><a href="@Url.Action("Index", "Notification")">View All</a></li>
+								</ul>
+							</li>
+							<li class="dropdown">
+								<a href="#" class="dropdown-toggle feedback-link" data-toggle="dropdown">
+									<i class="ti-face-smile"></i>
+									<p>Feedback</p>
+									<b class="caret"></b>
+								</a>
+								<section class="dropdown-menu">
+									<article class="feedback-container">
+										<h3 class="text-center">Tell us your feedback</h3>
+										<div>
+											<div class="form-group">
+												<label>How was your experience?</label>
+												<div class="experience-face text-center">
+													<a href="" class="face" title="great experience" data-like="true"><i class="ti-face-smile"></i></a>
+													<a href="" class="face" title="bad experience" data-like="false"><i class="ti-face-sad"></i></a>
+												</div>
+											</div>
+											
+											<div class="form-group">
+												<label for="bug">You have experienced an error?</label>
+												<select class="form-control" id="bug">
+													<option value="0" disabled selected>Select an option</option>
+													<option value="true">Yes</option>
+													<option value="false">No</option>
+												</select>
+											</div>
+											<div class="form-group">
+												<label>Tell us why?</label>
+												<textarea class="form-control" rows="3" id="comment"></textarea>
+											</div>
+											
+											<a href="#" class="btn btn-success pull-right send-feedback">Send</a>
+										</div>
+									</article>
+								</section>
+							</li>
+							<li>
+								<a href="@Url.Action("Index", "Account")">
+									<img class="avatar-header avatar border-gray-light" src="@Url.Content("~/dashboard-assets/img/faces/face-2.jpg")" alt="User Profile"
+									/>
+									<p>Account</p>
+								</a>
+							</li>
+						</ul>
+
+					</div>
+				</div>
+			</nav>
+
+			<div class="content">
+				<div class="container-fluid">
+					<div class="row">
+						@RenderBody()
+					</div>
+				</div>
+			</div>
+
+
+			<footer class="footer">
+				<div class="container-fluid">
+					<nav class="pull-left">
+						<ul>
+
+							<li>
+								<a href="https://crawler-site.gitbooks.io/documentation/content/" target="_blank">
+                                    Documentation
+                                </a>
+							</li>
+							<li>
+								<a href="#">
+                                Refer friends
+                                </a>
+							</li>
+							<li>
+								<a href="https://crawler-site.gitbooks.io/documentation/content/" target="_blank">
+                                    Help
+                                </a>
+							</li>
+						</ul>
+					</nav>
+					<div class="copyright pull-right">
+						&copy;
+						<script>document.write(new Date().getFullYear())</script>, made by <a href="http://dremind.com">Dremind</a>
+					</div>
+				</div>
+			</footer>
+
+		</div>
+	</div>
+
+<div id="dialog" class="dialog">
+	<div class="dialog__overlay"></div>
+	<div class="dialog__content">
+		<h2></h2>
+		<h4></h4>
+		<div>
+			<button class="action" data-dialog-close>Close</button>
+		</div>
+	</div>
+</div>
+<script>(function () { $Flinger.Loader.Init() })()</script>
+
+
+<environment names="Development">
+	<!--   Core JS Files   -->
+	<script src="~/dashboard-assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="~/dashboard-assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+
+	<script src="~/js/modernizr.custom.js"></script>
+	<script src="~/js/classie.js"></script>
+	<script src="~/js/dialogFx.js"></script>
+	<script src="~/js/heatmap.js"></script>
+
+	<script src="~/js/dialog.js"></script>
+	<script src="~/js/PathHandler.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="~/dashboard-assets/js/chartist.min.js"></script>
+
+	<!--  Notifications Plugin    -->
+	<script src="~/dashboard-assets/js/bootstrap-notify.js"></script>
+
+
+	<!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+	<script src="~/dashboard-assets/js/paper-dashboard.js"></script>
+
+	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+	<script src="~/dashboard-assets/js/demo.js"></script>
+	<script src="~/lib/angular/angular.js"></script>
+	<script src="~/lib/angular-route/angular-route.min.js"></script>
+	<script src="~/Angular/App.js"></script>
+	<script src="~/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+
+	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js " type="text/javascript "></script>
+	<script src="~/lib/izitoast/dist/js/iziToast.js"></script>
+
+	<script src="~/js/ToastNotification.js"></script>
+	
+</environment>
+<environment names="Staging,Production">
+	<!--   Core JS Files   -->
+	<script src="~/dashboard-assets/js/jquery-1.10.2.js" type="text/javascript"></script>
+	<script src="~/dashboard-assets/js/bootstrap.min.js" type="text/javascript"></script>
+
+	<script type="text/javascript" src="http://d3js.org/d3.v3.min.js"></script>
+
+	<script src="~/js/modernizr.custom.js"></script>
+	<script src="~/js/classie.js"></script>
+	<script src="~/js/dialogFx.js"></script>
+	<script src="~/js/heatmap.js"></script>
+
+	<script src="~/js/dialog.js"></script>
+	<script src="~/js/PathHandler.js"></script>
+
+	<!--  Charts Plugin -->
+	<script src="~/dashboard-assets/js/chartist.min.js"></script>
+
+	<!--  Notifications Plugin    -->
+	<script src="~/dashboard-assets/js/bootstrap-notify.js"></script>
+
+
+	<!-- Paper Dashboard Core javascript and methods for Demo purpose -->
+	<script src="~/dashboard-assets/js/paper-dashboard.js"></script>
+
+	<!-- Paper Dashboard DEMO methods, don't include it in your project! -->
+	<script src="~/dashboard-assets/js/demo.js"></script>
+	<script src="~/lib/angular/angular.js"></script>
+	<script src="~/lib/angular-route/angular-route.min.js"></script>
+	<script src="~/Angular/App.js"></script>
+	<script src="~/lib/bootstrap-tagsinput/dist/bootstrap-tagsinput.min.js"></script>
+
+	<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+    <script src="~/lib/jquery-validation/dist/jquery.validate.js " type="text/javascript "></script>
+	<script src="~/lib/izitoast/dist/js/iziToast.js"></script>
+
+	<script src="~/js/ToastNotification.js"></script>
+</environment>
+
+<script src="@Url.Content("~/Angular/Notification/Service.js")"></script>
+<script src="@Url.Content("~/Angular/Notification/Controller.js")"></script>
+
+
+@RenderSection("scripts", required: false)
+
+	<script>
+		 $('.dropdown-menu>.feedback-container').click(function(e) {
+			e.stopPropagation();
+		});
+
+		$('.face').click(function(e){
+			
+			e.preventDefault();
+
+			$('.face').removeClass('face-selected');
+			$(this).addClass('face-selected');
+		});
+
+		$('.send-feedback').click(function(e){
+			e.preventDefault();
+
+			var data = {
+				UserId: $Flinger.ReadPersistentData('userId'),
+				Path: $Flinger.GetEntryPath(),
+				Like: $('.face').data('like'),
+				Description: $('#comment').val(),
+                Logs: $Flinger.Logs,
+				ReportBug: $('#bug').val(),
+                Version: $Flinger.Version
+			}
+
+			$.ajax({
+				url: "@Url.Action("Send", "Feedback")",
+				beforeSend: function(request) {
+					request.setRequestHeader("x-access-token", $Flinger.ReadPersistentData('auth_token'));
+				},
+				type: "GET",
+				data: data,
+				dataType: "json"
+			});
+		});
+
+		
+	</script>
+</body>
+
+
+
+</html>

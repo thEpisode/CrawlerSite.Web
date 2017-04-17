@@ -1,0 +1,287 @@
+select option:empty { display:none }
+
+.node circle {
+    cursor: pointer;
+    fill: #fff;
+    stroke: #D61010;
+    stroke-width: 1.5px;
+}
+
+.node empty-circle {
+    cursor: pointer;
+    fill: #fff;
+    stroke: black;
+    stroke-width: 1.5px;
+}
+
+.node text {
+    font-size: 11px;
+}
+
+path.link {
+    fill: none;
+    stroke: #ccc;
+}
+
+.node.selected circle {
+    fill: #D61010;
+}
+
+.site-card, .add-site-card{
+    min-height: 150px;
+}
+
+.site-card{
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+
+.card-options{
+    opacity: 0;
+    position: absolute;
+    right: 8%;
+    top: 5%;
+    z-index: 2;
+    font-size: 1.2em;
+}
+.card-options>a{
+    color: rgb(152, 151, 150);
+}
+.card-options>a:hover{
+    color:#EB5E28!important;
+}
+.card-options:hover{
+    opacity: 1;
+}
+.card-container:hover~.card-options{
+    opacity: 1;
+}
+
+.site-card>.content>span{
+    color: rgba(152, 151, 150, 0.63);
+    position: absolute;
+    bottom: -20%;
+    padding-top: 1%;
+    padding-bottom: 1%;
+    text-align: center;
+    width: 100%;
+    left: 0;
+}
+
+.add-site-card>.content{
+    color: rgba(152, 151, 150, 0.63);
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.add-site-card>.content>span{
+    color: rgba(152, 151, 150, 0.63);
+    text-align: center;
+    font-size: 3em;
+    font-weight: 100;
+}
+
+.appear{
+    opacity: 0;
+    animation-name: appear-anim;
+    animation-duration: 1.2s;
+}
+
+.disappear{
+    opacity: 1;
+    animation-name: disappear-anim;
+    animation-duration: 1.2s;
+}
+
+@keyframes disappear-anim {
+    from {opacity: 1;}
+    to {opacity: 0;}
+}
+
+@keyframes appear-anim {
+    from {opacity: 0;}
+    to {opacity: 1;}
+}
+
+.range-input {
+  -webkit-appearance: none;
+  width: 160px;
+  height: 20px;
+  margin: 10px 50px;
+  background: linear-gradient(to right, #16a085 0%, #16a085 100%);
+  background-size: 150px 10px;
+  background-position: center;
+  background-repeat: no-repeat;
+  overflow: hidden;
+  outline: none;
+  zoom: 130%;
+  display: block;
+  margin: auto;
+  margin-bottom: 30px;
+}
+
+.range-input::-webkit-slider-thumb {
+ -webkit-appearance: none;
+ width: 20px;
+ height: 20px;
+ background: #27ae60;
+ position: relative;
+ z-index: 3;
+}
+
+.range-input::-webkit-slider-thumb:after {
+ content: " ";
+ width: 160px;
+ height: 10px;
+ position: absolute;
+ z-index: 1;
+ right: 20px;
+ top: 5px;
+ background: #2ecc71;
+}
+
+span.twitter-typeahead .tt-dropdown-menu {
+    z-index: 1050 !important;
+}
+
+
+span.twitter-typeahead {
+    width: 100%;
+}
+
+.tt-dropdown-menu:extend(.dropdown-menu) {
+        overflow-y: auto;
+    }
+
+.input-group, .tt-dropdown-menu{
+    display: block !important;
+}
+
+.tt-dropdown-menu {
+    top: 32px !important;
+}
+
+.tt-dropdown-menu {
+    top: 44px !important;
+}
+
+.tt-dropdown-menu {
+    top: 28px !important;
+}
+
+.tt-open{
+    background-color: #FFF;
+    color: #000;
+
+    width: 100%;
+
+    border: 1px solid rgba(0,0,0,0.15);
+    border-radius: 4px;
+    background-clip: padding-box;
+}
+
+.tt-suggestion {
+    cursor: pointer;
+    padding: 6px 12px;
+}
+
+.tt-suggestion:hover {
+    background-color:#EB5E28;
+    color: #FFFFFF;
+}
+
+.tt-cursor{
+    background-color:#EB5E28;
+    color: #FFFFFF;
+}
+
+.copy-code{
+    cursor: pointer;
+    word-break: break-all;
+}
+
+.payment-button-container{
+    margin-top: 20px;
+}
+
+.js .animate-box{
+    opacity: 0;    
+}
+
+.plain-card{
+    border-radius: 0px!important;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+    -webkit-box-shadow: 0 0 0px 1000px white inset;
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+.reset-panel-heading{
+    font-size: 20px;
+    color: #D61010!important;
+    background-color: transparent!important;
+    border-color: transparent!important;
+}
+
+@media only screen and (min-width: 568px) {
+    .iziToast-wrapper {
+        top: 60px!important;
+    }
+
+    .iziToast > .iziToast-body {
+        position: relative;
+        padding: 0 0 0 10px;
+        height: 100%;
+        min-height: 36px;
+        margin: 0 0 0 16px;
+        max-width: 240px;
+    }
+
+    .iziToast > .iziToast-body > strong{
+        line-height: 16px;
+        padding:0!important;
+        margin-top:0!important;
+        margin-left:0!important;
+        margin-right:0!important;
+        margin-bottom: 6px!important;
+        font-size: 14px;
+        float: initial!important;
+        text-align: center!important;
+        display: block;
+        width: 100%;
+    }
+    .iziToast > .iziToast-body > p{
+        padding: 0!important;
+        margin: 0!important;
+        display: block;
+        margin-top: 0px!important;
+        width: 100%;
+        text-align: center!important;
+        float: initial!important;
+    }
+    .iziToast > .iziToast-close{
+        height: 42px!important;
+    }
+    .iziToast > .iziToast-body > .iziToast-buttons{
+        width: 100%;
+        text-align: center;
+    }
+}
+
+.iziToast.iziToast-color-yellow{
+    background:rgba(252, 238, 79, 0.96)!important;
+}
+.iziToast.iziToast-color-green{
+    background:rgba(180,241,196,0.95)!important;
+}
+.iziToast.iziToast-color-red{
+    background: rgba(243,186,189,0.95)!important;
+}
+.iziToast.iziToast-color-blue{
+    background: rgba(181,225,249,0.9)!important;
+}

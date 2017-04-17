@@ -1,0 +1,219 @@
+@{
+    ViewBag.Title = "Home";
+}
+
+@section Scripts{
+    <script src="@Url.Content("~/Angular/Dashboard/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Dashboard/Controller.js")"></script>
+
+    <script>$Flinger.RemoveParam("AuthToken", window.location.toString());</script>
+
+    <script>
+        
+
+
+        var data = {
+          labels: ['Jan', 'Feb', 'Mar', 'Apr', 'Mai', 'Jun', 'Jul'],
+          series: [
+            [542, 543, 520, 680, 653, 753, 326],
+            [230, 293, 380, 480, 503, 553, 600]
+          ]
+        };
+
+        var options = {
+            seriesBarDistance: 10,
+            axisX: {
+                showGrid: false
+            }
+        };
+
+        var responsiveOptions = [
+          ['screen and (max-width: 640px)', {
+            seriesBarDistance: 5,
+            axisX: {
+              labelInterpolationFnc: function (value) {
+                return value[0];
+              }
+            }
+          }]
+        ];
+
+        Chartist.Line('#chartActivity', data, options, responsiveOptions);
+        
+    </script>
+}
+<style>.classNae{background-color:brown, color:brown}</style>
+<section ng-controller="DashboardController" ng-init="InitializeIndexView()">
+    <div class="row">
+        <div class="col-lg-3 col-sm-6">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-danger text-center">
+                                <i class="ti-pulse"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Page views</p>
+                                <span>{{Insights.PageViewsPerMonth}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr />
+                        <div class="stats">
+                            <i class="ti-reload"></i> Updated now
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-info text-center">
+                                <i class="ti-target"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Users online</p>
+                                {{Insights.RATUsersOnline}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr />
+                        <div class="stats">
+                            <i class="ti-reload"></i> Right now
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-warning text-center">
+                                <i class="ti-alert"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Issues</p>
+                                {{Insights.WebFormsIssues}}
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr />
+                        <div class="stats">
+                            <i class="ti-timer"></i> In the last hour
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-3 col-sm-6">
+            <div class="card">
+                <div class="content">
+                    <div class="row">
+                        <div class="col-xs-5">
+                            <div class="icon-big icon-success text-center">
+                                <i class="ti-video-clapper"></i>
+                            </div>
+                        </div>
+                        <div class="col-xs-7">
+                            <div class="numbers">
+                                <p>Recorded</p>
+                                {{Insights.SecondsUsedPerMonth}} min.
+                            </div>
+                        </div>
+                    </div>
+                    <div class="footer">
+                        <hr />
+                        <div class="stats">
+                            <i class="ti-reload"></i> Updated now
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+
+        <div class="col-md-12">
+            <div class="card">
+                <div class="header">
+                    <h4 class="title">Users Behavior</h4>
+                    <p class="category">24 Hours performance</p>
+                </div>
+                <div class="content">
+                    <div id="chartHours" class="ct-chart"></div>
+                    <div class="footer">
+                        <div class="chart-legend">
+                            <i class="fa fa-circle text-info"></i> Open
+                            <i class="fa fa-circle text-danger"></i> Click
+                            <i class="fa fa-circle text-warning"></i> Click Second Time
+                        </div>
+                        <hr>
+                        <div class="stats">
+                            <i class="ti-reload"></i> Updated 3 minutes ago
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-4 col-sm-6">
+            <a href="@Url.Action("Index","Site")">
+                <div class="card">
+                    <div class="content">
+                        <div class="row">
+                            <div class="col-xs-5">
+                                <div class="icon-big text-center">
+                                    <i class="ti-eye"></i>
+                                </div>
+                            </div>
+                            <div class="col-xs-7">
+                                <div class="numbers-left">
+                                    Remote Administration Tool
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer">
+                            <hr />
+                            <div class="stats">
+                                <i class="ti-new-window"></i> Launch now
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </a>
+        </div>
+        <div class="col-md-8">
+            <div class="card ">
+                <div class="header">
+                    <h4 class="title">Form Analysis</h4>
+                </div>
+                <div class="content">
+                    <div id="chartActivity"></div>
+
+                    <div class="footer">
+                        <div class="chart-legend">
+                            <i class="fa fa-circle text-info"></i> Succesfuly
+                            <i class="fa fa-circle text-warning"></i> Failed
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,128 @@
+@{ 
+    ViewData["Title"] = "Login"; 
+    Layout = "~/Views/Shared/_LoginLayout.cshtml"; 
+}
+
+<form class="auth-login" method="POST">
+
+
+    <div class="wizard-header text-center">
+        <h3 class="wizard-title uppercase">Sign In</h3>
+    </div>
+
+    <div class="wizard-navigation">
+
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane active" id="signin">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group login-form">
+                        <label class="sr-only">Email <small>(required)</small></label>
+                        <input id="email-input" name="email" type="email" class="form-control" placeholder="email (required)">
+                    </div>
+                </div>
+                <div class="col-sm-12">
+                    <div class="form-group login-form">
+                        <label class="sr-only">Password <small>(required)</small></label>
+                        <input id="password-input" name="password" type="password" class="form-control " placeholder="password">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wizard-footer ">
+        <div class="pull-right ">
+            <input type='submit' class='btn btn-finish btn-danger2 login-btn' name='finish' value='Login' />
+        </div>
+        Not registered? <a href="@Url.Action("Register")">Sign up</a> <br> <a href="@Url.Action("ResetAccount", "Home")" class="footer-link">Forgot Your Password?</a>
+        <div class="clearfix "></div>
+    </div>
+</form>
+
+@section Scripts{
+<script>
+    $('.auth-login').submit(function () {
+        $Flinger.Loader.Init();
+        var email = $("#email-input").val();
+        var password = $("#password-input").val();
+
+        var data = {
+            Email: email,
+            Password: password
+        };
+
+        $.ajax({
+            url: "/User/GetByCredentials",
+            type: "POST",
+            data: data,
+            dataType: "json",
+            success: function (response) {
+                console.log(response)
+                if (response !== undefined) {
+                    if (response.result.Success !== undefined && response.result.Success !== false) {
+                        localStorage.setItem('auth_token', response.result.AuthToken);
+                        localStorage.setItem('userId', response.result.UserId);
+                        location.assign("@Url.Action("Index", "Dashboard")?AuthToken="+ response.result.AuthToken);
+                    }
+                    else if (response.result.Success !== undefined && response.result.Success === false) {
+                        $Flinger.Dialog.SetData("Please check your credentials", response.result.Message);
+                        $Flinger.Loader.Finish()
+                        $Flinger.Dialog.Toggle();
+                    }
+                    else {
+                        $Flinger.Dialog.SetData("Something was wrong", "In this moment we have some problems, please try again in few moments.");
+                        $Flinger.Loader.Finish()
+                        $Flinger.Dialog.Toggle();
+                    }
+                }
+            },
+            error: function (xhr, status, error) {
+                switch (xhr.status) {
+                    case 500:
+                    default:
+                        $Flinger.Dialog.SetData(error, "In this moment we have some problems, please try again in few moments.");
+                        $Flinger.Loader.Finish()
+                        $Flinger.Dialog.Toggle();
+
+                }
+                console.log(error);
+            }
+        });
+
+        event.preventDefault();
+    })
+
+    var randomN = Math.floor((Math.random() * 8));
+
+    switch (randomN == 0 ? randomN + 1 : randomN) {
+        case 1:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-1.jpg"))');
+            break;
+        case 2:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-2.jpg"))');
+            break;
+        case 3:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-3.jpg"))');
+            break;
+        case 4:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-4.jpg"))');
+            break;
+        case 5:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-5.jpg"))');
+            break;
+        case 6:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-6.jpg"))');
+            break;
+        case 7:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-7.jpg"))');
+            break;
+        case 8:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-8.jpg"))');
+            break;
+        default:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-1.jpg"))');
+    }
+</script>
+}

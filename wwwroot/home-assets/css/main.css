@@ -1,0 +1,494 @@
+
+body {
+  background-color: #f2f2f2;
+    font-family: "Lato";
+    font-weight: 300;
+    font-size: 16px;
+    color: #555;
+    padding-top: 50px;
+
+    -webkit-font-smoothing: antialiased;
+    -webkit-overflow-scrolling: touch;
+}
+
+/* Titles */
+h1, h2, h3, h4, h5, h6 {
+    font-family: 'Roboto', sans-serif;
+    font-weight: 300;
+    /*color: #333;*/
+}
+
+
+/* Paragraph & Typographic */
+p {
+    line-height: 28px;
+    margin-bottom: 25px;
+}
+
+.centered {
+    text-align: center;
+}
+
+/* Links */
+a {
+    color: #3bc492;
+    word-wrap: break-word;
+
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+a:hover,
+a:focus {
+    color: #c0392b;
+    text-decoration: none;
+    outline: 0;
+}
+
+a:before,
+a:after {
+    -webkit-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -moz-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -ms-transition: color 0.1s ease-in, background 0.1s ease-in;
+    -o-transition: color 0.1s ease-in, background 0.1s ease-in;
+    transition: color 0.1s ease-in, background 0.1s ease-in;
+}
+
+ hr {
+    display: block;
+    height: 1px;
+    border: 0;
+    border-top: 1px solid #ccc;
+    margin: 1em 0;
+    padding: 0;
+}
+
+
+/* ==========================================================================
+   Wrap Sections
+   ========================================================================== */
+
+#headerwrap {
+	/*background-color: #34495e;*/
+    /*background: url(../img/bg-pattern.png),#F7ECE3;
+    background: url(../img/bg-pattern.png),-webkit-linear-gradient(to left,#C3D6D6,#F7ECE3);
+    background: url(../img/bg-pattern.png),linear-gradient(to left,#C3D6D6,#F7ECE3);*/
+	padding-top: 20px;
+}
+
+#headerwrap h1 {
+	margin-top: 30px;
+	color: #333;
+	font-size: 58px;
+  font-weight: 100;
+	
+}
+
+.app-name{
+    color: #D61010;
+    font-weight: 300;
+}
+
+#headerwrap h3 {
+	color: #333;
+	font-size: 28px;
+  font-weight: 100;
+}
+
+#headerwrap h5 {
+	color: #333;
+	font-weight: 700;
+	text-align: left;
+}
+
+#headerwrap p {
+	text-align: left;
+}
+
+.footer-link{
+  color: #808080;
+}
+
+/* intro Wrap */
+
+#intro {
+    position: relative;
+	padding-top: 50px;
+	border-top: #bdc3c7 solid 5px;
+    background-color: #383838;
+    min-height: 360px;
+    background-image: url(../img/bg-cta.jpg);
+    background-position: center;
+    background-size: cover;
+}
+
+#intro>div:first-child{
+    position: relative;
+    z-index: 1;
+}
+
+.intro-header{
+    font-size: 4em;
+    color: #f2f2f2;
+}
+
+.overlay {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(0,0,0,.5);
+    position: absolute;
+    top: 0;
+    left: 0;
+}
+
+#features {
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+#features .ac a{
+	font-size: 20px;
+}
+
+/* Showcase Wrap */
+
+#showcase {
+	display: block;
+	background-color: #011627;
+	padding-top: 50px;
+	padding-bottom: 50px;
+}
+
+#showcase h1 {
+	color: white;
+}
+
+#footerwrap {
+	background-color: #2f2f2f;
+	color: white;
+	padding-top: 40px;
+	padding-bottom: 60px;
+	text-align: left;
+}
+
+#footerwrap h3 {
+	font-size: 20px;
+	color: white;
+}
+
+#footerwrap p {
+	color: #808080;
+	font-size: 16px;
+}
+
+.footer-separator{
+    border-left: #808080 1px solid;
+}
+/* Copyright Wrap */
+
+#c {
+	background: #222222;
+	padding-top: 15px;
+	text-align: right;
+}
+
+#c p {
+	color: white
+}
+
+.nav-bar-right{
+    position: absolute;
+    right: 5%;
+    top: 23%;
+}
+
+.btn-default{
+    border: 0px;
+    background: transparent;
+}
+
+.btn-lg{
+    border-radius: 0px;
+}
+
+.btn{
+    border-radius: 0px;
+}
+
+/* Pricing */
+
+.group:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+.plans{
+  margin-bottom: 50px;
+}
+
+.plan{
+  border: 1px solid #ECEEF0;
+  box-shadow: 0px 2px 10px 2px rgba(221, 221, 221, 0.73);
+}
+
+.plan>header{
+  margin: 20px 0;
+}
+
+.plan>header>h4{
+  font-size: 22px;
+}
+
+.plan>header>h2{
+  font-size: 40px;
+  
+}
+
+.simple-pricing{
+  padding-left: 18%;
+}
+
+.large-pricing{
+  padding-left: 0%;
+}
+
+.pricing-text-small {
+    font-size: 0.25em;
+    color: #c9cacb;
+    text-transform: initial;
+}
+
+.most-popular{
+  overflow: hidden;
+}
+
+.most-popular::before{
+  content: 'most popular';
+  background: #d43f3a;
+  color: #fff;
+  position: absolute!important;
+    left: -47px;
+    top: 24px;
+  transform: rotate(-47deg);
+  width: 163px;
+  height: 27px;
+}
+.button {
+  background-color: #9c83aa;
+  border-radius: 20px;
+  color: #fff;
+  font-size: 1em;
+  font-weight: 700;
+  padding: 0.75em 1.5em;
+  position: absolute;
+  bottom: 1.25em;
+  left: 50%;
+  margin-left: -60px;
+  text-decoration: none;
+  width: 120px;
+}
+
+.uppercase, .button, h2 {
+  text-transform: uppercase;
+}
+
+sup, .small {
+  font-size: 0.6125em;
+}
+
+.pricing-head{
+    font-family: "Lato";
+    font-weight: 100;
+    text-transform: uppercase;
+}
+
+.strong{
+    font-family: "Lato";
+    font-weight: 400;
+}
+
+.pricing-list{
+    color: #796583;
+    font-size: 0.92em;
+    list-style-type: none;
+    padding: 0;
+}
+
+.pricing-list li {
+  margin: 0 0 0.8333333333333333em;
+  border-bottom: 1px solid #ECEEF0;
+}
+
+.pricing-list {
+  margin: 0 0 1.5em;
+}
+
+
+.price-button-tabs{
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.btn-border{
+  border: #ccc solid 1px;
+}
+
+.buy-items{
+  min-width: 140px;
+  margin-bottom: 10px;
+}
+
+/*change to hand */
+
+.what-is-flinger{
+ padding-top: 60px;
+ padding-bottom:60px;
+  background: #011627;
+}
+
+.white-background{
+  background: #FFFFFF;
+}
+
+.white-color{
+  color:#FDFFFC;
+}
+
+.green-color {
+color: #3BC492;
+}
+
+
+
+/*
+==========================
+Contact US Elements
+==========================
+*/
+
+
+
+
+/***** Top content *****/
+
+.inner-bg {
+    padding: 40px 0 170px 0;
+}
+
+.top-content .text {
+	color: #fff;
+}
+
+.top-content .text h1 { color: #fff; }
+
+.top-content .description {
+	margin: 20px 0 10px 0;
+}
+
+/*.top-content .description p { opacity: 0.8; }*/
+
+.top-content .description a {
+	color: #fff;
+}
+.top-content .description a:hover, 
+.top-content .description a:focus { border-bottom: 1px dotted #fff; }
+
+.top-content .top-big-link {
+	margin-top: 35px;
+}
+
+.form-box {
+	padding-top: 40px;
+}
+
+.form-top {
+	overflow: hidden;
+	padding: 0 25px 15px 25px;
+	background: #fff;
+	-moz-border-radius: 4px 4px 0 0; -webkit-border-radius: 4px 4px 0 0; border-radius: 4px 4px 0 0;
+	text-align: left;
+}
+
+.form-top-left {
+	float: left;
+	width: 75%;
+	padding-top: 25px;
+}
+
+.form-top-left h3 { margin-top: 0; }
+
+.form-top-right {
+	float: left;
+	width: 25%;
+	padding-top: 5px;
+	font-size: 66px;
+	color: #ddd;
+	line-height: 100px;
+	text-align: right;
+}
+
+.form-bottom {
+	padding: 25px 25px 30px 25px;
+	background: #eee;
+      margin-bottom: 50px;
+	-moz-border-radius: 0 0 4px 4px; -webkit-border-radius: 0 0 4px 4px; border-radius: 0 0 4px 4px;
+	text-align: left;
+}
+
+.form-bottom form textarea {
+	height: 100px;
+}
+
+.form-bottom form .input-error {
+	border-color: #19b9e7;
+}
+
+
+/***** Media queries *****/
+
+@media (min-width: 992px) and (max-width: 1199px) {}
+
+@media (min-width: 768px) and (max-width: 991px) {}
+
+@media (max-width: 767px) {
+	
+	.navbar { padding-top: 0; }
+	.navbar.navbar-no-bg { background: #333; background: rgba(51, 51, 51, 0.9); }
+	.navbar-brand { height: 60px; margin-left: 15px; }
+	.navbar-collapse { border: 0; }
+	.navbar-toggle { margin-top: 12px; }
+	
+	.inner-bg { padding: 40px 0 110px 0; }
+	.top-content .top-big-link { margin-top: 25px; }
+	.top-content .top-big-link a.btn { margin-top: 10px; }
+
+}
+
+@media (max-width: 415px) {
+	
+	h1, h2 { font-size: 32px; }
+
+}
+
+
+/* Retina-ize images/icons */
+
+@media
+only screen and (-webkit-min-device-pixel-ratio: 2),
+only screen and (   min--moz-device-pixel-ratio: 2),
+only screen and (     -o-min-device-pixel-ratio: 2/1),
+only screen and (        min-device-pixel-ratio: 2),
+only screen and (                min-resolution: 192dpi),
+only screen and (                min-resolution: 2dppx) {
+	
+  
+	/* logo */
+    
+	
+}
+
+

@@ -1,0 +1,46 @@
+@{
+    ViewBag.Title = "Add new IP";
+}
+
+@section Scripts{
+    <script src="@Url.Content("~/Angular/Ip/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Site/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Ip/Controller.js")"></script>
+}
+
+<section ng-controller="IpController" ng-init="InitializeAddView()">
+	<div class="card col-sm-6 col-sm-offset-3">
+		<h2 class="text-center">Add new IP</h2>
+
+		<div class="col-lg-12">
+			<form  class="form-horizontal" ng-submit="AddIp()">
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Site:</label>
+					<div class="col-sm-10">
+						<select class="form-control sites-list" ng-options="site.Name disable when site.ApiKey == '0' for site in Sites track by site.ApiKey" ng-model="siteOption" ng-change="OnSiteSelected()">
+						</select>
+					</div>
+				</div>
+				<div class="form-group">
+					<label class="col-sm-2 control-label">Name</label>
+					<div class="col-sm-10">
+						<input class="form-control" id="Name" name="Name" type="text" placeholder="Development team" ng-model="Site.Name" />
+					</div>
+				</div>
+
+				<div class="form-group">
+					<label class="col-sm-2 control-label">IP</label>
+					<div class="col-sm-10">
+						<input class="form-control" id="IP" name="IP" type="text" placeholder="181.49.66.xxx" ng-model="Site.IP" />
+					</div>
+				</div>
+
+				<div class="text-center pull-right">
+					<input type="submit" id="Createbtn"  value="Create" class="btn btn-danger btn-wd btn-fill" enabled/>
+				
+					<a class="btn btn-danger btn-wd"  href="@Url.Action("Index")" >Cancel</a>
+				</div>
+			</form>
+		</div>
+	</div>
+</section>

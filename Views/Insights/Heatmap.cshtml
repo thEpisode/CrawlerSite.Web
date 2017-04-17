@@ -1,0 +1,314 @@
+@{
+    ViewBag.Title = "Heatmaps";
+}
+
+<section ng-controller="HeatmapController" ng-init="InitializeView()" class="col-lg-12 col-sm-12 col-md-12 col-xs-12 heatmap-box">
+    <section class="col-lg-12 col-sm-12 col-md-12 col-xs-12 heatmap-map">
+        <div class="card">
+            <div class="content">
+                <div class="row">
+                    <h2 class="text-center">{{Endpoint}}</h2>
+                </div>
+                <div class="row">
+                    <!--<div>Result at last 24 hours</div>-->
+                        
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="bottom-separator">
+                            <ul class="nav nav-tabs" role="tablist" id="filter-tabs">
+                                <li role="presentation" class="active"><a href="#basic-filters" aria-controls="basic-filters" role="tab" data-toggle="tab">Basic</a></li>
+                                <li role="presentation"><a href="#advanced-filters" aria-controls="advanced-filters" role="tab" data-toggle="tab">Advanced</a></li>
+                            </ul>
+                            <div class="tab-content">
+                                <div role="tabpanel" class="tab-pane fade in active" id="basic-filters">
+                                    <!--Sizes-->
+                                    <div class="col-lg-2 col-sm-4 col-md-6 col-xs-12 right-separator left-separator">
+
+                                        <div class="btn-group col-lg-offset-2">
+                                            <button type="button" class="dropdown-toggle btn-heatmap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="btn-content">
+                                                <img src="@Url.Content("~/dashboard-assets/img/size-heatmap.png")" class="heatmap-option-img" /> 
+                                                <span>Sizes </span>
+                                            </div>
+                                            <div class="btn-caret">
+                                                <span class="caret"></span>
+                                            </div>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-heatmap">
+                                                <li><a ng-click="SetSize('Desktop')" ng-disabled="DisableFilters" href="#" class="heatmap-filter-option"><img src="@Url.Content("~/dashboard-assets/img/desktop-heatmap.png")" class="heatmap-option-child-img" /> Desktop</a></li>
+                                                <li><a ng-click="SetSize('Tablet')" ng-disabled="DisableFilters" href="#" class="heatmap-filter-option"><img src="@Url.Content("~/dashboard-assets/img/tablet-heatmap.png")" class="heatmap-option-child-img" /> Tablet</a></li>
+                                                <li><a ng-click="SetSize('Mobile')" ng-disabled="DisableFilters" href="#" class="heatmap-filter-option"><img src="@Url.Content("~/dashboard-assets/img/phone-heatmap.png")" class="heatmap-option-child-img" /> Mobile</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                    <!--Type-->
+                                    <div class="col-lg-2 col-sm-4 col-md-6 col-xs-12 right-separator">
+
+                                        <div class="btn-group col-lg-offset-2">
+                                            <button type="button" class="dropdown-toggle btn-heatmap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="btn-content">
+                                                <img src="@Url.Content("~/dashboard-assets/img/type-heatmap.png")" class="heatmap-option-img" /> 
+                                                <span>Type </span>
+                                            </div>
+                                            <div class="btn-caret">
+                                                <span class="caret"></span>
+                                            </div>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-heatmap">
+                                                <li><a ng-click="SetType('Movement')" ng-disabled="DisableFilters" href="#" class="heatmap-filter-option"><img src="@Url.Content("~/dashboard-assets/img/movement-heatmap.png")" class="heatmap-option-child-img" /> Movement</a></li>
+                                                <li><a ng-click="SetType('Click')" ng-disabled="DisableFilters" href="#" class="heatmap-filter-option"><img src="@Url.Content("~/dashboard-assets/img/click-heatmap.png")" class="heatmap-option-child-img" /> Click</a></li>
+                                                <li><a ng-click="SetType('Scroll')" ng-disabled="DisableFilters" href="#" class="heatmap-filter-option"><img src="@Url.Content("~/dashboard-assets/img/scroll-heatmap.png")" class="heatmap-option-child-img" /> Scroll</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                    <!--Time-->
+                                    <div class="col-lg-2 col-sm-4 col-md-6 col-xs-12 right-separator">
+
+                                        <div class="btn-group col-lg-offset-2">
+                                            <button type="button" class="dropdown-toggle btn-heatmap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="btn-content">
+                                                <img src="@Url.Content("~/dashboard-assets/img/time-heatmap.png")" class="heatmap-option-img" /> 
+                                                <span>Time </span>
+                                            </div>
+                                            <div class="btn-caret">
+                                                <span class="caret"></span>
+                                            </div>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-heatmap">
+                                                <li><a ng-click="SetMaxTime(12)" ng-disabled="DisableFilters" href="#" class="heatmap-filter-option">12 hours</a></li>
+                                                <li><a ng-click="SetMaxTime(24)" ng-disabled="DisableFilters" href="#" class="heatmap-filter-option">24 hours</a></li>
+                                                <li><a ng-click="SetMaxTime(48)" ng-disabled="DisableFilters" href="#" class="heatmap-filter-option">48 hours</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                    <!--Export-->
+                                    <div class="col-lg-2 col-sm-4 col-md-6 col-xs-12 right-separator">
+                                        <div class="btn-group col-lg-offset-2">
+                                            <button type="button" class="dropdown-toggle btn-heatmap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="btn-content">
+                                                <img src="@Url.Content("~/dashboard-assets/img/export-heatmap.png")" class="heatmap-option-img" /> 
+                                                <span>Export </span>
+                                            </div>
+                                            <div class="btn-caret">
+                                                <span class="caret"></span>
+                                            </div>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-heatmap">
+                                                <li><a ng-click="Export('Image')" ng-disabled="DisableFilters" href="#" class="heatmap-filter-option"><img src="@Url.Content("~/dashboard-assets/img/image-heatmap.png")" class="heatmap-option-child-img" /> Image</a></li>
+                                                <li><a ng-click="Export('PDF')" ng-disabled="DisableFilters" href="#" class="heatmap-filter-option"><img src="@Url.Content("~/dashboard-assets/img/pdf-heatmap.png")" class="heatmap-option-child-img" /> PDF</a></li>
+                                                <li><a ng-click="Export('PPT')" ng-disabled="DisableFilters" href="#" class="heatmap-filter-option"><img src="@Url.Content("~/dashboard-assets/img/powerpoint-heatmap.png")" class="heatmap-option-child-img" /> PowerPoint</a></li>
+                                                <li><a ng-click="Export('PPT')" ng-disabled="DisableFilters" href="#" class="heatmap-filter-option"><img src="@Url.Content("~/dashboard-assets/img/excel-heatmap.png")" class="heatmap-option-child-img" /> Excel</a></li>
+                                            </ul>
+                                        </div>
+
+                                        <!--<a href="" class="btn btn-default">Print</a>-->
+                                    </div>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade" id="advanced-filters">
+                                    
+                                    <!--<div class="col-lg-4 col-sm-4 col-md-6 col-xs-12">
+                                        Time
+                                        <div class="btn-group" role="group" aria-label="...">
+                                            <input type="range" id="ageData" value="24" min="24" max="120" class="range-input">
+                                            <output name="ageOutputData" id="ageOutputData">24</output>
+                                        </div>
+                                    </div>-->
+                                    <!--Location-->
+                                    <div class="col-lg-2 col-sm-4 col-md-6 col-xs-12 right-separator">
+
+                                        <div class="btn-group col-lg-offset-2">
+                                            <button type="button" class="dropdown-toggle btn-heatmap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="btn-content">
+                                                <img src="@Url.Content("~/dashboard-assets/img/location-heatmap.png")" class="heatmap-option-img" /> 
+                                                <span>Location </span>
+                                            </div>
+                                            <div class="btn-caret">
+                                                <span class="caret"></span>
+                                            </div>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-heatmap">
+                                                <li><a ng-click="SetLocation()" ng-disabled="DisableFilters" href="#" class="">All</a></li>
+                                                <li><a ng-click="SetLocation()" ng-disabled="DisableFilters" href="#" class="">Colombia</a></li>
+                                                <li><a ng-click="SetLocation()" ng-disabled="DisableFilters" href="#" class="">UK</a></li>
+                                                <li><a ng-click="SetLocation()" ng-disabled="DisableFilters" href="#" class="">Malta</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+                                    <!--Flash version-->
+                                    <div class="col-lg-2 col-sm-4 col-md-6 col-xs-12 right-separator">
+
+                                        <div class="btn-group col-lg-offset-2">
+                                            <button type="button" class="dropdown-toggle btn-heatmap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="btn-content">
+                                                <img src="@Url.Content("~/dashboard-assets/img/flash-heatmap.png")" class="heatmap-option-img" /> 
+                                                <span>Flash? </span>
+                                            </div>
+                                            <div class="btn-caret">
+                                                <span class="caret"></span>
+                                            </div>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-heatmap">
+                                                <li><a ng-click="SetFlash()" ng-disabled="DisableFilters" href="#" class="">All</a></li>
+                                                <li><a ng-click="SetFlash(true)" ng-disabled="DisableFilters" href="#" class="">Yes</a></li>
+                                                <li><a ng-click="SetFlash(false)" ng-disabled="DisableFilters" href="#" class="">No</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+                                    <!--Browser-->
+                                    <div class="col-lg-2 col-sm-4 col-md-6 col-xs-12 right-separator">
+
+                                        <div class="btn-group col-lg-offset-2">
+                                            <button type="button" class="dropdown-toggle btn-heatmap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="btn-content">
+                                                <img src="@Url.Content("~/dashboard-assets/img/browser-heatmap.png")" class="heatmap-option-img" /> 
+                                                <span>Browser </span>
+                                            </div>
+                                            <div class="btn-caret">
+                                                <span class="caret"></span>
+                                            </div>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-heatmap">
+                                                <li><a ng-click="SetBrowser('')" ng-disabled="DisableFilters" href="#" class="">All</a></li>
+                                                <li><a ng-click="SetBrowser('Chrome')" ng-disabled="DisableFilters" href="#" class="">Chrome</a></li>
+                                                <li><a ng-click="SetBrowser('Mozilla')" ng-disabled="DisableFilters" href="#" class="">Mozilla</a></li>
+                                                <li><a ng-click="SetBrowser('Opera')" ng-disabled="DisableFilters" href="#" class="">Opera</a></li>
+                                                <li><a ng-click="SetBrowser('Safari')" ng-disabled="DisableFilters" href="#" class="">Safari</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+                                    <!--Operating System-->
+                                    <div class="col-lg-2 col-sm-4 col-md-6 col-xs-12 right-separator">
+
+                                        <div class="btn-group col-lg-offset-2">
+                                            <button type="button" class="dropdown-toggle btn-heatmap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="btn-content">
+                                                <img src="@Url.Content("~/dashboard-assets/img/operating-heatmap.png")" class="heatmap-option-img" /> 
+                                                <span>Operating System </span>
+                                            </div>
+                                            <div class="btn-caret">
+                                                <span class="caret"></span>
+                                            </div>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-heatmap">
+                                                <li><a ng-click="SetOperatingSystem('')" ng-disabled="DisableFilters" href="#" class="">All</a></li>
+                                                <li><a ng-click="SetOperatingSystem('Windows')" ng-disabled="DisableFilters" href="#" class="">Windows</a></li>
+                                                <li><a ng-click="SetOperatingSystem('Mac')" ng-disabled="DisableFilters" href="#" class="">Mac</a></li>
+                                                <li><a ng-click="SetOperatingSystem('Linux')" ng-disabled="DisableFilters" href="#" class="">Linux</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+                                    <!--Cookies-->
+                                    <div class="col-lg-2 col-sm-4 col-md-6 col-xs-12 right-separator">
+
+                                        <div class="btn-group col-lg-offset-2">
+                                            <button type="button" class="dropdown-toggle btn-heatmap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="btn-content">
+                                                <img src="@Url.Content("~/dashboard-assets/img/cookies-heatmap.png")" class="heatmap-option-img" /> 
+                                                <span>Cookies? </span>
+                                            </div>
+                                            <div class="btn-caret">
+                                                <span class="caret"></span>
+                                            </div>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-heatmap">
+                                                <li><a ng-click="SetCookies()" ng-disabled="DisableFilters" href="#" class="">All</a></li>
+                                                <li><a ng-click="SetCookies(true)" ng-disabled="DisableFilters" href="#" class="">Yes</a></li>
+                                                <li><a ng-click="SetCookies(false)" ng-disabled="DisableFilters" href="#" class="">No</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+
+                                    <!--Custom-->
+                                    <div class="col-lg-2 col-sm-4 col-md-6 col-xs-12 right-separator">
+
+                                        <div class="btn-group col-lg-offset-2">
+                                            <button type="button" class="dropdown-toggle btn-heatmap" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                            <div class="btn-content">
+                                                <img src="@Url.Content("~/dashboard-assets/img/custom-heatmap.png")" class="heatmap-option-img" /> 
+                                                <span>Custom </span>
+                                            </div>
+                                            <div class="btn-caret">
+                                                <span class="caret"></span>
+                                            </div>
+                                            </button>
+                                            <ul class="dropdown-menu dropdown-menu-heatmap">
+                                                <li><a ng-click="SetMaxTime(12)" ng-disabled="DisableFilters" href="#" class="">Create query</a></li>
+                                            </ul>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                    </div>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <div class="heatmap-container" id="heatmapContainer">
+                            <img src="{{UrlScreenshot}}" class="heatmap-screenshot" alt="Responsive image">
+                        </div>
+                        
+                    </div>
+                    
+                </div>
+            </div>
+        </div>        
+    </section>
+
+    
+</section>
+
+@section Scripts{
+    <script src="@Url.Content("~/Angular/Heatmaps/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Heatmaps/Controller.js")"></script>
+    <script src="~/js/mousetrap.js"></script>
+    <script src="~/js/tree.js"></script>
+    <script>
+        var heatmap;
+
+        function createHeatmap(){
+            heatmap = h337.create({
+                container: document.getElementById('heatmapContainer'),
+                maxOpacity: .6,
+                radius: 50,
+                blur: .90,
+                // backgroundColor with alpha so you can see through it
+                backgroundColor: 'rgba(0, 0, 0, 0.2)'
+            });
+        }
+
+        function destroyHeatmap(){
+            //find corresponding canvas element
+            var canvas = heatmap._renderer.canvas;
+            //remove the canvas from DOM
+            $(canvas).remove();
+        }
+
+        $('#filter-tabs>li>a').click(function (e) {
+            e.preventDefault()
+            $(this).tab('show')
+        })
+
+        $('.heatmap-filter-option').click(function(event){
+            event.preventDefault();
+
+            var src = $(this).find('img').attr('src');
+            $(this).parent().parent().parent().find('.heatmap-option-img').attr('src', src);
+        })
+
+        $(".heatmap-screenshot").on('load', function() { 
+            angular.element(document.querySelector('.heatmap-box')).scope().ScreenShotIsLoaded();
+        })
+        
+    </script>
+}

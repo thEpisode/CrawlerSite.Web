@@ -1,0 +1,293 @@
+@{ ViewData["Title"] = "Register"; Layout = "~/Views/Shared/_RegisterLayout.cshtml"; }
+
+<form class="register-user" autocomplete='off'>
+
+    <div class="wizard-header text-center">
+        <h3 class="wizard-title">Join Crawler Site today</h3>
+        <p class="category">This information will let us know more about you.</p>
+    </div>
+
+    <div class="wizard-navigation">
+        <div class="progress-with-circle">
+            <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" style="width: 21%;"></div>
+        </div>
+        <ul>
+            <li>
+                <a href="#about" data-toggle="tab">
+                    <div class="icon-circle">
+                        <i class="ti-user"></i>
+                    </div>
+                    About
+                </a>
+            </li>
+            <li>
+                <a href="#account" data-toggle="tab">
+                    <div class="icon-circle">
+                        <i class="ti-settings"></i>
+                    </div>
+                    Work
+                </a>
+            </li>
+            <li>
+                <a href="#address" data-toggle="tab">
+                    <div class="icon-circle">
+                        <i class="ti-map"></i>
+                    </div>
+                    Address
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="tab-content register">
+        <div class="tab-pane" id="about">
+            <div class="row">
+                <h5 class="info-text"> Please tell us more about yourself.</h5>
+                <div class="col-sm-4 col-sm-offset-1">
+                    <div class="picture-container">
+                        <div class="picture">
+                            <img src="~/register-assets/img/default-avatar.jpg" class="picture-src" id="wizardPicturePreview" title="" />
+                            <input type="file" id="wizard-picture">
+                        </div>
+                        <h6>Choose Picture</h6>
+                    </div>
+                </div>
+                <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>First Name <small>(required)</small></label>
+                        <input id="firstname-register" name="firstname" type="text" class="form-control" placeholder="Jhon">
+                    </div>
+                    <div class="form-group">
+                        <label>Last Name <small>(required)</small></label>
+                        <input id="lastname-register" name="lastname" type="text" class="form-control" placeholder="Doe">
+                    </div>
+                </div>
+                <div class="col-sm-10 col-sm-offset-1">
+                    <div class="form-group">
+                        <label>Email <small>(required)</small></label>
+                        <input id="email-register" name="email" type="email" class="form-control" placeholder="jhon.doe@coplest.com">
+                    </div>
+                    <div class="form-group">
+                        <label>Password <small>(required)</small></label>
+                        <input id="password-register" name="password" type="password" class="form-control">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="account">
+            <h5 class="info-text"> What are your roles? (checkboxes) </h5>
+            <div class="row">
+                <div class="col-sm-12 col-sm-offset-0">
+                    <div class="col-sm-3">
+                        <div class="choice" data-toggle="wizard-checkbox">
+                            <input type="checkbox" name="jobb" value="Designer">
+                            <div class="card card-checkboxes card-hover-effect">
+                                <i class="ti-image"></i>
+                                <p>Designer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="choice" data-toggle="wizard-checkbox">
+                            <input type="checkbox" name="jobb" value="Developer">
+                            <div class="card card-checkboxes card-hover-effect">
+                                <i class="ti-shift-right-alt"></i>
+                                <p>Developer</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="choice" data-toggle="wizard-checkbox">
+                            <input type="checkbox" name="jobb" value="Administrative">
+                            <div class="card card-checkboxes card-hover-effect">
+                                <i class="ti-server"></i>
+                                <p>IT Pro</p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3">
+                        <div class="choice" data-toggle="wizard-checkbox">
+                            <input type="checkbox" name="jobb" value="Administrative">
+                            <div class="card card-checkboxes card-hover-effect">
+                                <i class="ti-agenda"></i>
+                                <p>Administrative</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="tab-pane" id="address">
+            <div class="row">
+                <div class="col-sm-12">
+                    <h5 class="info-text"> Where are you from? </h5>
+                </div>
+                <div class="col-sm-5 col-sm-offset-1">
+                    <div class="form-group">
+                        <label>Country</label><br>
+                        <input id="country-register" name="country" class="form-control" placeholder="United States...">
+                    </div>
+                </div>
+                <div class="col-sm-5">
+                    <div class="form-group">
+                        <label>City</label>
+                        <input id="city-register" type="text" class="form-control" placeholder="New York...">
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="wizard-footer">
+        
+        <div class="pull-right">
+            <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Next' />
+            <input type='submit' class='btn btn-finish btn-fill btn-danger btn-wd' name='finish' value='Finish' />
+        </div>
+
+        <div class="pull-left">
+            <input type='button' class='btn btn-previous btn-default btn-wd' name='previous' value='Previous' />
+        </div>
+        <div class="clearfix"></div>
+    </div>
+</form>
+
+<style>
+
+</style>
+
+@section Scripts{
+<script>
+    (function(){
+        $Flinger.Loader.Finish()
+    })()
+    $('#country-register').typeahead({
+        hint: true,
+        highlight: true,
+        minLength: 1
+    },
+        {
+            name: 'countriesVal',
+            source: substringMatcher(countriesVal)
+        }).on('typeahead:render', function () {
+            $('.tt-suggestion:first-child').addClass('tt-cursor');
+        });
+
+    $(".tt-hint").css("opacity", 0);
+
+    /// Prevent submit form from return press
+    $(document).on("keypress", "input", function (e) {
+        if (e.which == 13) {
+            e.preventDefault();
+
+            if($('.btn-finish').is(':visible') == false){
+                $('.btn-next').click();
+            }
+            else{
+                $('.btn-finish').click();
+            }
+        }
+    });
+
+    $('.register-user').submit(function (event) {
+        event.preventDefault();
+
+        if (event.which == 13) {debugger; console.log('hola') }
+
+        $Flinger.Loader.Init();
+        var firstname = $('#firstname-register').val();
+        var lastname = $('#lastname-register').val();
+        var email = $('#email-register').val();
+        var password = $('#password-register').val();
+        var city = $('#city-register').val();
+        var country = getInternationalCountryCode($('#country-register').val());
+        var work = [];
+
+        $('input[name="jobb"]').each(function () {
+            if ($(this).prop('checked') == true) {
+                work.push($(this).val());
+            }
+        });
+
+        var data = {
+            FirstName: firstname,
+            LastName: lastname,
+            Email: email,
+            Password: password,
+            City: city,
+            Country: country,
+            AcceptTerms: true,
+            State: 2,
+            Work: work
+        }
+
+        $.ajax({
+            url: "@Url.Action("Register","User")",
+            type: "POST",
+            crossDomain: true,
+            data: data,
+            dataType: "json",
+            success: function (response) {
+                if (response !== undefined) {
+                    if (response.success !== undefined && response.success !== false) {
+                        if (response.Result !== null) {
+                            location.assign('@Url.Action("Login")');
+                        }
+                    }
+                    else if (response.success !== undefined && response.success === false) {
+                        $Flinger.Dialog.SetData("Something was wrong", response.message);
+                        $Flinger.Loader.Finish()
+                        $Flinger.Dialog.Toggle();
+                    }
+                    else {
+                        $Flinger.Dialog.SetData("Something was wrong", "In this moment we have some problems, please try again in few moments.");
+                        $Flinger.Loader.Finish()
+                        $Flinger.Dialog.Toggle();
+                    }
+                }
+            },
+            error: function (xhr, status, error) {
+                switch (xhr.status) {
+                    case 500:
+                    default:
+                        $Flinger.Dialog.SetData(error, "In this moment we have some problems, please try again in few moments.");
+                        $Flinger.Loader.Finish()
+                        $Flinger.Dialog.Toggle();
+                }
+                console.log(error);
+            }
+        });
+
+        return false;
+    })
+
+    var randomN = Math.floor((Math.random() * 8));
+
+    switch (randomN == 0 ? randomN + 1 : randomN) {
+        case 1:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-1.jpg"))');
+            break;
+        case 2:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-2.jpg"))');
+            break;
+        case 3:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-3.jpg"))');
+            break;
+        case 4:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-4.jpg"))');
+            break;
+        case 5:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-5.jpg"))');
+            break;
+        case 6:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-6.jpg"))');
+            break;
+        case 7:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-7.jpg"))');
+            break;
+        case 8:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-8.jpg"))');
+            break;
+        default:
+            $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-1.jpg"))');
+    }
+</script>
+}

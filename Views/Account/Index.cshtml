@@ -1,0 +1,133 @@
+@{ 
+    ViewBag.Title = "Account"; 
+} 
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Angular/Account/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Account/Controller.js")"></script>
+    <script>
+        var randomN = Math.floor((Math.random() * 11));
+
+            switch (randomN == 0 ? randomN + 1 : randomN) {
+                case 1:
+                    $(".background-image").attr('src','@Url.Content("~/dashboard-assets/img/profile_background.1.jpg")');
+                    break;
+                case 2:
+                    $(".background-image").attr('src','@Url.Content("~/dashboard-assets/img/profile_background.2.jpg")');
+                    break;
+                case 3:
+                    $(".background-image").attr('src','@Url.Content("~/dashboard-assets/img/profile_background.3.jpg")');
+                    break;
+                case 4:
+                    $(".background-image").attr('src','@Url.Content("~/dashboard-assets/img/profile_background.4.jpg")');
+                    break;
+                case 5:
+                    $(".background-image").attr('src','@Url.Content("~/dashboard-assets/img/profile_background.5.jpg")');
+                    break;
+                case 6:
+                    $(".background-image").attr('src','@Url.Content("~/dashboard-assets/img/profile_background.6.jpg")');
+                    break;
+                case 7:
+                    $(".background-image").attr('src','@Url.Content("~/dashboard-assets/img/profile_background.7.jpg")');
+                    break;
+                case 8:
+                    $(".background-image").attr('src','@Url.Content("~/dashboard-assets/img/profile_background.8.jpg")');
+                    break;
+                case 9:
+                    $(".background-image").attr('src','@Url.Content("~/dashboard-assets/img/profile_background.9.jpg")');
+                    break;
+                case 10:
+                    $(".background-image").attr('src','@Url.Content("~/dashboard-assets/img/profile_background.10.jpg")');
+                    break;
+                default:
+                    $(".background-image").attr('src','@Url.Content("~/dashboard-assets/img/profile_background.11.jpg")');
+            }
+    </script>
+}
+
+<section ng-controller="AccountController" ng-init="InitializeIndexView()">
+    <div class="col-lg-4 col-md-5">
+        <div class="card card-user">
+            <div class="image">
+                <img src="@Url.Content("~/dashboard-assets/img/profile_background.0.jpg")" alt="Background Image" class="background-image" />
+            </div>
+            <div class="content">
+                <div class="author">
+                    <img class="avatar border-white" src="@Url.Content("~/dashboard-assets/img/faces/face-0.jpg")" alt="User Profile" />
+                    <h4 class="title">{{FullName}}</h4>
+                </div>
+                <p class="description text-center">
+                   {{User.City}} - {{User.Country}}
+                </p>
+                <div class="content text-center">
+                    <a href="@Url.Action("ChangePassword", "Account")" class="btn btn-success">Change password</a>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card card-danger">
+            <div class="header">
+                <h4 class="title title-inverse text-center">Danger zone</h4>
+            </div>
+            <div class="content text-center">
+                <a href="@Url.Action("DeleteAccount", "Account")" class="btn btn-danger">Delete account</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-8 col-md-7">
+        <div class="card">
+            <div class="header">
+                <h4 class="title">Edit Profile</h4>
+            </div>
+            <div class="content">
+                <form>
+                    <div class="row">
+                        
+                        <div class="col-md-12">
+                            <div class="form-group">
+                                <label for="exampleInputEmail1">Email address</label>
+                                <input type="email" class="form-control border-input" placeholder="Email" value="{{User.Email}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>First Name</label>
+                                <input type="text" class="form-control border-input" placeholder="Firstname" value="{{User.FirstName}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Last Name</label>
+                                <input type="text" class="form-control border-input" placeholder="Lastname" value="{{User.LastName}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>City</label>
+                                <input type="text" class="form-control border-input" placeholder="City" value="{{User.City}}">
+                            </div>
+                        </div>
+                        <div class="col-md-6">
+                            <div class="form-group">
+                                <label>Country</label>
+                                <input type="text" class="form-control border-input" placeholder="Country" value="{{User.Country}}">
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="text-center">
+                        <button type="submit" class="btn btn-success btn-fill btn-wd">Update Profile</button>
+                    </div>
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

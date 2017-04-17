@@ -1,0 +1,16 @@
+{
+  "name": "webapplication",
+  "private": true,
+  "dependencies": {
+    "bootstrap": "3.3.6",
+    "jquery": "2.2.3",
+    "jquery-validation": "latest",
+    "jquery-validation-unobtrusive": "latest",
+    "angular": "1.5.8",
+    "angular-route": "1.5.8",
+    "typeahead.js": "^0.11.1",
+    "bootstrap-tagsinput": "^0.5.0",
+    "waypoints": "^4.0.1",
+    "izitoast": "^1.1.1"
+  }
+}

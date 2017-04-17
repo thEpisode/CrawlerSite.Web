@@ -1,0 +1,165 @@
+@{
+    ViewBag.Title = "Billing";
+}
+
+@section Scripts{
+    <script src="https://js.stripe.com/v3/"></script>
+    <script src="@Url.Content("~/Angular/Billing/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Billing/Controller.js")"></script>
+
+    <script>
+        var stripe = Stripe('pk_test_Amj1HkbiO5yJ5rHJofhzNdif');
+        // Create an instance of Elements
+        var elements = stripe.elements({
+            fonts: [
+                {
+                    family: 'Muli',
+                    weight: 400,
+                    src: 'local("Muli Regular"), local("Muli-Regular"), url(https://fonts.gstatic.com/s/muli/v10/z6c3Zzm51I2zB_Gi7146Bg.woff2) format("woff2")',
+                    unicodeRange: 'U+0000-00FF, U+0131, U+0152-0153, U+02C6, U+02DA, U+02DC, U+2000-206F, U+2074, U+20AC, U+2212, U+2215'
+                },
+            ]
+        });
+
+        // Custom styling can be passed to options when creating an Element.
+        // (Note that this demo uses a wider set of styles than the guide below.)
+        var style = {
+            base: {
+                color: '#32325d',
+                lineHeight: '24px',
+                fontFamily: '"Muli", "Helvetica", Arial, sans-serif',
+                fontSmoothing: 'antialiased',
+                fontSize: '14px',
+                '::placeholder': {
+                    color: '#aab7c4'
+                }
+            },
+            invalid: {
+                color: '#fa755a',
+                iconColor: '#fa755a'
+            }
+        };
+
+        // Create an instance of the card Element
+        var card = elements.create('card', { style: style });
+
+        // Add an instance of the card Element into the `card-element` <div>
+        card.mount('#card-element');
+
+        // Handle real-time validation errors from the card Element.
+        card.addEventListener('change', function (event) {
+            const displayError = document.getElementById('card-errors');
+            if (event.error) {
+                displayError.textContent = event.error.message;
+            } else {
+                displayError.textContent = '';
+            }
+        });
+
+        // Handle form submission
+        var form = document.getElementById('payment-form');
+        form.addEventListener('submit', function (event) {
+            event.preventDefault();
+
+            $Flinger.Loader.Init();
+            stripe.createToken(card).then(function (result) {
+                if (result.error) {
+                    // Inform the user if there was an error
+                    var errorElement = document.getElementById('card-errors');
+                    errorElement.textContent = result.error.message;
+                } else {
+                    // Send the token to your server
+                    angular.element(document.querySelector('.billing-box')).scope().SubscribeToPlan(result.token);
+                    //stripeTokenHandler(result.token);
+                    console.log(result.token)
+                }
+            });
+        });
+    </script>
+}
+
+<section ng-controller="BillingController" ng-init="InitializeIndexView()" class="billing-box col-lg-12 col-sm-12 col-md-12 col-xs-12">
+    <section class="col-lg-6 col-md-5 col-sm-12 col-xs-12 col-lg-offset-3">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <div class="card">
+                <div class="content">
+                    <h3 class="text-center">Update your payment information</h3>
+                    <form action="/charge" method="post" id="payment-form" name="paymentForm">
+                        <div class="row">
+                            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                                <div class="form-group">
+                                    <label>Name <span class="obligatory-field">*</span></label>
+                                    <input type="text" placeholder="Must match card" name="cardFirstname" class="form-control name-card" ng-model="User.FirstNameCard" val="" minlength="3" required />
+                                    <span class="obligatory-field" ng-show="paymentForm.cardFirstname.$touched && paymentForm.cardFirstname.$invalid">The name is required.</span>
+                                </div>
+                                <div class="form-group">
+                                    <label>Lastname <span class="obligatory-field">*</span></label>
+                                    <input type="text" placeholder="Must match card" name="cardLastname" class="form-control name-card" ng-model="User.LastNameCard" val="" minlength="3" required />
+                                    <span class="obligatory-field" ng-show="paymentForm.cardLastname.$touched && paymentForm.cardLastname.$invalid">The lastname is required.</span>
+                                </div>
+                                <div class="logos logos-row" id="cc-after">
+                                    <span class="logoIcon VISA"></span>
+                                    <span class="logoIcon MASTERCARD"></span>
+                                    <span class="logoIcon AMEX"></span>
+                                    <span class="logoIcon DINERS"></span>
+                                </div>
+                                <div class="form-row">
+                                    <label for="card-element">Credit or debit card <span class="obligatory-field">*</span></label>
+                                    <a href ng-click="ChangeCreditCardValue()" ng-hide="IsChangeCreditCardValue">
+                                        <div class="stripe-change-data">
+                                            <span class="card-number">**** **** **** {{Customer.sources.data[0].last4}}</span>
+                                            <span class="message">Click for change data</span>
+                                        </div>
+                                    </a>
+                                    <div id="card-element" ng-show="IsChangeCreditCardValue">
+                                    <!-- a Stripe Element will be inserted here. -->
+                                    </div>
+
+                                    <!-- Used to display form errors -->
+                                    <div id="card-errors"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer payment-button-container text-center">
+                            <button type="submit" class="btn btn-info">Update payment method</button>
+                            <p class="secure-server">Secure server <i class="fa fa-lock icon-lock" aria-hidden="true"></i></p>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+               
+    </section>
+
+    <section class="col-lg-6 col-md-5 col-sm-12 col-xs-12 col-lg-offset-3">
+        <section class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="content">
+                    <h3 class="text-center">Plan detail</h3>
+                    <div class="row">
+                        <h4 class="text-center">{{User.PlanId}}</h4>
+                    </div>
+                    <div class="footer payment-button-container text-center">
+                        <a href="@Url.Action("PlanDetail")" class="btn btn-info">Change plan</a>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+
+        <section class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
+            <div class="card">
+                <div class="content">
+                    <h3 class="text-center">Current billing</h3>
+                    <div class="row">
+                        <h4 class="text-center">{{TodayMonth}}</h4>
+                    </div>
+                    <div class="footer payment-button-container text-center">
+                        <a href="@Url.Action("BillingHistory")" class="btn btn-info">See history</a>
+                    </div>
+                </div>
+                
+            </div>
+        </section>
+    </section>
+</section>

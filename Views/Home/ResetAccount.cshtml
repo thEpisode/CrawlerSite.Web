@@ -1,0 +1,47 @@
+@{ ViewData["Title"] = "Login"; Layout = "~/Views/Shared/_LoginLayout.cshtml"; }
+
+<form class="auth-login" method="POST">
+
+
+    <div class="wizard-header text-center">
+        <h3 class="wizard-title">Forgot Your Password?</h3>
+    </div>
+
+    <div class="wizard-navigation">
+
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane active" id="signin">
+
+<p>
+If you can’t remember your password, enter the email address associated account. 
+
+<p>
+ We’ll send you instructions for resetting your password.
+</p>
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Email <small>(required)</small></label>
+                        <input id="email-input" name="email" type="email" class="form-control" placeholder="jhon.doe@dremind.com">
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+    <div class="wizard-footer ">
+        <div class="pull-right ">
+            <input type='submit' class='btn btn-finish btn-fill btn-danger btn-wd login-btn' name='finish' value='Submit' />
+        </div>
+<a href="@Url.Action("Contact", "Home")" class="footer-link">Contact Us</a>
+        <div class="clearfix "></div>
+    </div>
+</form>
+
+@section Scripts{
+<script>
+   
+</script>
+}

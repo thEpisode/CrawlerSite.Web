@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Easy way to truly understand your web and mobile site visitors">
+    <meta name="author" content="Dremind S.A.S.">
+    <link rel="shortcut icon" href="assets/ico/favicon.png">
+
+    <title>@ViewBag.Title | Crawler Site</title>
+
+    <!-- Schema.org markup for Google+ -->
+    <meta itemprop="name" content="Crawler Site">
+    <meta itemprop="description" content="Easy way to truly understand your web and mobile site visitors">
+    <meta itemprop="image" content="http://flinger.azurewebsites.net/Templates/Mockups/Flinger_Dashboard_Web.jpg" />
+    <!-- Twitter Card data -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:site" content="&#64;Crawler Site">
+    <meta name="twitter:title" content="Crawler Site">
+    <meta name="twitter:description" content="Easy way to truly understand your web and mobile site visitors">
+    <meta name="twitter:creator" content="&#64;Flinger">
+    <meta name="twitter:image" content="http://flinger.azurewebsites.net/Templates/Mockups/Flinger_Dashboard_Web.jpg">
+    <!-- Open Graph data -->
+    <meta property="og:title" content="Crawler Site" />
+    <meta property="og:type" content="product" />
+    <meta property="og:url" content="http://flinger.azurewebsites.net/" />
+    <meta property="og:image" content="http://flinger.azurewebsites.net/Templates/Mockups/Flinger_Dashboard_Web.jpg" />
+    <meta property="og:description" content="Easy way to truly understand your web and mobile site visitors" />
+    <meta property="og:site_name" content="Crawler Site" />
+
+    <environment names="Development">
+        <!-- Bootstrap core CSS -->
+        <link href="~/home-assets/css/bootstrap.css" rel="stylesheet">
+
+        <link href="~/css/animate.css" rel="stylesheet">
+        <link href="~/css/site.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="~/home-assets/css/main.css" rel="stylesheet">
+
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+        <script src="https://use.fontawesome.com/8c27e78102.js"></script>
+        <script src="~/home-assets/js/jquery.min.js"></script>
+        <script src="~/home-assets/js/smoothscroll.js"></script>
+
+           <!-- Fonts and Icons -->
+        <link href="~/register-assets/css/themify-icons.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="~/css/dialog.css" />
+    </environment>
+    <environment names="Staging,Production">
+        <!-- Bootstrap core CSS -->
+        <link href="~/home-assets/css/bootstrap.css" rel="stylesheet">
+
+        <link href="~/css/animate.css" rel="stylesheet">
+        <link href="~/css/site.css" rel="stylesheet">
+
+        <!-- Custom styles for this template -->
+        <link href="~/home-assets/css/main.css" rel="stylesheet">
+
+        <link href='http://fonts.googleapis.com/css?family=Lato:300,400,700,300italic,400italic' rel='stylesheet' type='text/css'>
+        <link href="https://fonts.googleapis.com/css?family=Roboto:100,300,400,500,700" rel="stylesheet">
+        <script src="https://use.fontawesome.com/8c27e78102.js"></script>
+        <script src="~/home-assets/js/jquery.min.js"></script>
+        <script src="~/home-assets/js/smoothscroll.js"></script>
+
+           <!-- Fonts and Icons -->
+        <link href="~/register-assets/css/themify-icons.css" rel="stylesheet">
+
+        <link rel="stylesheet" type="text/css" href="~/css/dialog.css" />
+
+    </environment>
+
+
+
+
+</head>
+
+<body data-spy="scroll" data-offset="0" data-target="#navigation">
+
+    <!-- Fixed navbar -->
+    <div id="navigation" class="navbar navbar-default navbar-fixed-top">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	            <span class="icon-bar"></span>
+	          </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")"><b class="app-name">Crawler Site</b></a>
+            </div>
+            <div class="navbar-collapse collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active"><a href="#home" class="smoothScroll">Home</a></li>
+                    <li><a href="#desc" class="smoothScroll">Description</a></li>
+                    <li><a href="#screenshots" class="smoothScroll">Features</a></li>
+                    <li><a href="@Url.Action("Pricing", "Home")">Pricing</a></li>
+                    <li><a href="@Url.Action("Register", "Home")" class="btn btn-danger hidden-lg hidden-md hidden-sm" style="color: #ffffff;">TRY IT FOR FREE</a></li>
+                    <li><a href="@Url.Action("Login", "Home")" class="btn btn-default  hidden-lg hidden-md hidden-sm">Login</a></li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+        <div class="nav-bar-right hidden-xs">
+            <a href="@Url.Action("Register", "Home")" class="btn btn-danger">TRY IT FOR FREE</a>
+            <!--https://picjumbo.com/macbook-pro-keyboard-detail/-->
+            <a href="@Url.Action("Login", "Home")" class="btn btn-default">Login</a>
+        </div>
+    </div>
+
+
+    @RenderBody()
+
+    <div id="footerwrap">
+        <div class="container">
+            <div class="col-lg-3">
+                <h3>Crawler Site</h3>
+                <p>
+                    <a href="@Url.Action("Documentation", "Home")" class="footer-link">Our Product</a><br/>
+                    <a href="@Url.Action("Pricing", "Home")" class="footer-link">Pricing</a><br/>
+                    <a href="@Url.Action("Calculator", "Home")" class="footer-link">Calculator</a><br/>
+                </p>
+            </div>
+
+            <div class="col-lg-3">
+                <h3>SUPPORT</h3>
+                <p>
+                    <a href="@Url.Action("Documentation", "Home")" class="footer-link">Documentation</a><br/>
+                    <a href="#" class="footer-link">Chat</a><br/>
+                    <a href="@Url.Action("Security", "Home")" class="footer-link">Security</a><br/>
+                </p>
+            </div>
+
+            <div class="col-lg-3">
+                <h3>DREMIND</h3>
+                <p>
+                    <a href="@Url.Action("AboutUS", "Home")" class="footer-link">About us</a><br/>
+                    <a href="@Url.Action("Blog", "Home")" class="footer-link">Blog</a><br/>
+                    <a href="@Url.Action("Contact", "Home")" class="footer-link">Contact us</a><br/>
+                </p>
+            </div>
+
+            <div class="col-lg-3 footer-separator">
+                <h3>LEGAL</h3>
+                <p>
+                    <a href="@Url.Action("Terms", "Home")" class="footer-link">Terms & conditions</a><br/>
+                    <a href="@Url.Action("Privacy", "Home")" class="footer-link">Privacy policy</a><br/>
+                    <a href="@Url.Action("Cookies", "Home")" class="footer-link">Cookies information</a><br/>
+                </p>
+            </div>
+        </div>
+    </div>
+    <div id="c">
+        <div class="container">
+            <p>Created by <a href="http://dremind.com">DREMIND</a></p>
+
+        </div>
+    </div>
+    <div id="dialog" class="dialog">
+        <div class="dialog__overlay"></div>
+        <div class="dialog__content">
+            <h2></h2>
+            <h4></h4>
+            <div>
+                <button class="action" data-dialog-close>Close</button>
+            </div>
+        </div>
+    </div>
+
+    <environment names="Development">
+        <script>(function(){console.log("development")})()</script>
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="~/home-assets/js/bootstrap.js"></script>
+
+        <script src="~/js/modernizr.custom.js"></script>
+        <script src="~/js/classie.js"></script>
+		<script src="~/js/dialogFx.js"></script>
+        <script src="~/lib/waypoints/lib/jquery.waypoints.js"></script>
+        
+        <script src="~/js/main.js"></script>
+        <script src="~/js/dialog.js"></script>
+
+        <script src="~/js/animate.js"></script>
+    </environment>
+    <environment names="Staging,Production">
+        <!-- Bootstrap core JavaScript
+    ================================================== -->
+        <!-- Placed at the end of the document so the pages load faster -->
+        <script src="~/home-assets/js/bootstrap.js"></script>
+
+        <script src="~/js/modernizr.custom.js"></script>
+        <script src="~/js/classie.js"></script>
+		<script src="~/js/dialogFx.js"></script>
+        <script src="~/lib/waypoints/lib/jquery.waypoints.js"></script>
+        
+        <script src="~/js/main.js"></script>
+        <script src="~/js/dialog.js"></script>
+
+        <script src="~/js/animate.js"></script>
+    </environment>
+
+    @RenderSection("scripts", required: false)
+
+
+
+</body>
+
+</html>

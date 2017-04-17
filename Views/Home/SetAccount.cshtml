@@ -1,0 +1,118 @@
+@{ ViewData["Title"] = "Login"; Layout = "~/Views/Shared/_LoginLayout.cshtml"; }
+
+
+
+<form class="Set-Account" method="POST">
+
+
+    <div class="wizard-header text-center">
+        <h3 class="wizard-title">Type Your New Password</h3>
+    </div>
+
+    <div class="wizard-navigation">
+
+    </div>
+    <div class="tab-content">
+        <div class="tab-pane active" id="signin">
+
+
+ <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input  id="NewPassword"  name="NPassword" type="password" class="form-control" placeholder="New Password">
+                    </div>
+                </div>
+            
+            </div>
+
+                        
+                 
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <div class="form-group">
+                        <label>Password</label>
+                        <input id="ConfirmPassword" name="RNPassword" type="password" class="form-control" placeholder="Retype New Password" onChange="isPasswordMatch();" >
+                    </div>
+                </div>
+            
+            </div>
+        </div>
+    </div>
+    <div class="wizard-footer ">
+        <div class="pull-right ">
+            <input type='submit'  id="Changebtn" class='btn btn-finish btn-fill btn-danger btn-wd login-btn' name='finish' value='Change' />
+        </div>
+<a href="@Url.Action("Contact", "Home")" class="footer-link">Contact Us</a>
+        <div class="clearfix "></div>
+    </div>
+</form>
+
+@section Scripts{
+<script>
+     $('.Set-Account').submit(function () {
+        $Flinger.Loader.Init();
+        var Password = $("#Password-input").val();
+
+        var data = {
+            Password: Password,
+        };
+
+
+ $.ajax({
+            url: "/User/SetUserPassword",
+            type: "POST",
+            data: data,
+            dataType: "json",
+            success: function (response) {
+                console.log(response)
+                if (response !== undefined) {
+                    if (response.result.Success !== undefined && response.result.Success !== false) {
+                        localStorage.setItem('auth_token', response.result.AuthToken);
+                        localStorage.setItem('userId', response.result.UserId);
+                        location.assign("@Url.Action("Index", "Dashboard")?AuthToken="+ response.result.AuthToken);
+                    }
+                    else if (response.result.Success !== undefined && response.result.Success === false) {
+                        $Flinger.Dialog.SetData("Please check your credentials", response.result.Message);
+                        $Flinger.Loader.Finish()
+                        $Flinger.Dialog.Toggle();
+                    }
+                    else {
+                        $Flinger.Dialog.SetData("Something was wrong", "In this moment we have some problems, please try again in few moments.");
+                        $Flinger.Loader.Finish()
+                        $Flinger.Dialog.Toggle();
+                    }
+                }
+            },
+            error: function (xhr, status, error) {
+                switch (xhr.status) {
+                    case 500:
+                    default:
+                        $Flinger.Dialog.SetData(error, "In this moment we have some problems, please try again in few moments.");
+                        $Flinger.Loader.Finish()
+                        $Flinger.Dialog.Toggle();
+
+                }
+                console.log(error);
+            }
+        });
+
+        event.preventDefault();
+    })
+
+ $('#Changebtn').prop('disabled' , true);
+$('#ConfirmPassword').on('keyup', function () {
+    var password = $("#NewPassword").val();
+    var confirmPassword = $("#ConfirmPassword").val();
+
+    if (password != confirmPassword) {
+        $("#divCheckPassword").html("Passwords do not match!");
+    } else {
+        $("#divCheckPassword").html("Passwords match.");
+        $('#Changebtn').prop('disabled' , false);
+    }
+});
+
+</script>
+}

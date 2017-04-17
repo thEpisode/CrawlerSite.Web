@@ -1,0 +1,33 @@
+@{
+    ViewBag.Title = "Home";
+}
+
+@section Scripts{
+    <script src="@Url.Content("~/Angular/Notification/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Notification/Controller.js")"></script>
+}
+
+<section ng-controller="NotificationController" ng-init="InitializeDetailView()">
+
+    
+
+    <section class="col-lg-6 col-md-5 col-sm-12 col-xs-12 col-lg-offset-3">
+        <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+            <div class="card notification-detail">
+                <div class="content">
+                    <div class="row">
+                        <h3 class="text-center">{{Notification.ShortMessage}}</h3>
+                        <p class="text-center">{{Notification.LongMessage}}</p>
+                    </div>
+                    <div class="footer text-center">
+                        <hr>
+                        <a href="@Url.Action("Index")" class="btn btn-info">Ok</a>
+                    </div>
+                    
+                </div>
+            </div>
+        </div>
+               
+    </section>
+
+</section>

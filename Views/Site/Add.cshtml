@@ -1,0 +1,200 @@
+@{ 
+    ViewBag.Title = "Sites"; 
+} 
+@section Scripts{
+<script src="@Url.Content("~/Angular/Site/Service.js")"></script>
+<script src="@Url.Content("~/Angular/Site/Controller.js")"></script>
+
+<script src="~/dashboard-assets/js/jquery.bootstrap.wizard.js " type="text/javascript "></script>
+
+<!--  Plugin for the Wizard -->
+<script src="~/dashboard-assets/js/paper-bootstrap-wizard.js " type="text/javascript "></script>
+
+<!--  More information about jquery.validate here: http://jqueryvalidation.org/	 -->
+<script src="~/dashboard-assets/js/jquery.validate.min.js " type="text/javascript "></script>
+<script>
+        function finishSteps() {
+            location.assign('@Url.Action("Index")')
+        }
+        $('[data-toggle="tooltip"]').tooltip();
+
+        $(".copy-code").focus(function () {
+            $(".copy-code").select();
+            document.execCommand('copy');
+        })
+
+    </script>
+}
+
+<link href="~/dashboard-assets/css/paper-bootstrap-wizard.css" rel="stylesheet" />
+
+<section id="siteController" ng-controller="SiteController" ng-init="InitializeAddView()">
+    <div class="col-sm-8 col-sm-offset-2">
+
+        <div class="wizard-container" style="padding-top:0!important;">
+
+<div class="card wizard-card" data-color="red" id="wizardProfile">
+    <form ng-submit="AddSite()">
+
+
+        <div class="wizard-header text-center">
+            <h3 class="wizard-title">New site</h3>
+            <p class="category">With few steps you can make analysis</p>
+        </div>
+
+        <div class="wizard-navigation">
+            <div class="progress-with-circle">
+                <div class="progress-bar" role="progressbar" aria-valuenow="1" aria-valuemin="1" aria-valuemax="3" style="width: 21%;"></div>
+</div>
+<ul>
+    <li>
+        <a href="#about" data-toggle="tab">
+            <div class="icon-circle">
+                <i class="ti-direction"></i>
+            </div>
+            Basic information
+        </a>
+    </li>
+    <li>
+        <a href="#account" data-toggle="tab">
+            <div class="icon-circle">
+                <i class="ti-package"></i>
+            </div>
+            Services
+        </a>
+    </li>
+    <li>
+        <a href="#address" data-toggle="tab">
+            <div class="icon-circle">
+                <i class="ti-settings"></i>
+            </div>
+            Setting up
+        </a>
+    </li>
+</ul>
+</div>
+<div class="tab-content">
+    <div class="tab-pane" id="about">
+        <div class="row">
+            <h5 class="info-text">Let's start with the basic details</h5>
+
+            <div class="col-sm-12">
+                <div class="form-group col-lg-6 col-sm-6">
+                    <label for="Name">Site name <small>(required)</small></label>
+                    <input class="form-control" id="Name" name="Name" type="text" placeholder="e.g. My Agency" ng-model="Site.Name" />
+                </div>
+                <div class="form-group col-lg-6 col-sm-6">
+                    <label for="Url">Url <small>(required)</small></label>
+                    <input class="form-control" id="Url" name="Url" type="text" placeholder="e.g. www.my-agency.com" ng-model="Site.Url" />
+                </div>
+                <div class="form-group col-lg-12 col-sm-6">
+                    <label for="Url">Tags</label>
+                    <input class="form-control" id="Tags" name="Tags" placeholder="e.g. FinTech Platform" data-role="tagsinput" ng-model="Site.Tags" />
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="account">
+        <h5 class="info-text"> What do you want? (checkboxes) </h5>
+        <div class="row">
+            <div class="col-sm-12 col-sm-offset-0">
+                <div class="col-sm-3">
+                    <div class="choice" data-toggle="wizard-checkbox">
+                        <input type="checkbox" name="jobb" value="Design">
+                        <div class="card card-checkboxes card-hover-effect">
+                            <i class="ti-mouse"></i>
+                            <p>Mouse tracking</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="choice" data-toggle="wizard-checkbox">
+                        <input type="checkbox" name="jobb" value="Code">
+                        <div class="card card-checkboxes card-hover-effect">
+                            <i class="ti-video-camera"></i>
+                            <p>Record screens</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="choice" data-toggle="wizard-checkbox">
+                        <input type="checkbox" name="jobb" value="Develop">
+                        <div class="card card-checkboxes card-hover-effect">
+                            <i class="ti-eye"></i>
+                            <p>Remote admin</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-3">
+                    <div class="choice" data-toggle="wizard-checkbox">
+                        <input type="checkbox" name="jobb" value="Develop">
+                        <div class="card card-checkboxes card-hover-effect">
+                            <i class="ti-pencil-alt"></i>
+                            <p>Form Analysis</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="tab-pane" id="address">
+        <div class="row">
+            <div class="col-sm-12">
+                <h5 class="info-text"> Now, only copy following code and paste on your site </h5>
+            </div>
+            <div class="col-sm-12">
+                <label for="Url">Copy this code:</label>
+                <textarea class="form-control copy-code" data-toggle="tooltip" data-placement="top" title="Click to copy" id="code-result"
+                    name="code-result" placeholder="Building your site..." rows="3" ng-model="CodeResult">{{CodeResult}}</textarea>
+            </div>
+            <div class="col-sm-12">
+                <div class="form-group col-sm-6">
+                    <label for="Url">Api Key</label>
+                    <br />
+                    <span class="api-key-result">{{ApiKeyResult}}</span>
+                </div>
+                <div class="form-group col-sm-6">
+                    <div class="col-sm-12">
+                        <label for="Url">What do you use?</label>
+                    </div>
+                    <div class="col-sm-12">
+                        <div class="col-sm-4">
+                            <a href="https://crawler-site.gitbooks.io/documentation/content/drupal.html" target="_blank">
+                                <img src="@Url.Content("~/dashboard-assets/img/logos/drupal.png")" class="img-responsive center-block" alt="wordpress" width="50"/>
+                            </a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="https://crawler-site.gitbooks.io/documentation/content/wordpress.html" target="_blank">
+                                <img src="@Url.Content("~/dashboard-assets/img/logos/wordpress.png")" class="img-responsive center-block" alt="drupal" width="50"/>
+                            </a>
+                        </div>
+                        <div class="col-sm-4">
+                            <a href="https://crawler-site.gitbooks.io/documentation/content/joomla!.html" target="_blank">
+                                <img src="@Url.Content("~/dashboard-assets/img/logos/joomla.png")" class="img-responsive center-block" alt="joomla" width="50"/>
+                            </a>
+                        </div>
+                    </div>
+                    
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>
+<div class="wizard-footer">
+    <div class="pull-right">
+        <input type='button' class='btn btn-next btn-fill btn-danger btn-wd' name='next' value='Next' />
+        <input onclick="javascript: finishSteps()" type='button' class='btn btn-finish btn-fill btn-danger btn-wd' name='finish' value='Finish' />
+</div>
+
+<div class="pull-left">
+    <input type='button' class='btn btn-previous btn-default btn-wd' name='previous' value='Previous' />
+</div>
+<div class="clearfix"></div>
+</div>
+</form>
+</div>
+</div>
+</div>
+</section>

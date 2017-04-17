@@ -1,0 +1,30 @@
+@{
+    ViewBag.Title = "Home";
+}
+
+@section Scripts{
+    <script src="@Url.Content("~/Angular/Notification/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Notification/Controller.js")"></script>
+}
+
+<section ng-controller="NotificationController" ng-init="InitializeIndexView()" notification-view>
+
+    <h3 class="text-center">Notifications</h3>
+
+    <table class="table table-hover"> 
+		<thead> 
+			<tr>
+				<th>Subject</th> 
+				<th>Type</th>
+				<th></th> 
+			</tr> 
+		</thead> 
+		<tbody>
+			<tr ng-repeat="Notification in Notifications">
+				<td>{{ Notification.ShortMessage }}</td> 
+				<td>{{ Notification.Type }}</td>
+				<td><a href="@Url.Action("Detail")?Id={{ Notification._id }}">Read</a></td>
+			</tr>
+		</tbody> 
+    </table>
+</section>

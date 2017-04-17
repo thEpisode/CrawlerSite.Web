@@ -1,0 +1,21 @@
+@{ 
+    ViewBag.Title = "Really? Delete account?"; 
+}
+
+@section Scripts
+{
+    <script src="@Url.Content("~/Angular/Account/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Account/Controller.js")"></script>
+}
+
+<section ng-controller="AccountController" ng-init="InitializeDeleteView()">
+    <h2 class="text-center">Are you sure to delete permanently your own account?</h2>
+
+    <form class="form-horizontal text-center" ng-submit="DeleteAccount()">
+        <input type="hidden" id="_id" name="_id" ng-model="site._id" />
+
+        <input type="submit" value="Yes" class="btn btn-danger" />
+
+        <a href="@Url.Action("Index")" class="btn btn-success">No</a>
+    </form>
+</section>

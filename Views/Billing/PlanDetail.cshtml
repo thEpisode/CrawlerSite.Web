@@ -1,0 +1,25 @@
+@{
+    ViewBag.Title = "Plan Detail";
+}
+@section Scripts{
+    <script src="@Url.Content("~/Angular/Billing/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Billing/Controller.js")"></script>
+}
+
+<section ng-controller="BillingController" ng-init="InitializePlanDetailView()">
+    <h3 class="text-center billing-plan-title">Choose One Plan</h3>
+    <article class="col-lg-3 col-md-3 col-sm-6 col-xs-12 card-container" ng-repeat="Plan in Plans">
+        <div class="card plan-detail" ng-class="User.PlanId == Plan.id ? 'plan-detail-selected' : ''" plan-detail-on-click data-id="{{Plan.id}}">
+            <div class="content">
+                <h3 class="text-center plan-detail-name">{{Plan.name}}</h3>
+                <span class="text-center plan-detail-price">${{ Plan.amount | stripeAmount : ',' }} {{Plan.currency | uppercase}}</span>
+                <div class="row">
+                    <p class="text-center plan-detail-description">{{Plan.metadata.description}}</p>
+                </div>
+            </div>
+        </div>        
+    </article>
+    <section class="col-lg-12 col-sm-12 col-xs-12 col-md-12 text-center">
+        <a href="#" class="btn btn-info" ng-click="ChangePlanOnClick()" ng-show="changePlanButton">Change Plan</a>
+    </section>
+</section>

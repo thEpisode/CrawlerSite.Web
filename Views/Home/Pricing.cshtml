@@ -1,0 +1,192 @@
+@{
+    ViewData["Title"] = "Pricing";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+<section id="pricing" name="pricing"></section>
+<div id="headerwrap" class="white-background">
+	    <div class="container">
+	    	<div class="row centered">
+	    		<div class="col-lg-12">
+					<h3>Selected right plan for your company</h3>
+					<section class="price-button-tabs">
+						<a href="#plans" aria-controls="plans" role="tab" data-toggle="tab" class="btn btn-danger btn-border">Our plans for you</a>
+						<a href="#go" aria-controls="go" role="tab" data-toggle="tab" class="btn btn-default btn-border">Pay as you go!</a>
+						<a href="#onpremise" aria-controls="onpremise" role="tab" data-toggle="tab" class="btn btn-default btn-border">On premise solution</a>
+					</section>
+					<br>
+	    		</div>
+	    		<div class="group col-lg-offset-0 col-lg-12 plans">
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane fade in active" id="plans">
+							<div class="col-lg-3">
+								<div class="plan col-lg-12 animate-box" data-animate-effect="fadeIn">
+									<header>
+										<h4 class="pricing-head">Free</h4>
+										<h2 class="pricing-head strong simple-pricing"><sup>$</sup>0.00<span class="pricing-text-small"> USD/forever</span></h2>
+									</header>
+									<hr />
+									<ul class="pricing-list">
+										<li title="Text for tooltip">400 pageviews</li>
+										<li title="Text for tooltip">50 recordings</li>
+										<li title="Text for tooltip">1 form analyzed</li>
+										<li title="Text for tooltip">60 minutes for RAT</li>
+										<li title="Text for tooltip">Limited to 1 site</li>
+									</ul>
+									<a href="@Url.Action("Register")" class="btn btn-danger buy-items">Select</a>
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="plan col-lg-12 animate-box" data-animate-effect="fadeIn" >
+									<header>
+										<h4 class="pricing-head">Basic</h4>
+										<h2 class="pricing-head strong simple-pricing"><sup>$</sup>9.99<span class="pricing-text-small"> USD/mo</span></h2>
+									</header>
+									<hr />
+									<ul class="pricing-list">
+										<li title="Text for tooltip">2.000 pageviews</li>
+										<li title="Text for tooltip">500 recordings</li>
+										<li title="Text for tooltip">2 forms analyzed</li>
+										<li title="Text for tooltip">480 minutes for RAT</li>
+										<li title="Text for tooltip">Limited to 5 sites</li>
+									</ul>
+									<a href="@Url.Action("Register")" class="btn btn-danger buy-items">Select</a>
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="plan col-lg-12 animate-box most-popular" data-animate-effect="fadeIn" >
+									<header>
+										<h4 class="pricing-head">Standard</h4>
+										<h2 class="pricing-head strong simple-pricing"><sup>$</sup>19.99<span class="pricing-text-small"> USD/mo</span></h2>
+									</header>
+									<hr />
+									<ul class="pricing-list">
+										<li title="Text for tooltip">5.000 pageviews</li>
+										<li title="Text for tooltip">3.500 recordings</li>
+										<li title="Text for tooltip">5 forms analyzed</li>
+										<li title="Text for tooltip">720 minutes for RAT</li>
+										<li title="Text for tooltip">Unlimited sites</li>
+									</ul>
+									<a href="@Url.Action("Register")" class="btn btn-danger buy-items">Select</a>
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="plan col-lg-12 animate-box" data-animate-effect="fadeIn" >
+									<header>
+										<h4 class="pricing-head">Premium</h4>
+										<h2 class="pricing-head strong simple-pricing"><sup>$</sup>25.00<span class="pricing-text-small"> USD/mo</span></h2>
+									</header>
+									<hr />
+									<ul class="pricing-list">
+										<li title="Text for tooltip">15.000 pageviews</li>
+										<li title="Text for tooltip">8.000 recordings</li>
+										<li title="Text for tooltip">20 forms analyzed</li>
+										<li title="Text for tooltip">1440 minutes for RAT</li>
+										<li title="Text for tooltip">Unlimited sites</li>
+									</ul>
+									<a href="@Url.Action("Register")" class="btn btn-danger buy-items">Select</a>
+								</div>
+							</div>
+						</div>
+						<div role="tabpanel" class="tab-pane fade in" id="go">
+							<div class="col-lg-3">
+								<div class="plan col-lg-12 animate-box" data-animate-effect="fadeIn" >
+									<header>
+										<h4 class="pricing-head">Heatmaps</h4>
+										<h2 class="pricing-head strong"><sup>$</sup>0.0116<span class="pricing-text-small"> USD/pageview</span></h2>
+									</header>
+									<hr />
+									<ul class="pricing-list">
+										<li title="Text for tooltip">User frecuently clicks</li>
+										<li title="Text for tooltip">Show where your users scroll</li>
+										<li title="Text for tooltip">Eye-tracking, see where your users shown</li>
+									</ul>
+									<a href="@Url.Action("Register")" class="btn btn-danger buy-items">Coming soon</a>
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="plan col-lg-12 animate-box" data-animate-effect="fadeIn" >
+									<header>
+										<h4 class="pricing-head">RAT</h4>
+										<h2 class="pricing-head strong"><sup>$</sup>0.01736<span class="pricing-text-small"> USD/minute</span></h2>
+									</header>
+									<hr />
+									<ul class="pricing-list">
+										<li title="Text for tooltip">Assist your clients remotely</li>
+										<li title="Text for tooltip">Take control of your mouse and keyboard</li>
+										<li title="Text for tooltip">See on realtime</li>
+									</ul>
+									<a href="@Url.Action("Register")" class="btn btn-danger buy-items">Coming soon</a>
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="plan col-lg-12 animate-box" data-animate-effect="fadeIn" >
+									<header>
+										<h4 class="pricing-head">Screen recorder</h4>
+										<h2 class="pricing-head strong"><sup>$</sup>0.00313<span class="pricing-text-small"> USD/minute</span></h2>
+									</header>
+									<hr />
+									<ul class="pricing-list">
+										<li title="Text for tooltip">Filter by country, operating system, browser and so on</li>
+										<li title="Text for tooltip">Replay many times as desired</li>
+										<li title="Text for tooltip">Show user mouse movement</li>
+									</ul>
+									<a href="@Url.Action("Register")" class="btn btn-danger buy-items">Coming soon</a>
+								</div>
+							</div>
+							<div class="col-lg-3">
+								<div class="plan col-lg-12 animate-box" data-animate-effect="fadeIn" >
+									<header>
+										<h4 class="pricing-head">Form Analysis</h4>
+										<h2 class="pricing-head strong"><sup>$</sup>0.0125<span class="pricing-text-small"> USD/input</span></h2>
+									</header>
+									<hr />
+									<ul class="pricing-list">
+										<li title="Text for tooltip">Detects all your forms</li>
+										<li title="Text for tooltip">Show field input effectiveness</li>
+										<li title="Text for tooltip">Show how spend time on field</li>
+										<li title="Text for tooltip">Show fail rate of users</li>
+									</ul>
+									<a href="@Url.Action("Register")" class="btn btn-danger buy-items">Coming soon</a>
+								</div>
+							</div>
+							
+							<a href="@Url.Action("Register")" class="btn btn-default btn-lg buy-items btn-border">I need a calculator</a>
+
+							<a href="@Url.Action("Register")" class="btn btn-danger btn-lg buy-items">Continue to analyze your site</a>
+							
+						</div>
+						<div role="tabpanel" class="tab-pane fade in" id="onpremise">
+							<div class="col-lg-4 text-center">
+								<img src="/home-assets/img/Logos.png" alt="Server logos" style="height:200px;">
+							</div>
+							<div class="col-lg-8">
+								<h3>Do you have a company with private data?</h3>
+								<h4>Flinger runs on all server operating system like Ubuntu Server, Windows Server or even Mac OS X</h4>
+								<h4>Contact us to use Flinger on your own servers or integrated with your enterprise apps</h4>
+							</div>
+							<div class="col-lg-12 text-center">
+								<a href="@Url.Action("Register")" class="btn btn-danger btn-lg buy-items">Contact us</a>
+							</div>
+							
+							
+						</div>
+					</div>
+				</div>
+				
+	    		
+	    	</div>
+	    </div> <!--/ .container -->
+	</div>
+
+	@section Scripts{
+		<script>
+			$('.price-button-tabs>a').click(function (e) {
+				$('.price-button-tabs>a').removeClass("btn-danger")
+				$('.price-button-tabs>a').addClass("btn-default")
+
+				$(this).removeClass("btn-default")
+				$(this).addClass("btn-danger")
+			})
+			$('.pricing-list>li').tooltip();
+		</script>
+	}
