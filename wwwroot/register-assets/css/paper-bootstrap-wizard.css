@@ -1412,7 +1412,7 @@ textarea.form-control {
   position: absolute; 
   font-size: 1.5em;
   padding-left: 35px;
-  line-height: 65px;
+  line-height: 26px;
   color: #D61010;
   text-decoration: none;
   transition: all 0.2s ease-in;

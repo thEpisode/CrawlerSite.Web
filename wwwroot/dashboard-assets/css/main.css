@@ -527,3 +527,8 @@ label.error:not(.form-control) {
     left: 0;
     z-index: 999;
 }
+
+.navbar-brand{
+   clear: left;
+   float: initial!important;
+}

@@ -285,3 +285,31 @@ input:-webkit-autofill:active {
 .iziToast.iziToast-color-blue{
     background: rgba(181,225,249,0.9)!important;
 }
+.app-name{
+    color: #D61010;
+    font-weight: 300;
+}
+.crawler-logo{
+    padding-bottom: 0!important;
+}
+.crawler-logo:before{
+    content: "";
+    display: block;
+    background: url(/images/CrawlerLogo.png) no-repeat;
+    width: 40px;
+    height: 35px;
+    float: left;
+    background-size: 40px;
+    margin-right: 5px;
+}
+.crawler-logo-dashboard:before{
+    content: "";
+    display: block;
+    background: url(/images/CrawlerLogo.png) no-repeat;
+    width: 40px;
+    height: 35px;
+    float: left;
+    background-size: 40px;
+    margin-right: 0px;
+    margin-left:20px;
+}

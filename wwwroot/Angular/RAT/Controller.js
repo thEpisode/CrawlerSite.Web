@@ -165,11 +165,20 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                                 });
                                 break;
                             case 'AdminJoinToPrivateRoom#Response':
-                                console.log('AdminJoinToPrivateRoom#Response')
+                                console.log('AdminJoinToPrivateRoom#Response');
+                                break;
+                            case 'TakeMyUserSocketId#Response':
+                                $rootScope.$apply(function () {
+                                    $scope._ratSocket.emit('Coplest.Flinger.RAT', { Command: 'AdminAllowControl#Request', Values: { RoomId: $scope.RoomId } });
+                                });
+                                break;
+                            case 'UserAllowControl#Response':
+                                console.log('UserAllowControl#Response');
                                 $rootScope.$apply(function () {
                                     $scope._ratSocket.emit('Coplest.Flinger.RAT', { Command: 'SetRATEngine#Request', Values: { RoomId: $scope.RoomId } });
                                     $scope.IsOnService = true;
                                 });
+
                                 break;
                             case 'PrintCursor#Request':
                                 $rootScope.$apply(function () {
