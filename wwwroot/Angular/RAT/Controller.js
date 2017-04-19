@@ -172,6 +172,11 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                                     $scope._ratSocket.emit('Coplest.Flinger.RAT', { Command: 'AdminAllowControl#Request', Values: { RoomId: $scope.RoomId } });
                                 });
                                 break;
+                            case 'UserDenyControl#Response':
+                                console.log('UserAllowControl#Response');
+                                $Flinger.Dialog.SetData("Remote Administration Tool", "User deny access to their computer");
+                                $Flinger.Dialog.Toggle();
+                                break;
                             case 'UserAllowControl#Response':
                                 console.log('UserAllowControl#Response');
                                 $rootScope.$apply(function () {
