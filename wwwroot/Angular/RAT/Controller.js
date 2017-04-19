@@ -176,6 +176,10 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                                 console.log('UserAllowControl#Response');
                                 $Flinger.Dialog.SetData("Remote Administration Tool", "User deny access to their computer");
                                 $Flinger.Dialog.Toggle();
+                                // Connect to admin-pool-namespace
+                                $rootScope.$apply(function () {
+                                    $scope.socketDefinition($scope.SocketUriServer);
+                                });
                                 break;
                             case 'UserAllowControl#Response':
                                 console.log('UserAllowControl#Response');
