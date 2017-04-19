@@ -13,11 +13,11 @@
         <li ng-repeat="socket in ConnectedSockets"><a href ng-click="GetEndpointRPN(socket.SocketId)">{{socket.SocketId}}</a></li>
     </ul>
     <section ng-show="IsOnService">
+        <!--<div class="rat-visor" id="rat-visor"></div>-->
         <div class="settingup-log">
             <ul>
                 <li ng-repeat="log in SettingUpLog track by $index">{{log}}</li>
             </ul>
         </div>
-        <div class="rat-visor" id="rat-visor"></div>
     </section>
 </section>

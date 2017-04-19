@@ -169,7 +169,12 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                                 break;
                             case 'TakeMyUserSocketId#Response':
                                 $rootScope.$apply(function () {
+                                    $scope.IsOnService = true;
                                     $scope._ratSocket.emit('Coplest.Flinger.RAT', { Command: 'AdminAllowControl#Request', Values: { RoomId: $scope.RoomId } });
+                                    var item = 'Waiting for user permission';
+                                    if ($scope.SettingUpLog.indexOf(item) == -1) {
+                                        $scope.SettingUpLog.push(item);
+                                    }
                                 });
                                 break;
                             case 'UserDenyControl#Response':
@@ -178,14 +183,21 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                                 $Flinger.Dialog.Toggle();
                                 // Connect to admin-pool-namespace
                                 $rootScope.$apply(function () {
+                                    var item = 'User Deny access';
+                                    if ($scope.SettingUpLog.indexOf(item) == -1) {
+                                        $scope.SettingUpLog.push(item);
+                                    }
                                     $scope.socketDefinition($scope.SocketUriServer);
                                 });
                                 break;
                             case 'UserAllowControl#Response':
                                 console.log('UserAllowControl#Response');
                                 $rootScope.$apply(function () {
+                                    var item = 'User accepted request';
+                                    if ($scope.SettingUpLog.indexOf(item) == -1) {
+                                        $scope.SettingUpLog.push(item);
+                                    }
                                     $scope._ratSocket.emit('Coplest.Flinger.RAT', { Command: 'SetRATEngine#Request', Values: { RoomId: $scope.RoomId } });
-                                    $scope.IsOnService = true;
                                 });
 
                                 break;
