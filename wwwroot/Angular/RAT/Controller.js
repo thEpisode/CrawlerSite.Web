@@ -10,8 +10,11 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
     $scope.UserSocketId = '';
     $scope.RoomId = '';
     $scope.IsOnService = false;
+    $scope.ScreenshotReceived = false;
     $scope.SettingUpLog = [];
     $scope.MousePos = {};
+    $scope.Screenshot = "";
+    $scope._scrollPos = 0;
 
     $scope.InitializeView = function () {
 
@@ -170,6 +173,7 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                             case 'TakeMyUserSocketId#Response':
                                 $rootScope.$apply(function () {
                                     $scope.IsOnService = true;
+                                    $('footer').hide();
                                     $scope._ratSocket.emit('Coplest.Flinger.RAT', { Command: 'AdminAllowControl#Request', Values: { RoomId: $scope.RoomId } });
                                     var item = 'Waiting for user permission';
                                     if ($scope.SettingUpLog.indexOf(item) == -1) {
@@ -239,6 +243,51 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                                     $scope.InjectMouseHandler();
                                 });
                                 break;
+                            case 'RefreshScreenshot#Request':
+                                $rootScope.$apply(function () {
+                                    console.log('RefreshScreenshot#Request');
+                                    var item = 'Screenshot received';
+                                    if ($scope.SettingUpLog.indexOf(item) == -1) {
+                                        $scope.SettingUpLog.push(item);
+                                    }
+
+                                    $scope.ScreenshotReceived = true;
+                                    var currentFrameIdx = 0;
+                                    var framesContainer = document.querySelector('#frame-container');
+                                    var blob = new Blob([data.Values.Screenshot], { type: 'text/html' });
+                                    document.querySelector('#frame-container').innerHTML = '';
+
+                                    var iframe = document.createElement('iframe');
+                                    iframe.src = window.URL.createObjectURL(blob);
+                                    iframe.style.height = '100%';
+                                    iframe.style.width = '100%';
+                                    iframe.hidden = true;
+                                    iframe.onload = function () {
+                                        if (framesContainer.children.length) {
+                                            var frame = framesContainer.children[currentFrameIdx];
+
+                                            if (!frame) {
+                                                return;
+                                            }
+
+                                            if (currentFrameIdx > 0) {
+                                                var prevFrame = frame.previousElementSibling;
+                                                prevFrame.hidden = true;
+                                                window.URL.revokeObjectURL(prevFrame.src);
+                                            }
+
+                                            frame.hidden = false;
+
+                                            currentFrameIdx++;
+                                        }
+                                    };
+
+                                    // Force the iframe content to load by appending to the DOM.
+                                    framesContainer.appendChild(iframe);
+
+                                    //$scope.Screenshot = data.Values.Screenshot;
+                                });
+                                break;
                             default:
                                 break;
                         }
@@ -286,6 +335,11 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
             var delta = Math.max(-1, Math.min(1, (e.wheelDelta || -e.detail)));
 
             $scope._ratSocket.emit('Coplest.Flinger.RAT', { Command: 'SetScrollDelta#Request', Values: { RoomId: $scope.RoomId, Delta: delta } });
+
+            var step = 80;
+			var currentPosition = document.querySelector('iframe').contentWindow.document.body.scrollTop || 0;
+			$scope._scrollPos = (currentPosition + (step * (delta)) * -1);
+            document.querySelector('iframe').contentWindow.scrollTo(0, $scope._scrollPos);
         }
 
         document.onmousemove = function () {
