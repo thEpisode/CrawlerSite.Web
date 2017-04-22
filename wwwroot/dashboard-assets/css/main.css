@@ -425,7 +425,6 @@ label.error:not(.form-control) {
   transform: translateY(-10px);
 }
 
-
 .choice.active .card-checkboxes {
   color: #EB5E28;
 }
