@@ -350,7 +350,7 @@ textarea.form-control {
 .made-with-pk .brand {
   position: relative;
   top: 4px;
-  left: -5px;
+  left: 0px;
   letter-spacing: 1px;
   vertical-align: middle;
   font-size: 16px;

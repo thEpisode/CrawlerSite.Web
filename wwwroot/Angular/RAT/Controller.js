@@ -85,7 +85,7 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                     break;
                 case 'GetAllConnectedSocketsByApiKey#Response':
                     $rootScope.$apply(function () {
-                        //console.log(data);
+                        console.log(data);
                         $scope.ConnectedSockets = data.Values;
                         $Flinger.Loader.Finish();
                     });
@@ -93,7 +93,7 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                 case 'SubscribeSocketToApiKey#Request':
                     $rootScope.$apply(function () {
                         $scope.ConnectedSockets.push(data.Values);
-                        //console.log($scope.ConnectedSockets)
+                        console.log($scope.ConnectedSockets)
                     });
                     break
                 case 'UnsubscribeSocketToApiKey#Request':
