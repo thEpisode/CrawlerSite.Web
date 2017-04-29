@@ -92,3 +92,11 @@ $Flinger.RemovePersistentData = function (key) {
 $Flinger.GetEntryPath = function () {
     return location.href;
 }
+
+$Flinger.LoggedCrawling= function (user) {
+    if(user.HasInvitationCode !== undefined && user.HasInvitationCode !== null){
+         if(user.HasInvitationCode === true){
+
+         }
+    }
+}
