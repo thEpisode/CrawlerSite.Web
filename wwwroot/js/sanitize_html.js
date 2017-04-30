@@ -27,6 +27,39 @@ function HtmlWhitelistedSanitizer(escape, tags, css, urls) {
         };
         var url_sanitizer = HtmlWhitelistedSanitizer.makeUrlSanitizer(urls);
         this.allowedTags = {
+            'input': HtmlWhitelistedSanitizer.mergeMap(globalAttributes, {
+                'accept': unconstrainted,
+                'alt': unconstrainted,
+                'autocomplete': unconstrainted,
+                'autofocus': unconstrainted,
+                'checked': unconstrainted,
+                'dirname': unconstrainted,
+                'disabled': unconstrainted,
+                'form': unconstrainted,
+                'formaction': unconstrainted,
+                'formenctype': unconstrainted,
+                'formmethod': unconstrainted,
+                'formnovalidate': unconstrainted,
+                'formtarget': unconstrainted,
+                'height': unconstrainted,
+                'list': unconstrainted,
+                'max': unconstrainted,
+                'maxlength': unconstrainted,
+                'min': unconstrainted,
+                'multiple': unconstrainted,
+                'name': unconstrainted,
+                'pattern': unconstrainted,
+                'placeholder': unconstrainted,
+                'readonly': unconstrainted,
+                'required': unconstrainted,
+                'size': unconstrainted,
+                'src': unconstrainted,
+                'step': unconstrainted,
+                'type': unconstrainted,
+                'value': unconstrainted,
+                'width': unconstrainted,
+                'data-*': unconstrainted,
+            }),
             'a': HtmlWhitelistedSanitizer.mergeMap(globalAttributes, {
                 'download': unconstrainted,
                 'href': url_sanitizer,
@@ -152,7 +185,7 @@ $Flinger.SanitizeHTML = {
                 return html;
             }
         }
-        else{
+        else {
             return "";
         }
     },
