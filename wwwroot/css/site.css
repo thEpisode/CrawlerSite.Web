@@ -313,3 +313,10 @@ input:-webkit-autofill:active {
     margin-right: 0px;
     margin-left:20px;
 }
+
+.input-voucher{
+    text-align: center;
+    border-radius: 0;
+    height: 40px;
+    text-transform: uppercase;
+}

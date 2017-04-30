@@ -96,7 +96,8 @@ $Flinger.GetEntryPath = function () {
 $Flinger.LoggedCrawling= function (user) {
     if(user.HasInvitationCode !== undefined && user.HasInvitationCode !== null){
          if(user.HasInvitationCode === true){
-
+            $Flinger.Dialog.SetData("Insert your voucher:", "<input placeholder='Insert here' class='input-voucher form-control' type='text' autofocus />");
+            $Flinger.Dialog.Toggle();
          }
     }
 }

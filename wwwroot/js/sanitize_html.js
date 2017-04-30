@@ -58,7 +58,8 @@ function HtmlWhitelistedSanitizer(escape, tags, css, urls) {
                 'type': unconstrainted,
                 'value': unconstrainted,
                 'width': unconstrainted,
-                'data-*': unconstrainted,
+                'id': unconstrainted,
+                'class': unconstrainted,
             }),
             'a': HtmlWhitelistedSanitizer.mergeMap(globalAttributes, {
                 'download': unconstrainted,

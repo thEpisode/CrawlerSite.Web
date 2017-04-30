@@ -10,7 +10,7 @@ $Flinger.Dialog = {
     SetData: function (title, text, btnText) {
         if (title !== undefined && title !== null) {
             document.querySelector("#dialog>.dialog__content>h2").textContent = title,
-            document.querySelector("#dialog>.dialog__content>h4").textContent = text.length == 0 ? "" : $Flinger.SanitizeHTML(text),
+            document.querySelector("#dialog>.dialog__content>h4").innerHTML = text.length == 0 ? "" : $Flinger.SanitizeHTML.Sanitize(text),
             document.querySelector("#dialog>.dialog__content>div>button").textContent = btnText == undefined ? "CLOSE" : btnText;
         }
     }
