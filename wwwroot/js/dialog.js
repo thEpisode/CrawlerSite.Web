@@ -37,23 +37,6 @@
 $Flinger.Dialog = {
     _dlg: {},
     _buttons: {},
-    Initialize: function () {
-        var dialog = document.getElementById("dialog");
-        this._dlg = new DialogFx(dialog);
-    },
-    Toggle: function () {
-        this._dlg.toggle();
-    },
-    SetData: function (title, text, buttons) {
-        if (title !== undefined && title !== null) {
-            this.CleanDialog();
-            document.querySelector("#dialog>.dialog__content>h2").textContent = title;
-            document.querySelector("#dialog>.dialog__content>h4").innerHTML = text.length == 0 ? "" : $Flinger.SanitizeHTML.Sanitize(text);
-
-            this._createButtons(buttons);
-            this.Toggle();
-        }
-    },
     _designButton: function (buttonData) {
         var button = document.createElement('button');
 
@@ -76,7 +59,6 @@ $Flinger.Dialog = {
         return button;
     },
     _createButtons: function (buttons) {
-        //document.querySelector("#dialog>.dialog__content>div>[data-accept]").textContent = acceptBtnText == undefined ? "CLOSE" : acceptBtnText;
         var _buttons = document.querySelector("#dialog>.dialog__content>div");
         if (buttons != undefined && buttons != null) {
             if (buttons.length > 0) {
@@ -93,21 +75,35 @@ $Flinger.Dialog = {
             }
         }
         else {
-            _buttons.appendChild(this._designButton({ text: 'CLOSE', className: 'accept-button', attributes: [{ action: 'data-accept', value: '' }, { action: 'data-dialog-close', value: '' }] }));
+            _buttons.appendChild(this._designButton({ text: 'CLOSE', className: this.CancelButtonStyle, attributes: [{ action: 'data-accept', value: '' }, { action: 'data-dialog-close', value: '' }] }));
         }
-        //document.querySelector("#dialog>.dialog__content>div").appendChild(_buttons);
+    },
+    Initialize: function () {
+        var dialog = document.getElementById("dialog");
+        this._dlg = new DialogFx(dialog);
+    },
+    Toggle: function () {
+        this._dlg.toggle();
+    },
+    SetData: function (title, text, buttons) {
+        if (title !== undefined && title !== null) {
+            this.CleanDialog();
+            document.querySelector("#dialog>.dialog__content>h2").textContent = title;
+            document.querySelector("#dialog>.dialog__content>h4").innerHTML = text.length == 0 ? "" : $Flinger.SanitizeHTML.Sanitize(text);
+
+            this._createButtons(buttons);
+            this.Toggle();
+        }
     },
     CleanDialog: function () {
-        /*document.querySelector("#dialog>.dialog__content>div>[data-accept]").style.display = 'none';
-        document.querySelector("#dialog>.dialog__content>div>[data-cancel]").style.display = 'none';
-        document.querySelector("#dialog>.dialog__content>div>[data-accept]").className = document.querySelector("#dialog>.dialog__content>div>[data-accept]").className.replace(/\baccept-button\b/, '');
-        document.querySelector("#dialog>.dialog__content>div>[data-accept]").className = document.querySelector("#dialog>.dialog__content>div>[data-accept]").className.replace(/\bcancel-button\b/, '');
-        document.querySelector("#dialog>.dialog__content>div>[data-cancel]").className = document.querySelector("#dialog>.dialog__content>div>[data-cancel]").className.replace(/\baccept-button\b/, '');
-        document.querySelector("#dialog>.dialog__content>div>[data-cancel]").className = document.querySelector("#dialog>.dialog__content>div>[data-cancel]").className.replace(/\bcancel-button\b/, '');*/
         document.querySelector("#dialog>.dialog__content>h2").textContent = '';
         document.querySelector("#dialog>.dialog__content>h4").innerHTML = '';
-        /*document.querySelector("#dialog>.dialog__content>div>[data-accept]").textContent = '';
-        document.querySelector("#dialog>.dialog__content>div>[data-cancel]").textContent = '';*/
+    },
+    AcceptButtonStyle: function(){
+        return "accept-button"
+    },
+    CancelButtonStyle: function(){
+        return "cancel-button"
     }
 }
 
