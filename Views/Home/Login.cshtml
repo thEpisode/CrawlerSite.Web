@@ -69,12 +69,10 @@
                     else if (response.result.Success !== undefined && response.result.Success === false) {
                         $Flinger.Dialog.SetData("Please check your credentials", response.result.Message);
                         $Flinger.Loader.Finish()
-                        $Flinger.Dialog.Toggle();
                     }
                     else {
                         $Flinger.Dialog.SetData("Something was wrong", "In this moment we have some problems, please try again in few moments.");
                         $Flinger.Loader.Finish()
-                        $Flinger.Dialog.Toggle();
                     }
                 }
             },
@@ -84,7 +82,6 @@
                     default:
                         $Flinger.Dialog.SetData(error, "In this moment we have some problems, please try again in few moments.");
                         $Flinger.Loader.Finish()
-                        $Flinger.Dialog.Toggle();
 
                 }
                 console.log(error);

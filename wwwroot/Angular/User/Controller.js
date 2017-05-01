@@ -121,7 +121,6 @@ Flinger.controller("UserController", function ($scope, UserService, SiteService)
                         else {
                             $Flinger.Dialog.SetData("Something was wrong", response.data.message);
                             $Flinger.Loader.Finish()
-                            $Flinger.Dialog.Toggle();
                         }
 
                     }
@@ -139,7 +138,6 @@ Flinger.controller("UserController", function ($scope, UserService, SiteService)
             console.error('Form with errors')
             $Flinger.Dialog.SetData("Something was wrong", "Please provide all required fields.");
             $Flinger.Loader.Finish()
-            $Flinger.Dialog.Toggle();
         }
 
     }
@@ -159,8 +157,7 @@ Flinger.controller("UserController", function ($scope, UserService, SiteService)
                     location.assign("/User/")
                 }
                 else {
-                    $Flinger.Dialog.SetData('Error', response.data.message, 'Ok');
-                    $Flinger.Dialog.Toggle();
+                    $Flinger.Dialog.SetData('Error', response.data.message);
                     $Flinger.Loader.Finish();
                 }
             }
@@ -178,8 +175,7 @@ Flinger.controller("UserController", function ($scope, UserService, SiteService)
                     location.assign("/User/")
                 }
                 else {
-                    $Flinger.Dialog.SetData('Error', response.data.message, 'Ok');
-                    $Flinger.Dialog.Toggle();
+                    $Flinger.Dialog.SetData('Error', response.data.message);
                     $Flinger.Loader.Finish();
                 }
             }

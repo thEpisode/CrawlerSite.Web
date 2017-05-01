@@ -13,7 +13,6 @@ Flinger.controller("SiteController", function ($scope, SiteService) {
             if (response.data.success != undefined) {
                 if (response.data.success == false) {
                     $Flinger.Dialog.SetData("Oops, some errors", response.data.message);
-                    $Flinger.Dialog.Toggle();
                 }
                 else {
                     $scope.Sites = response.data.result;

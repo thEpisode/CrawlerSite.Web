@@ -165,14 +165,12 @@ Flinger.controller("HeatmapController", function ($scope, HeatmapService) {
                             else {
                                 $Flinger.Loader.Finish();
                                 $Flinger.Dialog.SetData("Information", "In this moment we have data for providen parameters, try another configuration or wait for your user interactions");
-                                $Flinger.Dialog.Toggle();
                                 $scope.DisableFilters = false;
                             }
                         }
                         else {
                             $Flinger.Loader.Finish();
                             $Flinger.Dialog.SetData("Error", response.data.message);
-                            $Flinger.Dialog.Toggle();
                         }
                     }
                 }

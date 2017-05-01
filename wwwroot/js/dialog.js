@@ -8,12 +8,12 @@
  * 
  * Usage: 
     $Flinger.Dialog.SetData(
-        "Invitation code:", 
-        "<input placeholder='Insert here' class='input-voucher form-control' type='text' autofocus />", 
+        "Some Title Text", 
+        "<input placeholder='Example of HTML usage' class='input-voucher form-control' type='text' autofocus />", 
         [
             { 
                 text: 'ACCEPT', 
-                className: 'accept-button', 
+                className: $Flinger.Dialog.GetAcceptButtonStyle(), 
                 attributes: [
                                 { action: 'data-accept', value: '' }
                 ],
@@ -23,14 +23,11 @@
             }, 
             { 
                 text: 'CLOSE', 
-                className: 'cancel-button', 
+                className: $Flinger.Dialog.GetCancelButtonStyle(), 
                 attributes: [
                                 { action: 'data-cancel', value: '' }, 
                                 { action: 'data-dialog-close', value: '' }
-                ],
-                callback: function(){
-                    console.log('Click from Close Button')
-                } 
+                ]
             }
         ]);
  */
@@ -39,8 +36,8 @@ $Flinger.Dialog = {
     _buttons: {},
     _designButton: function (buttonData) {
         var button = document.createElement('button');
-
-        button.className = 'action' + buttonData.className == undefined ? '' : ' ' + buttonData.className;
+        button.className = 'action';
+        button.className += buttonData.className == undefined ? ' ' + this.GetAcceptButtonStyle() : ' ' + buttonData.className;
         button.textContent = buttonData.text == undefined ? '' : buttonData.text;
 
         if (buttonData.attributes != undefined) {
@@ -53,7 +50,12 @@ $Flinger.Dialog = {
 
         button.addEventListener('click', function (e) {
             e.preventDefault();
-            return new buttonData.callback();
+            if(buttonData.callback != undefined && buttonData.callback != null){
+                return new buttonData.callback();
+            }
+            else{
+                $Flinger.Dialog.Toggle();
+            }
         });
 
         return button;
@@ -99,10 +101,10 @@ $Flinger.Dialog = {
         document.querySelector("#dialog>.dialog__content>h2").textContent = '';
         document.querySelector("#dialog>.dialog__content>h4").innerHTML = '';
     },
-    AcceptButtonStyle: function(){
+    GetAcceptButtonStyle: function(){
         return "accept-button"
     },
-    CancelButtonStyle: function(){
+    GetCancelButtonStyle: function(){
         return "cancel-button"
     }
 }

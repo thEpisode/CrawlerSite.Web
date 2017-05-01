@@ -37,13 +37,23 @@ Flinger.controller("AccountController", function ($scope, AccountService) {
             AccountService.ChangePasswordByUserId({ Old: $scope.Pass.Old, ConfirmNew: $scope.Pass.ConfirmNew }).then(function (response) {
                 if (response != undefined) {
                     if (response.data.success == true) {
-                        $Flinger.Dialog.SetData('You\'re secure!', 'Password changed successfully.', 'Ok');
-                        $Flinger.Dialog.Toggle();
+                        $Flinger.Dialog.SetData(
+                            'You\'re secure!',
+                            'Password changed successfully.',
+                            [{
+                                text: 'OK',
+                                className: $Flinger.Dialog.GetAcceptButtonStyle()
+                            }]);
                         $Flinger.Loader.Finish();
                     }
                     else {
-                        $Flinger.Dialog.SetData('Error', response.data.message, 'Ok');
-                        $Flinger.Dialog.Toggle();
+                        $Flinger.Dialog.SetData(
+                            'Error',
+                            response.data.message,
+                            [{
+                                text: 'OK',
+                                className: $Flinger.Dialog.GetAcceptButtonStyle()
+                            }]);
                         $Flinger.Loader.Finish();
                     }
                 }
@@ -53,8 +63,13 @@ Flinger.controller("AccountController", function ($scope, AccountService) {
                 });
         }
         else {
-            $Flinger.Dialog.SetData('Error', 'New passwords not match, please verify your new password.', 'Ok');
-            $Flinger.Dialog.Toggle();
+            $Flinger.Dialog.SetData(
+                'Error',
+                'New passwords not match, please verify your new password.',
+                [{
+                    text: 'OK',
+                    className: $Flinger.Dialog.GetAcceptButtonStyle()
+                }]);
         }
     }
 
@@ -63,11 +78,16 @@ Flinger.controller("AccountController", function ($scope, AccountService) {
         AccountService.DeleteAccountByUserId().then(function (response) {
             if (response != undefined) {
                 if (response.data.success == true) {
-                   location.assign("/Home/Thanks")
+                    location.assign("/Home/Thanks")
                 }
                 else {
-                    $Flinger.Dialog.SetData('Error', response.data.message, 'Ok');
-                    $Flinger.Dialog.Toggle();
+                    $Flinger.Dialog.SetData(
+                        'Error',
+                        response.data.message,
+                        [{
+                            text: 'OK',
+                            className: $Flinger.Dialog.GetAcceptButtonStyle()
+                        }]);
                     $Flinger.Loader.Finish();
                 }
             }
