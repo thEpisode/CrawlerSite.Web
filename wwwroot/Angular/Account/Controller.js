@@ -49,11 +49,7 @@ Flinger.controller("AccountController", function ($scope, AccountService) {
                     else {
                         $Flinger.Dialog.SetData(
                             'Error',
-                            response.data.message,
-                            [{
-                                text: 'OK',
-                                className: $Flinger.Dialog.GetAcceptButtonStyle()
-                            }]);
+                            response.data.message);
                         $Flinger.Loader.Finish();
                     }
                 }
@@ -83,11 +79,7 @@ Flinger.controller("AccountController", function ($scope, AccountService) {
                 else {
                     $Flinger.Dialog.SetData(
                         'Error',
-                        response.data.message,
-                        [{
-                            text: 'OK',
-                            className: $Flinger.Dialog.GetAcceptButtonStyle()
-                        }]);
+                        response.data.message);
                     $Flinger.Loader.Finish();
                 }
             }
