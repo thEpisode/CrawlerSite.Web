@@ -9,13 +9,7 @@ $Flinger.Dialog = {
     },
     SetData: function (title, text, acceptBtnText, closeBtnText) {
         if (title !== undefined && title !== null) {
-            document.querySelector("#dialog>.dialog__content>div>[data-accept]").style.display = 'none';
-            document.querySelector("#dialog>.dialog__content>div>[data-cancel]").style.display = 'none';
-            document.querySelector("#dialog>.dialog__content>div>[data-accept]").className = document.querySelector("#dialog>.dialog__content>div>[data-accept]").className.replace(/\baccept-button\b/,'');
-            document.querySelector("#dialog>.dialog__content>div>[data-accept]").className = document.querySelector("#dialog>.dialog__content>div>[data-accept]").className.replace(/\bcancel-button\b/,'');
-            document.querySelector("#dialog>.dialog__content>div>[data-cancel]").className = document.querySelector("#dialog>.dialog__content>div>[data-cancel]").className.replace(/\baccept-button\b/,'');
-            document.querySelector("#dialog>.dialog__content>div>[data-cancel]").className = document.querySelector("#dialog>.dialog__content>div>[data-cancel]").className.replace(/\bcancel-button\b/,'');
-
+            this.CleanDialog();
             document.querySelector("#dialog>.dialog__content>h2").textContent = title;
             document.querySelector("#dialog>.dialog__content>h4").innerHTML = text.length == 0 ? "" : $Flinger.SanitizeHTML.Sanitize(text);
             if (closeBtnText == undefined) {
@@ -34,6 +28,18 @@ $Flinger.Dialog = {
                 document.querySelector("#dialog>.dialog__content>div>[data-cancel]").textContent = closeBtnText == undefined ? "ACCEPT" : closeBtnText;
             }
         }
+    },
+    CleanDialog: function () {
+        document.querySelector("#dialog>.dialog__content>div>[data-accept]").style.display = 'none';
+        document.querySelector("#dialog>.dialog__content>div>[data-cancel]").style.display = 'none';
+        document.querySelector("#dialog>.dialog__content>div>[data-accept]").className = document.querySelector("#dialog>.dialog__content>div>[data-accept]").className.replace(/\baccept-button\b/, '');
+        document.querySelector("#dialog>.dialog__content>div>[data-accept]").className = document.querySelector("#dialog>.dialog__content>div>[data-accept]").className.replace(/\bcancel-button\b/, '');
+        document.querySelector("#dialog>.dialog__content>div>[data-cancel]").className = document.querySelector("#dialog>.dialog__content>div>[data-cancel]").className.replace(/\baccept-button\b/, '');
+        document.querySelector("#dialog>.dialog__content>div>[data-cancel]").className = document.querySelector("#dialog>.dialog__content>div>[data-cancel]").className.replace(/\bcancel-button\b/, '');
+        document.querySelector("#dialog>.dialog__content>h2").textContent = '';
+        document.querySelector("#dialog>.dialog__content>h4").innerHTML = '';
+        document.querySelector("#dialog>.dialog__content>div>[data-accept]").textContent = '';
+        document.querySelector("#dialog>.dialog__content>div>[data-cancel]").textContent = '';
     }
 }
 
