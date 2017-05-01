@@ -16,7 +16,6 @@ function HtmlWhitelistedSanitizer(escape, tags, css, urls) {
     if (urls == null) {
         urls = ['http://', 'https://'];
     }
-
     if (this.allowedTags == null) {
         // Configure small set of default tags
         var unconstrainted = function (x) { return x; };

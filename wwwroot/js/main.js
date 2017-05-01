@@ -47,7 +47,6 @@ $Flinger.QueryString = function () {
     return query_string;
 };
 
-
 $Flinger.RemoveParam = function (key, sourceURL) {
     var rtn = sourceURL.split("?")[0],
         param,
@@ -93,11 +92,11 @@ $Flinger.GetEntryPath = function () {
     return location.href;
 }
 
-$Flinger.LoggedCrawling= function (user) {
-    if(user.HasInvitationCode !== undefined && user.HasInvitationCode !== null){
-         if(user.HasInvitationCode === true){
+$Flinger.LoggedCrawling = function (user) {
+    if (user.HasInvitationCode !== undefined && user.HasInvitationCode !== null) {
+        if (user.HasInvitationCode === true) {
             $Flinger.Dialog.SetData("Invitation code:", "<input placeholder='Insert here' class='input-voucher form-control' type='text' autofocus />", "Redeem");
             $Flinger.Dialog.Toggle();
-         }
+        }
     }
 }
