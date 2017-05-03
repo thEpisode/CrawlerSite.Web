@@ -102,7 +102,7 @@ $Flinger.LoggedCrawling = function (user) {
                     text: 'REDEEM',
                     className: $Flinger.Dialog.GetAcceptButtonStyle(),
                     callback: function(){
-                        // Do something
+                        // Do something 
                     }
                 },{
                     text: 'CANCEL',
