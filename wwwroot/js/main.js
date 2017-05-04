@@ -93,8 +93,8 @@ $Flinger.GetEntryPath = function () {
 }
 
 $Flinger.LoggedCrawling = function (user) {
-    if (user.HasInvitationCode !== undefined && user.HasInvitationCode !== null) {
-        if (user.HasInvitationCode === true) {
+    if (user.HasCouponCode !== undefined && user.HasCouponCode !== null) {
+        if (user.HasCouponCode === true) {
             $Flinger.Dialog.SetData(
                 "Invitation code:",
                 "<input placeholder='Insert here' class='input-voucher form-control' type='text' autofocus />",
@@ -102,7 +102,7 @@ $Flinger.LoggedCrawling = function (user) {
                     text: 'REDEEM',
                     className: $Flinger.Dialog.GetAcceptButtonStyle(),
                     callback: function(){
-                        // Do something 
+                        // Do something
                     }
                 },{
                     text: 'CANCEL',
