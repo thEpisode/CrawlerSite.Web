@@ -1,9 +1,9 @@
-# Flinger
+# Crawler Site [![buddy pipeline](https://app.buddy.works/crawlersite/crawlersite-web/pipelines/pipeline/50098/badge.svg?token=1e45d92e340c928b9dde77760895f7ef83ee072a653f11741814de9b5f1dad76 "buddy pipeline")](https://app.buddy.works/crawlersite/crawlersite-web/pipelines/pipeline/50098)
 easy way to truly understand your web and mobile site visitors. 
 
 ## Developing Mode
 
-You need execute some steps to develop in this project. Remember if you want to develop on Flinger (Fron and back) you need run first CrawlerSite.Backend
+You need execute some steps to develop in this project. Remember if you want to develop on Crawler Site (Fron and back) you need run first CrawlerSite.Backend
 
 ## ASP .Net Core
 
