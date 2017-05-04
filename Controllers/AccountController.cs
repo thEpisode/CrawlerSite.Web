@@ -16,7 +16,7 @@ namespace WebApplication.Controllers
             _accountService = new AccountService();
         }
 
-        public IActionResult Index() => View(); 
+        public IActionResult Index() => View();
 
         public IActionResult ChangePassword() => View();
 
