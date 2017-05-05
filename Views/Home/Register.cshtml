@@ -226,6 +226,7 @@
             data: data,
             dataType: "json",
             success: function (response) {
+                console.log(response)
                 if (response !== undefined) {
                     if (response.success !== undefined && response.success !== false) {
                         if (response.Result !== null) {

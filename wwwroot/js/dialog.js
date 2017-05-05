@@ -50,10 +50,10 @@ $Flinger.Dialog = {
 
         button.addEventListener('click', function (e) {
             e.preventDefault();
-            if(buttonData.callback != undefined && buttonData.callback != null){
+            if (buttonData.callback != undefined && buttonData.callback != null) {
                 return new buttonData.callback();
             }
-            else{
+            else {
                 $Flinger.Dialog.Toggle();
             }
         });
@@ -89,22 +89,25 @@ $Flinger.Dialog = {
     },
     SetData: function (title, text, buttons) {
         if (title !== undefined && title !== null) {
-            this.CleanDialog();
-            document.querySelector("#dialog>.dialog__content>h2").textContent = title;
-            document.querySelector("#dialog>.dialog__content>h4").innerHTML = text.length == 0 ? "" : $Flinger.SanitizeHTML.Sanitize(text);
+            if (text !== undefined && text !== null) {
+                this.CleanDialog();
+                document.querySelector("#dialog>.dialog__content>h2").textContent = title;
+                document.querySelector("#dialog>.dialog__content>h4").innerHTML = text.length == 0 ? "" : $Flinger.SanitizeHTML.Sanitize(text);
 
-            this._createButtons(buttons);
-            this.Toggle();
+                this._createButtons(buttons);
+                this.Toggle();
+            }
         }
     },
     CleanDialog: function () {
         document.querySelector("#dialog>.dialog__content>h2").textContent = '';
         document.querySelector("#dialog>.dialog__content>h4").innerHTML = '';
+        document.querySelector("#dialog>.dialog__content>div").innerHTML = '';
     },
-    GetAcceptButtonStyle: function(){
+    GetAcceptButtonStyle: function () {
         return "accept-button"
     },
-    GetCancelButtonStyle: function(){
+    GetCancelButtonStyle: function () {
         return "cancel-button"
     }
 }
