@@ -91,5 +91,19 @@ namespace WebApplication.Controllers
             dynamic result = await _billingService.GetChargesByUserId(customerData, token);
             return Json(result);
         }
+
+        [HttpPost]
+        public async Task<JsonResult> GetSubscriptionByUserId(string UserId)
+        {
+            string token = WebApplication.Utils.Token.Get(Request.Headers);
+
+            object customerData = new 
+            {
+                UserId = UserId
+            };
+
+            dynamic result = await _billingService.GetSubscriptionByUserId(customerData, token);
+            return Json(result);
+        }
     }
 }

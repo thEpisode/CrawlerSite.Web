@@ -14,14 +14,14 @@ Flinger.controller("BillingController", function ($scope, BillingService) {
     $scope.InitializeIndexView = function () {
         $scope.TodayMonth = $scope.monthNames[(new Date().getMonth())];
         BillingService.GetUserById().then(function (response) {
-            //console.log(response.data)
+            console.log(response.data)
 
             $scope.User = response.data.result;
 
             // If has CustomerId... retrieve 
             if ($scope.User.CustomerId != undefined && $scope.User.CustomerId.length > 0) {
                 BillingService.GetCustomerByUserId().then(function (response) {
-                    //console.log(response.data)
+                    console.log(response.data)
 
                     $scope.Customer = response.data.result;
 

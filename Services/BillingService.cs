@@ -47,5 +47,11 @@ namespace WebApplication.Services
             string jsonResult = await _connection.PostData("Payment/GetChargesByUserId", Token, customerData);
             return JObject.Parse(jsonResult);
         }
+
+        public async Task<dynamic> GetSubscriptionByUserId(object customerData, string Token)
+        {
+            string jsonResult = await _connection.PostData("Payment/GetSubscriptionByUserId", Token, customerData);
+            return JObject.Parse(jsonResult);
+        }
     }
 }
