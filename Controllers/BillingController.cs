@@ -65,13 +65,14 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> GetCustomerByUserId(string UserId)
+        public async Task<JsonResult> GetCustomerByUserId(string UserId, string CustomerId)
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
             object customerData = new 
             {
-                UserId = UserId
+                UserId = UserId,
+                CustomerId = CustomerId
             };
 
             dynamic result = await _billingService.GetCustomerByUserId(customerData, token);

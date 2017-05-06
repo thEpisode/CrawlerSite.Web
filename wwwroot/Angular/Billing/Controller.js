@@ -1,7 +1,7 @@
 Flinger.controller("BillingController", function ($scope, BillingService) {
 
     $scope.MyArray = [];
-    $scope.User = {};
+    $scope.Subscription = {};
     $scope.Plans = [];
     $scope.changePlanButton = false;
     $scope.selectedPlan = '';
@@ -13,14 +13,14 @@ Flinger.controller("BillingController", function ($scope, BillingService) {
 
     $scope.InitializeIndexView = function () {
         $scope.TodayMonth = $scope.monthNames[(new Date().getMonth())];
-        BillingService.GetUserById().then(function (response) {
+        BillingService.GetSubscriptionByUserId().then(function (response) {
             console.log(response.data)
 
-            $scope.User = response.data.result;
+            $scope.Subscription = response.data.result;
 
             // If has CustomerId... retrieve 
-            if ($scope.User.CustomerId != undefined && $scope.User.CustomerId.length > 0) {
-                BillingService.GetCustomerByUserId().then(function (response) {
+            if ($scope.Subscription.CustomerId != undefined && $scope.Subscription.CustomerId.length > 0) {
+                BillingService.GetCustomerByUserId($scope.Subscription.CustomerId).then(function (response) {
                     console.log(response.data)
 
                     $scope.Customer = response.data.result;
@@ -131,7 +131,6 @@ Flinger.controller("BillingController", function ($scope, BillingService) {
 
 });
 
-/// <------ IMPORTANT!! TO DELETE SCRIPT TAGS IN VIEWS
 Flinger.directive("planDetailOnClick", function () {
     return {
         restrict: "A",

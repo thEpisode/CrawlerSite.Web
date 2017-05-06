@@ -1,7 +1,7 @@
 Flinger.service("BillingService", function ($http) {
     this.GetSubscriptionByUserId = function () {
         var response = $http({
-            method: "get",
+            method: "post",
             url: "/Billing/GetSubscriptionByUserId/",
             params: {
                 UserId: $Flinger.ReadPersistentData('userId')
@@ -48,12 +48,13 @@ Flinger.service("BillingService", function ($http) {
         return response;
     }
     
-    this.GetCustomerByUserId = function (userId) {
+    this.GetCustomerByUserId = function (customerId) {
         var response = $http({
             method: "post",
             url: "/Billing/GetCustomerByUserId/",
             params: {
                 UserId: localStorage.getItem("userId"),
+                CustomerId: customerId
             }
         });
         return response;
