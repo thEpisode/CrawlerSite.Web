@@ -107,17 +107,14 @@ Flinger.controller("SiteController", function ($scope, SiteService) {
     }
 
     $scope.AddSite = function () {
-        var users = [];
         var tags = [];
-
-        users.push(localStorage.getItem('userId'))
 
         $scope.Site.Tags.split(',').forEach(function (tag, index) {
             tags.push(tag.trim());
         });
 
         var addSiteProcess = SiteService.AddSite(
-            users,
+            $Flinger.ReadPersistentData('userId'),
             $scope.Site.Name,
             $scope.Site.Url,
             tags,

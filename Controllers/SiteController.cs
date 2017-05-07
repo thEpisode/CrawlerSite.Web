@@ -37,12 +37,12 @@ namespace WebApplication.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> CreateSite(string[] UsersId, string Name, string Url, string[] Tags, int State)
+        public async Task<JsonResult> CreateSite(string UserId, string Name, string Url, string[] Tags, int State)
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            dynamic result = await _siteService.CreateSite(new Site(){
-                UsersId = UsersId,
+            dynamic result = await _siteService.CreateSite(new {
+                UserId = UserId,
                 Name = Name,
                 Url = Url,
                 Tags = Tags,

@@ -36,7 +36,7 @@ namespace WebApplication.Services
             return JObject.Parse(jsonResult);
         }
 
-        public async Task<dynamic> CreateSite(Site site, string Token)
+        public async Task<dynamic> CreateSite(object site, string Token)
         {
             string jsonResult = await _connection.PostData("Site/Create", Token, site);
             return JObject.Parse(jsonResult);

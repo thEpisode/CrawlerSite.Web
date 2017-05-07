@@ -1,11 +1,11 @@
 Flinger.service("SiteService", function ($http) {
     //CreateObj
-    this.AddSite = function (UsersId, Name, Url, Tags, State) {
+    this.AddSite = function (UserId, Name, Url, Tags, State) {
         var response = $http({
             method: "post",
             url: "/Site/CreateSite",
             params: {
-                UsersId: UsersId,
+                UserId: UserId,
                 Name: Name,
                 Url: Url,
                 Tags: Tags,
