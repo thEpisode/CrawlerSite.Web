@@ -40,10 +40,10 @@ Flinger.controller("BillingController", function ($scope, BillingService) {
     }
 
     $scope.InitializePlanDetailView = function () {
-        BillingService.GetUserById().then(function (response) {
+        BillingService.GetSubscriptionByUserId().then(function (response) {
             //console.log(response.data)
 
-            $scope.User = response.data.result;
+            $scope.Subscription = response.data.result;
 
             BillingService.GetAllPlans().then(function (response) {
                 //console.log(response.data.data);
@@ -79,12 +79,12 @@ Flinger.controller("BillingController", function ($scope, BillingService) {
     $scope.SubscribeToPlan = function (token) {
 
         BillingService.SubscribeToPlan(
-            '',
-            $scope.User.Email,
-            'Payment of ' + $scope.User.FirstNameCard + ' ' + $scope.User.LastNameCard,
+            $scope.Subscription.PlanId,
+            $scope.Subscription.Email,
+            'Payment of ' + $scope.Subscription.FirstNameCard + ' ' + $scope.Subscription.LastNameCard,
             token.id,
-            $scope.User.FirstNameCard,
-            $scope.User.LastNameCard
+            $scope.Subscription.FirstNameCard,
+            $scope.Subscription.LastNameCard
         ).then(function (response) {
             console.log(response);
             location.assign("/Dashboard/")
@@ -96,7 +96,7 @@ Flinger.controller("BillingController", function ($scope, BillingService) {
 
     $scope.SetPlanOnClick = function (selectedPlan) {
         $scope.$apply(function () {
-            if (selectedPlan != $scope.User.PlanId) {
+            if (selectedPlan != $scope.Subscription.PlanId) {
                 $scope.changePlanButton = true;
             }
             else {

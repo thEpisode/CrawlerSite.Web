@@ -1,4 +1,15 @@
 Flinger.service("BillingService", function ($http) {
+    this.GetUserById = function () {
+        var response = $http({
+            method: "get",
+            url: "/User/GetUserById/",
+            params: {
+                UserId: $Flinger.ReadPersistentData('userId')
+            }
+        });
+        return response;
+    }
+    
     this.GetSubscriptionByUserId = function () {
         var response = $http({
             method: "post",
