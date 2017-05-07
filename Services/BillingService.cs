@@ -53,5 +53,11 @@ namespace WebApplication.Services
             string jsonResult = await _connection.PostData("Payment/GetSubscriptionByUserId", Token, customerData);
             return JObject.Parse(jsonResult);
         }
+        
+        public async Task<dynamic> CheckIfHasNoPaymentMethodByUserId (string UserId, string Token)
+        {
+            string jsonResult =await _connection.SimplePostData("Payment/CheckIfHasNoPaymentMethodByUserId", Token, HttpSimpleParameters.Of("UserId", UserId));
+            return JObject.Parse(jsonResult);
+        }
     }
 }

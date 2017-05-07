@@ -106,5 +106,20 @@ namespace WebApplication.Controllers
             dynamic result = await _billingService.GetSubscriptionByUserId(customerData, token);
             return Json(result);
         }
+
+        [HttpPost]
+        public async Task<JsonResult> CheckIfHasNoPaymentMethodByUserId(string UserId)
+        {
+            string token = WebApplication.Utils.Token.Get(Request.Headers);
+
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _billingService.CheckIfHasNoPaymentMethodByUserId(UserId, token);
+
+                return Json(result);
+            }
+
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
+        }
     }
 }

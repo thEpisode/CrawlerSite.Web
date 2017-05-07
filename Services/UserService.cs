@@ -64,11 +64,5 @@ namespace WebApplication.Services
             string jsonResult =await _connection.SimplePostData("User/DeleteByUserId", Token, HttpSimpleParameters.Of("UserId", UserId));
             return JObject.Parse(jsonResult);
         }
-
-        public async Task<dynamic> CheckIfHasNoPaymentMethodByUserId (string UserId, string Token)
-        {
-            string jsonResult =await _connection.SimplePostData("User/CheckIfHasNoPaymentMethodByUserId", Token, HttpSimpleParameters.Of("UserId", UserId));
-            return JObject.Parse(jsonResult);
-        }
     }
 }
