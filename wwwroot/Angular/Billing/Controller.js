@@ -14,14 +14,14 @@ Flinger.controller("BillingController", function ($scope, BillingService) {
     $scope.InitializeIndexView = function () {
         $scope.TodayMonth = $scope.monthNames[(new Date().getMonth())];
         BillingService.GetSubscriptionByUserId().then(function (response) {
-            console.log(response.data)
+            //console.log(response.data)
 
             $scope.Subscription = response.data.result;
 
             // If has CustomerId... retrieve 
             if ($scope.Subscription.CustomerId != undefined && $scope.Subscription.CustomerId.length > 0) {
                 BillingService.GetCustomerByUserId($scope.Subscription.CustomerId).then(function (response) {
-                    console.log(response.data)
+                    //console.log(response.data)
 
                     $scope.Customer = response.data.result;
 
@@ -35,7 +35,8 @@ Flinger.controller("BillingController", function ($scope, BillingService) {
             function (response) {
                 console.log(response);
 
-                $Flinger.Loader.Finish();
+                $Flinger.Dialog.SetData("Something was wrong", "In this moment we have some problems, please try again in few moments.");
+                $Flinger.Loader.Finish()
             });
     }
 
@@ -56,7 +57,8 @@ Flinger.controller("BillingController", function ($scope, BillingService) {
                 });
         },
             function (response) {
-                console.log(response);
+                $Flinger.Dialog.SetData("Something was wrong", "In this moment we have some problems, please try again in few moments.");
+                $Flinger.Loader.Finish()
             });
 
     }
@@ -72,7 +74,8 @@ Flinger.controller("BillingController", function ($scope, BillingService) {
             function (response) {
                 console.log(response);
 
-                $Flinger.Loader.Finish();
+                $Flinger.Dialog.SetData("Something was wrong", "In this moment we have some problems, please try again in few moments.");
+                $Flinger.Loader.Finish()
             })
     }
 
@@ -81,16 +84,18 @@ Flinger.controller("BillingController", function ($scope, BillingService) {
         BillingService.SubscribeToPlan(
             $scope.Subscription.PlanId,
             $scope.Subscription.Email,
-            'Payment of ' + $scope.Subscription.FirstNameCard + ' ' + $scope.Subscription.LastNameCard,
-            token.id,
-            $scope.Subscription.FirstNameCard,
-            $scope.Subscription.LastNameCard
+            'Payment of ' + $scope.Subscription.CreditCard.FirstNameCard + ' ' + $scope.Subscription.CreditCard.LastNameCard,
+            token,
+            $scope.Subscription.CreditCard.FirstNameCard,
+            $scope.Subscription.CreditCard.LastNameCard
         ).then(function (response) {
             console.log(response);
             location.assign("/Dashboard/")
         },
             function (response) {
                 console.log(response);
+                $Flinger.Dialog.SetData("Something was wrong", "In this moment we have some problems, please try again in few moments.");
+                $Flinger.Loader.Finish()
             })
     }
 
@@ -121,7 +126,11 @@ Flinger.controller("BillingController", function ($scope, BillingService) {
                     console.log(response);
                 }
             }
-        })
+        },
+            function (response) {
+                $Flinger.Dialog.SetData("Something was wrong", "In this moment we have some problems, please try again in few moments.");
+                $Flinger.Loader.Finish()
+            })
     }
 
     $scope.ChangeCreditCardValue = function () {

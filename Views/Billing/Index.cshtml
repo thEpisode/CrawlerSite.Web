@@ -62,18 +62,25 @@
             event.preventDefault();
 
             $Flinger.Loader.Init();
-            stripe.createToken(card).then(function (result) {
-                if (result.error) {
-                    // Inform the user if there was an error
-                    var errorElement = document.getElementById('card-errors');
-                    errorElement.textContent = result.error.message;
-                } else {
-                    // Send the token to your server
-                    angular.element(document.querySelector('.billing-box')).scope().SubscribeToPlan(result.token);
-                    //stripeTokenHandler(result.token);
-                    console.log(result.token)
-                }
-            });
+            if(angular.element(document.querySelector('.billing-box')).scope().IsChangeCreditCardValue === true){
+                stripe.createToken(card).then(function (result) {
+                    if (result.error) {
+                        // Inform the user if there was an error
+                        var errorElement = document.getElementById('card-errors');
+                        errorElement.textContent = result.error.message;
+                    } else {
+                        // Send the token to your server
+                        angular.element(document.querySelector('.billing-box')).scope().SubscribeToPlan(result.token.id);
+                        //stripeTokenHandler(result.token);
+                        console.log(result.token)
+                    }
+                });
+            }
+            else{
+                // Send the token to your server
+                angular.element(document.querySelector('.billing-box')).scope().SubscribeToPlan(angular.element(document.querySelector('.billing-box')).scope().Subscription.CreditCard.CreditCardToken);
+
+            }
         });
     </script>
 }
@@ -89,12 +96,12 @@
                             <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                                 <div class="form-group">
                                     <label>Name on card<span class="obligatory-field">*</span></label>
-                                    <input type="text" placeholder="Must match card" name="cardFirstname" class="form-control name-card" ng-model="Subscription.FirstNameCard" val="" minlength="3" required />
+                                    <input type="text" placeholder="Must match card" name="cardFirstname" class="form-control name-card" ng-model="Subscription.CreditCard.FirstNameCard" val="" minlength="3" required />
                                     <span class="obligatory-field" ng-show="paymentForm.cardFirstname.$touched && paymentForm.cardFirstname.$invalid">The name is required.</span>
                                 </div>
                                 <div class="form-group">
                                     <label>Lastname on card<span class="obligatory-field">*</span></label>
-                                    <input type="text" placeholder="Must match card" name="cardLastname" class="form-control name-card" ng-model="Subscription.LastNameCard" val="" minlength="3" required />
+                                    <input type="text" placeholder="Must match card" name="cardLastname" class="form-control name-card" ng-model="Subscription.CreditCard.LastNameCard" val="" minlength="3" required />
                                     <span class="obligatory-field" ng-show="paymentForm.cardLastname.$touched && paymentForm.cardLastname.$invalid">The lastname is required.</span>
                                 </div>
                                 <div class="logos logos-row" id="cc-after">
