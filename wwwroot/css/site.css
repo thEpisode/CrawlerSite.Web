@@ -154,7 +154,7 @@ span.twitter-typeahead {
         overflow-y: auto;
     }
 
-.input-group, .tt-dropdown-menu{
+.tt-dropdown-menu{
     display: block !important;
 }
 
@@ -319,4 +319,14 @@ input:-webkit-autofill:active {
     border-radius: 0;
     height: 40px;
     text-transform: uppercase;
+}
+
+.input-group-addon-check{
+    background-color: #8acb92;
+    color: #ffffff;
+}
+
+.input-group-addon-error{
+    background-color: #c33232;
+    color: #ffffff;
 }

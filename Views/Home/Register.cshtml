@@ -41,7 +41,6 @@
     <div class="tab-content register">
         <div class="tab-pane" id="about">
             <div class="row">
-                <h5 class="info-text"> Please tell us more about yourself.</h5>
                 <div class="col-sm-4 col-sm-offset-1">
                     <div class="picture-container">
                         <div class="picture">
@@ -52,6 +51,13 @@
                     </div>
                 </div>
                 <div class="col-sm-6">
+                    <div class="form-group">
+                        <label>Invitation Code <small><a href="#" data-toggle="tooltip" data-placement="top" title="Obtain premium discounts, t-shirts, earley access and more..."><i class="fa fa-question-circle" aria-hidden="true"></i> (Obtain one)</a></small></label>
+                        <div class="input-group">
+                            <input id="invition-code-register" name="invition-code-register" type="text" class="form-control" placeholder="" minlength="13" maxlength="13" onkeyup="preventKeys()" onkeydown="alertToType(event)">
+                            <span class="input-group-addon"><i class="fa fa-check" aria-hidden="true"></i></span>
+                        </div>
+                    </div>
                     <div class="form-group">
                         <label>First Name <small>(required)</small></label>
                         <input id="firstname-register" name="firstname" type="text" class="form-control" placeholder="Jhon">
@@ -150,14 +156,11 @@
     </div>
 </form>
 
-<style>
-
-</style>
-
 @section Scripts{
 <script>
     (function(){
-        $Flinger.Loader.Finish()
+        $('[data-toggle="tooltip"]').tooltip();
+        $Flinger.Loader.Finish();
     })()
     $('#country-register').typeahead({
         hint: true,
@@ -286,6 +289,87 @@
             break;
         default:
             $(".image-container").css('background-image','url(@Url.Content("~/register-assets/img/steps_background-1.jpg"))');
+    }
+
+    document.getElementById('invition-code-register').addEventListener('paste', handlePaste);
+
+    function handlePaste (e) {
+		var clipboardData, pastedData;
+
+		// Stop data actually being pasted into div
+		e.stopPropagation();
+        e.preventDefault();
+
+            // Get pasted data via clipboard API
+        clipboardData = e.clipboardData || window.clipboardData;
+        pastedData = clipboardData.getData('Text');
+        
+        // Do whatever with pasteddata
+        checkVoucher(pastedData);
+    }
+
+    var preventKeys = function(){
+        document.querySelector("#invition-code-register").value = '';
+        return false;
+    }
+
+    var alertToType = function(e){
+        var map = {};
+        e = e || event; // to deal with IE
+        map[e.keyCode] = e.type == 'keydown';
+        
+        if(!map[86] && !map[17]){ // CTRL + V
+            $Flinger.Dialog.SetData("Ooops!", "Please copy voucher code from your email");
+        }
+    }
+
+    var checkVoucher = function(voucher){
+        console.log(voucher.length)
+
+        if(voucher.length === 13){
+            document.querySelector("#invition-code-register").value = voucher
+            $('#invition-code-register').prop('disabled', true);
+            $Flinger.Loader.Init();
+            $.ajax({
+                url: "@Url.Action("VerifyVoucher","Voucher")",
+                type: "POST",
+                crossDomain: true,
+                data: {VoucherId: voucher},
+                dataType: "json",
+                success: function (response) {
+                    console.log(response)
+                    if (response !== undefined) {
+                        if (response.success !== undefined && response.success !== false) {
+                            if (response.Result !== null) {
+                                $('.input-group-addon').addClass('input-group-addon-check');
+                                $Flinger.Loader.Finish()
+                            }
+                        }
+                        else if (response.success !== undefined && response.success === false) {
+                            $('#invition-code-register').prop('disabled', false);
+                            $('.input-group-addon').addClass('input-group-addon-error');
+                            $Flinger.Dialog.SetData("Please verify your voucher", response.message);
+                            $Flinger.Loader.Finish()
+                        }
+                        else {
+                            $('#invition-code-register').prop('disabled', false);
+                            $Flinger.Dialog.SetData("Something was wrong", "In this moment we have some problems, please try again in few moments.");
+                            $Flinger.Loader.Finish()
+                        }
+                    }
+                },
+                error: function (xhr, status, error) {
+                    switch (xhr.status) {
+                        case 500:
+                        default:
+                            $('#invition-code-register').prop('disabled', false);
+                            $Flinger.Dialog.SetData(error, "In this moment we have some problems, please try again in few moments.");
+                            $Flinger.Loader.Finish()
+                    }
+                    console.log(error);
+                }
+            });
+        }
     }
 </script>
 }
