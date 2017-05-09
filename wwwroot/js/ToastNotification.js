@@ -14,7 +14,7 @@ $Flinger.Toast = {
             throw Error("To show a toast it need a Title and Message mandatory")
         }
     },
-    SimpleWithButtons: function (Title, Message, Icon) {
+    SimpleWithButtons: function (Title, Message, Buttons, Icon) {
         if ((Title != undefined && Title != null) && (Message != undefined && Message != null)) {
             iziToast.show({
                 color: '#FFFFFF',

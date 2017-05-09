@@ -131,6 +131,10 @@ namespace WebApplication
             {
                 result = ProcessHttpErrorString(ex);
             }
+            catch(Exception exc)
+            {
+                result = exc.Message;
+            }
             return result;
         }
 
