@@ -23,5 +23,11 @@ namespace WebApplication.Services
             string jsonResult =await _connection.SimplePostData("/Payment/Voucher/VerifyVoucher", String.Empty, HttpSimpleParameters.Of("VoucherId", VoucherId));
             return JObject.Parse(jsonResult);
         }
+
+        public async Task<dynamic> GenerateVoucher(object voucherData, string Token)
+        {
+            string jsonResult = await _connection.PostData("/Payment/Voucher/Generate", Token, voucherData);
+            return JObject.Parse(jsonResult);
+        }
     }
 }

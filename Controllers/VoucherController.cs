@@ -16,7 +16,23 @@ namespace WebApplication.Controllers
             _voucherService = new VoucherService();
         }
 
-        //public IActionResult Index() => View();
+        public IActionResult GenerateEarlyBirdIndex() => View();
+
+        [HttpPost]
+        public async Task<JsonResult> GenerateEarlyBirdVoucher(string email)
+        {
+            string token = WebApplication.Utils.Token.Get(Request.Headers);
+
+            object voucherData = new {
+                Prefix = "eb-",
+                Length = 10,
+                Email = email,
+                Amount = 999
+            };
+
+            dynamic result = await _voucherService.GenerateVoucher(voucherData, token);
+            return Json(result);
+        }
 
         [HttpPost]
         public async Task<JsonResult> VerifyVoucher(string VoucherId)
