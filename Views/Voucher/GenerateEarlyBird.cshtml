@@ -1,0 +1,36 @@
+@{
+    ViewBag.Title = "Generate new Early Bird Access";
+}
+
+@section Scripts{
+    <script src="@Url.Content("~/Angular/AdminVoucher/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/AdminVoucher/Controller.js")"></script>
+}
+
+<section ng-controller="AdminVoucherController" ng-init="InitializeEarlyBirdView()">
+	
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-sm-offset-2">
+        <div class="card">
+            <div class="content">
+				<h2 class="text-center">Generate new Early Bird Access</h2>
+                <form name="NewUserInfo" input-validations ng-submit="GenerateEarlyBird()">
+                    <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                        <div class="form-group">
+							<label class="createUserLabel">Email</label>
+							<input type="text" name="Email" id="Email" class="form-control" placeholder="jhon.doe@crawlersite"  ng-model="AdminVoucher.Email" required>
+						</div>
+                    </div>
+
+
+                    <div class="text-center pull-right">
+                        <input type="submit" id="Createbtn"  value="Generate" class="btn btn-danger btn-wd btn-fill" enabled/>
+                    
+                        <a class="btn btn-danger btn-wd"  href="@Url.Action("Index", "Dashboard")" >Cancel</a>
+                    </div>
+                   
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

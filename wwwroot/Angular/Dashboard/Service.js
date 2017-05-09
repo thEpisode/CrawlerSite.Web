@@ -13,7 +13,7 @@ Flinger.service("DashboardService", function ($http) {
     this.CheckIfHasNoPaymentMethodByUserId = function(){
         var response = $http({
             method: 'post',
-            url: '/User/CheckIfHasNoPaymentMethodByUserId/',
+            url: '/Billing/CheckIfHasNoPaymentMethodByUserId/',
             params:{
                 UserId: $Flinger.ReadPersistentData('userId')
             }

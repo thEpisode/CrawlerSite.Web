@@ -16,7 +16,7 @@ namespace WebApplication.Controllers
             _voucherService = new VoucherService();
         }
 
-        public IActionResult GenerateEarlyBirdIndex() => View();
+        public IActionResult GenerateEarlyBird() => View();
 
         [HttpPost]
         public async Task<JsonResult> GenerateEarlyBirdVoucher(string email)
@@ -27,7 +27,8 @@ namespace WebApplication.Controllers
                 Prefix = "eb-",
                 Length = 10,
                 Email = email,
-                Amount = 999
+                Amount = 999,
+                Currency = "USD"
             };
 
             dynamic result = await _voucherService.GenerateVoucher(voucherData, token);

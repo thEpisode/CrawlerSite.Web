@@ -1,4 +1,4 @@
-Flinger.service("AdminVoucher", function ($http) {
+Flinger.service("AdminVoucherService", function ($http) {
     //CreateEarlyBirdVoucher
     this.GenerateEarlyBird = function (Email) {
         var response = $http({
