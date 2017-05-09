@@ -101,13 +101,31 @@ $Flinger.LoggedCrawling = function (user) {
                 [{
                     text: 'REDEEM',
                     className: $Flinger.Dialog.GetAcceptButtonStyle(),
-                    callback: function(){
+                    callback: function () {
                         // Do something
                     }
-                },{
+                }, {
                     text: 'CANCEL',
                     className: $Flinger.Dialog.GetCancelButtonStyle()
                 }]);
+        }
+        else {
+            var random = Math.floor((Math.random() * 10) + 1);
+            if (random <= 5) {
+                $Flinger.Dialog.SetData(
+                    "We are on beta!",
+                    "Obtain premium discounts, t-shirts, early access and more...",
+                    [{
+                        text: 'I WANT IT',
+                        className: $Flinger.Dialog.GetAcceptButtonStyle(),
+                        callback: function () {
+                            window.open('https://www.kickstarter.com')
+                        }
+                    }, {
+                        text: 'NO, THANKS',
+                        className: $Flinger.Dialog.GetCancelButtonStyle()
+                    }]);
+            }
         }
     }
 }
