@@ -55,7 +55,8 @@
                         <label>Invitation Code <small><a href="#" data-toggle="tooltip" data-placement="top" title="Obtain premium discounts, t-shirts, earley access and more..."><i class="fa fa-question-circle" aria-hidden="true"></i> (Obtain one)</a></small></label>
                         <div class="input-group">
                             <input id="invition-code-register" name="invition-code-register" type="text" class="form-control" placeholder="" minlength="13" maxlength="13" onkeyup="preventKeys()" onkeydown="alertToType(event)">
-                            <span class="input-group-addon"><i class="fa fa-check" aria-hidden="true"></i></span>
+                            <span class="input-group-addon input-group-addon-check"><i class="fa fa-check" aria-hidden="true"></i></span>
+                            <span class="input-group-addon input-group-addon-error"><i class="fa fa-times" aria-hidden="true"></i></span>
                         </div>
                     </div>
                     <div class="form-group">
@@ -161,6 +162,8 @@
     (function(){
         $('[data-toggle="tooltip"]').tooltip();
         $Flinger.Loader.Finish();
+
+        $('.input-group-addon').hide();
     })()
     $('#country-register').typeahead({
         hint: true,
@@ -341,13 +344,15 @@
                     if (response !== undefined) {
                         if (response.success !== undefined && response.success !== false) {
                             if (response.Result !== null) {
-                                $('.input-group-addon').addClass('input-group-addon-check');
+                                $('.input-group-addon-check').show();
+                                $('.input-group-addon-error').hide();
                                 $Flinger.Loader.Finish()
                             }
                         }
                         else if (response.success !== undefined && response.success === false) {
                             $('#invition-code-register').prop('disabled', false);
-                            $('.input-group-addon').addClass('input-group-addon-error');
+                            $('.input-group-addon-error').show();
+                            $('.input-group-addon-check').hide();
                             $Flinger.Dialog.SetData("Please verify your voucher", response.message);
                             $Flinger.Loader.Finish()
                         }

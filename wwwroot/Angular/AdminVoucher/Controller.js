@@ -7,8 +7,9 @@ Flinger.controller("AdminVoucherController", function ($scope, AdminVoucherServi
     }
 
     $scope.GenerateEarlyBird = function () {
+        
         if ($scope.AdminVoucher.Email != undefined && $scope.AdminVoucher.Email !== null) {
-            if ($scope.AdminVoucher.Email, length > 0) {
+            if ($scope.AdminVoucher.Email.length > 0) {
                 $Flinger.Loader.Init();
                 AdminVoucherService.GenerateEarlyBird($scope.AdminVoucher.Email).then(function (response) {
                     //console.log(response)
