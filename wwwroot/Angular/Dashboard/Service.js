@@ -20,4 +20,15 @@ Flinger.service("DashboardService", function ($http) {
         });
         return response;
     }
+
+    this.GetUserById = function(){
+        var response = $http({
+            method: 'get',
+            url: '/User/GetUserById/',
+            params:{
+                UserId: $Flinger.ReadPersistentData('userId')
+            }
+        });
+        return response;
+    }
 });

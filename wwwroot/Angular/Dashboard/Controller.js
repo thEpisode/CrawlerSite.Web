@@ -3,6 +3,7 @@ Flinger.controller("DashboardController", function ($scope, DashboardService) {
 
     $scope.InitializeIndexView = function () {
         $scope.CheckIfUserHasNoPaymentData();
+        $scope.GetUserById();
 
         DashboardService.GetInsights().then(function (response) {
             console.log(response.data)
@@ -160,6 +161,18 @@ Flinger.controller("DashboardController", function ($scope, DashboardService) {
                     if (response.data.result === false) {
                         $Flinger.Toast.WarningWithButtons('You haven\'t a valid payment method', 'Did you want add any?', [['<button>Yes!</button>', function (instance, toast) { location.assign('/Billing/') }], ['<button>Not yet</button>', function (instance, toast) { instance.hide({ transitionOut: 'fadeOutUp' }, toast); }]])
                     }
+                }
+            }
+        })
+    }
+
+    $scope.GetUserById = function () {
+        DashboardService.GetUserById().then(function (response) {
+            console.log(response.data)
+
+            if (response.data.result != undefined && response.data.result != null) {
+                if (response.data.success == true) {
+                    $Flinger.LoggedCrawling(response.data.result);
                 }
             }
         })
