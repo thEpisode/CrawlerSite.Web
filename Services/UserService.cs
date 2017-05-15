@@ -28,7 +28,7 @@ namespace WebApplication.Services
             return JObject.Parse(jsonResult);
         }
 
-        public async Task<dynamic> RegisterUser(User user)
+        public async Task<dynamic> RegisterUser(object user)
         {
             string jsonResult = await _connection.PostData("User/Create", String.Empty, user);
 
@@ -47,7 +47,7 @@ namespace WebApplication.Services
             return JObject.Parse(jsonResult);
         }
 
-        public async Task<dynamic> CreateUser(User user, string Token)
+        public async Task<dynamic> CreateUser(object user, string Token)
         {
             string jsonResult = await _connection.PostData("User/Create", Token, user);
             return JObject.Parse(jsonResult);

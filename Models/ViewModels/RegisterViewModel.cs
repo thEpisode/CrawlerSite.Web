@@ -11,5 +11,6 @@ namespace WebApplication.Models.ViewModels
         public bool AcceptTerms { get; set; }
         public int State { get; set; }
         public string[] Work { get; set; }
+        public string VoucherCode { get; set; }
     }
 }

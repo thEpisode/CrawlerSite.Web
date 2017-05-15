@@ -12,35 +12,21 @@ namespace WebApplication.Controllers
     public class UserController : Controller
     {
         public UserService _userService { get; set; }
+
         public UserController()
         {
             _userService = new UserService();
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
 
-        public IActionResult Add()
-        {
-            return View();
-        }
+        public IActionResult Add() => View();
+        
+        public IActionResult AddReturn() => View();
 
-          public IActionResult AddReturn()
-        {
-            return View();
-        }
+        public IActionResult Edit(string id) => View();
 
-        public IActionResult Edit(string id)
-        {
-            return View();
-        }
-
-        public IActionResult Delete(string id)
-        {
-            return View();
-        }
+        public IActionResult Delete(string id) => View();
 
         [HttpPost]
         public async Task<JsonResult> GetByCredentials(CredentialsViewModel credentials)
@@ -52,7 +38,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> Register(RegisterViewModel userData)
         {
-            dynamic result = await _userService.RegisterUser(new User(){
+            dynamic result = await _userService.RegisterUser(new {
                 FirstName= userData.FirstName,
                 LastName= userData.LastName,
                 Email= userData.Email,
@@ -61,7 +47,8 @@ namespace WebApplication.Controllers
                 City= userData.City,
                 Country= userData.Country,
                 AcceptTerms= userData.AcceptTerms,
-                State= userData.State
+                State= userData.State,
+                VoucherId= userData.VoucherCode
             });
             return Json(result);
         }        

@@ -206,6 +206,7 @@
         var city = $('#city-register').val();
         var country = getInternationalCountryCode($('#country-register').val());
         var work = [];
+        var voucherCode = $('#invition-code-register').val();
 
         $('input[name="jobb"]').each(function () {
             if ($(this).prop('checked') == true) {
@@ -222,7 +223,8 @@
             Country: country,
             AcceptTerms: true,
             State: 2,
-            Work: work
+            Work: work,
+            VoucherCode: voucherCode,
         }
 
         $.ajax({
