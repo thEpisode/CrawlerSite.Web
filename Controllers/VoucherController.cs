@@ -23,23 +23,31 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            object voucherData = new {
-                Prefix = "eb-",
-                Length = 10,
-                Email = email,
-                Amount = 999,
-                Currency = "USD"
-            };
+            if(!String.IsNullOrEmpty(token))
+            {
+                object voucherData = new {
+                    Prefix = "eb-",
+                    Length = 10,
+                    Email = email,
+                    Amount = 999,
+                    Currency = "USD"
+                };
 
-            dynamic result = await _voucherService.GenerateVoucher(voucherData, token);
-            return Json(result);
+                dynamic result = await _voucherService.GenerateVoucher(voucherData, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
         }
 
         [HttpPost]
         public async Task<JsonResult> VerifyVoucher(string VoucherId)
         {
-            dynamic result = await _voucherService.VerifyVoucher(VoucherId);
-            return Json(result);
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _voucherService.VerifyVoucher(VoucherId);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
         }
     }
 }

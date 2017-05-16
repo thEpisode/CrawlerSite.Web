@@ -26,16 +26,20 @@ namespace WebApplication.Controllers
         public async Task<JsonResult> ChangePasswordByUserId(string UserId, string OldPassword, string NewPassword)
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
-
-            object userdData = new 
+            
+            if(!String.IsNullOrEmpty(token))
             {
-                UserId = UserId,
-                OldPassword = OldPassword,
-                NewPassword = NewPassword
-            };
+                object userdData = new 
+                {
+                    UserId = UserId,
+                    OldPassword = OldPassword,
+                    NewPassword = NewPassword
+                };
 
-            dynamic result = await _accountService.ChangePasswordByUserId(userdData, token);
-            return Json(result);
+                dynamic result = await _accountService.ChangePasswordByUserId(userdData, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
         }
 
         [HttpPost]
@@ -43,13 +47,17 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            object userdData = new 
+            if(!String.IsNullOrEmpty(token))
             {
-                UserId = UserId
-            };
+                object userdData = new 
+                {
+                    UserId = UserId
+                };
 
-            dynamic result = await _accountService.DeleteAccountByUserId(userdData, token);
-            return Json(result);
+                dynamic result = await _accountService.DeleteAccountByUserId(userdData, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
         }
     }
 }

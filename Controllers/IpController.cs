@@ -42,13 +42,17 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            dynamic result = await _ipService.CreateIp(new Ip(){
-                ApiKey= ApiKey,
-                IP = ip,
-                Name= Name,
-                State= State
-            }, token);
-            return Json(result);
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _ipService.CreateIp(new Ip(){
+                    ApiKey= ApiKey,
+                    IP = ip,
+                    Name= Name,
+                    State= State
+                }, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
         }
 
         [HttpGet]
@@ -56,8 +60,12 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            dynamic result = await _ipService.GetAllIp(token);
-            return Json(result);
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _ipService.GetAllIp(token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
         }
 
         [HttpGet]
@@ -65,8 +73,12 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            dynamic result = await _ipService.GetIpById(Id, token);
-            return Json(result);
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _ipService.GetIpById(Id, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
         }
 
         [HttpGet]
@@ -74,8 +86,12 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            dynamic result = await _ipService.GetIpByApiKey(ApiKey, token);
-            return Json(result);
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _ipService.GetIpByApiKey(ApiKey, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
         }
 
         [HttpPost]
@@ -83,13 +99,17 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            dynamic result = await _ipService.EditIp(new Ip(){
-                _id = Id,
-                IP = IP,
-                Name = Name,
-            }, token);
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _ipService.EditIp(new Ip(){
+                    _id = Id,
+                    IP = IP,
+                    Name = Name,
+                }, token);
 
-            return Json(result);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
         }
 
         [HttpPost]
@@ -97,9 +117,13 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            dynamic result = await _ipService.DeleteIp(Id, token);
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _ipService.DeleteIp(Id, token);
 
-            return Json(result);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
         }
     }
 }

@@ -27,8 +27,12 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            dynamic result = await _dashboardService.GetInsights(UserId, token);
-            return Json(result);
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _dashboardService.GetInsights(UserId, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
         }
     }
 }
