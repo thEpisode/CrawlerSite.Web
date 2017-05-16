@@ -109,6 +109,9 @@ $Flinger.Dialog = {
     },
     GetCancelButtonStyle: function () {
         return "cancel-button"
+    },
+    IsOpen: function(){
+        return this._dlg.isOpen;
     }
 }
 
