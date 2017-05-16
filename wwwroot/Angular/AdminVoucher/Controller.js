@@ -148,7 +148,7 @@ Flinger.controller("AdminVoucherController", function ($scope, AdminVoucherServi
     $scope.RedeemVoucherCode = function () {
         if ($scope.VoucherIsValid === true) {
             AdminVoucherService.RedeemVoucherCode().then(function(response){
-                $Flinger.Loader.Toggle();
+                $Flinger.Dialog.Toggle();
             }, function(response){
                 console.log(response)
             });
