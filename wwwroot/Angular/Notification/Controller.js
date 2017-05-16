@@ -9,7 +9,7 @@ Flinger.controller("NotificationController", function ($scope, NotificationServi
             //console.log(response.data)
 
             $scope.Notifications = response.data.result;
-            $scope.hideLoaderNotificationView();
+            //$scope.hideLoaderNotificationView();
             //$Flinger.Loader.Finish();
         },
             function (response) {
@@ -50,7 +50,7 @@ Flinger.controller("NotificationController", function ($scope, NotificationServi
             })
     }
 
-    $scope.hideLoaderNotificationView = function () {
+    $scope.hideLoaderNotificationView = function () {debugger;
         $Flinger.Loader.Finish();
     }
 });
