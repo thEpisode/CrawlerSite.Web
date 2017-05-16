@@ -12,10 +12,11 @@ Flinger.controller("AdminVoucherController", function ($scope, AdminVoucherServi
             if ($scope.AdminVoucher.Email.length > 0) {
                 $Flinger.Loader.Init();
                 AdminVoucherService.GenerateEarlyBird($scope.AdminVoucher.Email).then(function (response) {
-                    //console.log(response)
+                    //console.log(response);
                     if (response.data.success != undefined) {
                         if (response.data.success == false) {
                             $Flinger.Dialog.SetData("Oops, some errors", response.data.message);
+                            $Flinger.Loader.Finish();
                         }
                         else {
                             $scope.AdminVoucher = {};
@@ -25,6 +26,8 @@ Flinger.controller("AdminVoucherController", function ($scope, AdminVoucherServi
                     }
                 },
                     function (response) {
+                        $Flinger.Dialog.SetData("Try Again", response.data.message);
+                        $Flinger.Loader.Finish();
                         console.log(response);
                     });
             }
