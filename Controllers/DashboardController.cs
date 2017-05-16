@@ -32,7 +32,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _dashboardService.GetInsights(UserId, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
     }
 }

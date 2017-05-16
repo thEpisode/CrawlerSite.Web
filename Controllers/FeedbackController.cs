@@ -26,7 +26,7 @@ namespace WebApplication.Controllers
                 var result = await _feedbackService.CreateFeedback(feedback, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
     }
 }

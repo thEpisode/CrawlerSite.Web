@@ -52,7 +52,7 @@ namespace WebApplication.Controllers
                 }, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -65,7 +65,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _ipService.GetAllIp(token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -78,7 +78,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _ipService.GetIpById(Id, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -91,7 +91,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _ipService.GetIpByApiKey(ApiKey, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -109,7 +109,7 @@ namespace WebApplication.Controllers
 
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -123,7 +123,7 @@ namespace WebApplication.Controllers
 
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
     }
 }

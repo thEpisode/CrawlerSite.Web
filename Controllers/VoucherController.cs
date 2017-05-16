@@ -36,18 +36,14 @@ namespace WebApplication.Controllers
                 dynamic result = await _voucherService.GenerateVoucher(voucherData, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
         public async Task<JsonResult> VerifyVoucher(string VoucherId)
         {
-            if(!String.IsNullOrEmpty(token))
-            {
-                dynamic result = await _voucherService.VerifyVoucher(VoucherId);
-                return Json(result);
-            }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            dynamic result = await _voucherService.VerifyVoucher(VoucherId);
+            return Json(result);
         }
     }
 }

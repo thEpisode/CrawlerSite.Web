@@ -42,7 +42,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _billingService.SubscribeToPlan(customerData, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -55,7 +55,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _billingService.GetAllPlans(token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -73,7 +73,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _billingService.ChangePlan(customerData, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -92,7 +92,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _billingService.GetCustomerByUserId(customerData, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -110,7 +110,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _billingService.GetChargesByUserId(customerData, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -128,7 +128,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _billingService.GetSubscriptionByUserId(customerData, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -143,7 +143,7 @@ namespace WebApplication.Controllers
                 return Json(result);
             }
 
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
     }
 }

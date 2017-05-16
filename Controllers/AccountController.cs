@@ -39,7 +39,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _accountService.ChangePasswordByUserId(userdData, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -57,7 +57,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _accountService.DeleteAccountByUserId(userdData, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
     }
 }

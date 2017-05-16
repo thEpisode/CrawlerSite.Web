@@ -31,7 +31,6 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> GetByCredentials(CredentialsViewModel credentials)
         {
-            if(!String.IsNullOrEmpty(token))
             dynamic result = await _userService.AuthenticateUser(credentials.Email, credentials.Password);
             return Json(result);
         }
@@ -39,9 +38,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> Register(RegisterViewModel userData)
         {
-            if(!String.IsNullOrEmpty(token))
-            {
-                dynamic result = await _userService.RegisterUser(new {
+            dynamic result = await _userService.RegisterUser(new {
                     FirstName= userData.FirstName,
                     LastName= userData.LastName,
                     Email= userData.Email,
@@ -54,8 +51,6 @@ namespace WebApplication.Controllers
                     VoucherId= userData.VoucherCode
                 });
                 return Json(result);
-            }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
         }        
 
         [HttpPost]
@@ -80,7 +75,7 @@ namespace WebApplication.Controllers
                 return Json(result);
             }
 
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -93,7 +88,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _userService.GetUserById(UserId, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -114,7 +109,7 @@ namespace WebApplication.Controllers
 
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -127,7 +122,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _userService.DeleteUser(_id, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]

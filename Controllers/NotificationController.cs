@@ -35,7 +35,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _notificationService.GetNotificationsById(UserId, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -48,7 +48,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _notificationService.GetNotificationById(Id, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
     }
 }

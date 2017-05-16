@@ -58,7 +58,7 @@ namespace WebApplication.Controllers
                 string result = _insightsService.GetSocketUrl(token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -71,7 +71,7 @@ namespace WebApplication.Controllers
                 string result = _insightsService.GetSiteScreenshotUrl(Id, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -84,7 +84,7 @@ namespace WebApplication.Controllers
                 dynamic result = await _insightsService.GetSiteHeatmapData(ApiKey, MinWidth, MaxWidth, Type, MaxTime, Flash, Browser, OperatingSystem, Cookies, Location, Endpoint, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again.", result = null });
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
         
     }
