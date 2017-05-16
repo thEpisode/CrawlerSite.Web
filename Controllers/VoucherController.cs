@@ -45,5 +45,23 @@ namespace WebApplication.Controllers
             dynamic result = await _voucherService.VerifyVoucher(VoucherId);
             return Json(result);
         }
+
+        [HttpPost]
+        public async Task<JsonResult> RedeemVoucher(string VoucherId, string UserId)
+        {
+            string token = WebApplication.Utils.Token.Get(Request.Headers);
+
+            if(!String.IsNullOrEmpty(token))
+            {
+                object voucherData = new {
+                    VoucherId = VoucherId,
+                    UserId = UserId
+                };
+
+                dynamic result = await _voucherService.RedeemVoucherByUserId(voucherData, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
+        }
     }
 }

@@ -103,7 +103,7 @@ $Flinger.LoggedCrawling = function (user) {
                     text: 'REDEEM',
                     className: $Flinger.Dialog.GetAcceptButtonStyle(),
                     callback: function () {
-
+                        angular.element(document.querySelector('#redeem')).scope().RedeemVoucherCode();
                     }
                 }, {
                     text: 'CANCEL',
@@ -114,7 +114,7 @@ $Flinger.LoggedCrawling = function (user) {
         else {
             var random = Math.floor((Math.random() * 10) + 1);
             if (random <= 5) {
-                $Flinger.Dialog.SetData(
+                /*$Flinger.Dialog.SetData(
                     "We are on beta!",
                     "Obtain premium discounts, t-shirts, early access and more...",
                     [{
@@ -126,7 +126,7 @@ $Flinger.LoggedCrawling = function (user) {
                     }, {
                         text: 'NO, THANKS',
                         className: $Flinger.Dialog.GetCancelButtonStyle()
-                    }]);
+                    }]);*/
             }
         }
     }

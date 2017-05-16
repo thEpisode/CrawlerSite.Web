@@ -10,4 +10,16 @@ Flinger.service("AdminVoucherService", function ($http) {
         });
         return response;
     }
+
+    this.RedeemVoucherCode = function (Email) {
+        var response = $http({
+           method: "post",
+                url: "/Voucher/GenerateEarlyBirdVoucher",
+                params: {
+                    VoucherId: $('.invition-code-register').val(),
+                    UserId: $Flinger.ReadPersistentData('userId')
+                }
+        });
+        return response;
+    }
 });
