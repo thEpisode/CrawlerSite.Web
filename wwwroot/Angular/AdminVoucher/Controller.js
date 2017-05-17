@@ -6,6 +6,10 @@ Flinger.controller("AdminVoucherController", function ($scope, AdminVoucherServi
         //
     }
 
+    $scope.InitializeEarlyBirdView = function(){
+        $Flinger.Loader.Finish();
+    }
+
     $scope.GenerateEarlyBird = function () {
         
         if ($scope.AdminVoucher.Email != undefined && $scope.AdminVoucher.Email !== null) {
