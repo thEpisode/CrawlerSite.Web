@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using WebApplication.Models.Entities;
 using WebApplication.Utils;
 using WebApplication;
+using System.Security.Authentication;
 
 namespace WebApplication
 {
@@ -25,6 +26,7 @@ namespace WebApplication
             _client = new HttpClient();
             _serviceUri = AppSettings.ApiUri;
             _uri = AppSettings.Uri;
+            
         }
 
         public string GetApiServiceUri()
@@ -46,16 +48,16 @@ namespace WebApplication
 
                 HttpContent keyValues = new FormUrlEncodedContent(HttpPostEncodedBuilder(HttpParameters));
 
-                var response = await _client.PostAsync(uri, keyValues);
+                var response = await _client.PostAsync(new Uri(uri), keyValues);
                 
                 string content = await response.Content.ReadAsStringAsync();
                 if(!String.IsNullOrEmpty(content)){
                     return content;
                 }
-                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
+                return "{result: {\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}}";
             }
-            catch(Exception){
-                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
+            catch(HttpRequestException  ex){
+                return "{result: {\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}}";
             }
         }
 
