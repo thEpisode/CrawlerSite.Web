@@ -36,7 +36,7 @@ namespace WebApplication
 
             AppSettings.ApiUri = Configuration["ApiUri"] == null ? "https://backend.crawlersite.com/api" : Configuration["ApiUri"];
 
-            AppSettings.Uri = Configuration["Uri"] == null ? "http://backend.crawlersite.com" : Configuration["Uri"];
+            AppSettings.Uri = Configuration["Uri"] == null ? "https://backend.crawlersite.com" : Configuration["Uri"];
         }
 
         public IConfigurationRoot Configuration { get; }
