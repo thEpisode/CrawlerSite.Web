@@ -28,7 +28,8 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
 
                     RATService.GetSocketUrl()
                         .then(function (response) {
-                            //console.log(response);
+                            console.log('uri:')
+                            console.log(response);
                             $scope.SocketUriServer = response.data;
                             $scope.socketDefinition(response.data);
                         },
