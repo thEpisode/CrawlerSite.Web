@@ -42,20 +42,6 @@
                                 </a>
                             </td>
                             <td>
-                                <a href="#" ng-click="sortType = 'Title'; sortReverse = !sortReverse">
-                                    Title
-                                    <span ng-show="sortType == 'Title' && !sortReverse" class="fa fa-caret-down"></span>
-                                    <span ng-show="sortType == 'Title' && sortReverse" class="fa fa-caret-up"></span>
-                                </a>
-                            </td>
-                            <td>
-                                <a href="#" ng-click="sortType = 'eXtra'; sortReverse = !sortReverse">
-                                    extra
-                                    <span ng-show="sortType == 'eXtra' && !sortReverse" class="fa fa-caret-down"></span>
-                                    <span ng-show="sortType == 'eXtra' && sortReverse" class="fa fa-caret-up"></span>
-                                </a>
-                            </td>
-                            <td>
 
                                 Actions
 
@@ -68,8 +54,6 @@
                     <tbody>
                         <tr ng-repeat="User in Users | orderBy:sortType:sortReverse | filter:searchUser">
                             <td>{{ User.FirstName }} {{ User.LastName }}</td>
-                            <td>{{ User.Email }}</td>
-                            <td>{{ User.Work }}</td>
                             <td>{{ User.Email }}</td>
                             <td>
 
