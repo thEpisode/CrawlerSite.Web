@@ -29,5 +29,11 @@ namespace WebApplication.Services
             string jsonResult = await _connection.PostData("/Payment/Voucher/Generate", Token, voucherData);
             return JObject.Parse(jsonResult);
         }
+
+        public async Task<dynamic> RedeemVoucherByUserId(object voucherData, string Token)
+        {
+            string jsonResult = await _connection.PostData("/Payment/Voucher/RedeemByUserId", Token, voucherData);
+            return JObject.Parse(jsonResult);
+        }
     }
 }

@@ -1,8 +1,6 @@
 var Flinger = angular.module('Flinger', ['ngRoute']);
 
 Flinger.factory('TokenInjector', ['$log', '$q', '$location', function ($log, $q) {
-
-
     var TokenInjector = {
         request: function (config) {
 
@@ -34,14 +32,14 @@ Flinger.filter('stripeAmount', function () {
     }
 });
 
-Flinger.filter('capitalize', function() {
-    return function(input) {
-      return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
+Flinger.filter('capitalize', function () {
+    return function (input) {
+        return (!!input) ? input.charAt(0).toUpperCase() + input.substr(1).toLowerCase() : '';
     }
 });
 
-Flinger.filter('stripeDate', function() {
-    return function(input) {
-      return (!!input) ? new Date(input).getDate() + '/' + ((new Date(input).getMonth())+ 1) + '/' + new Date(input).getFullYear() : '';
+Flinger.filter('stripeDate', function () {
+    return function (input) {
+        return (!!input) ? new Date(input).getDate() + '/' + ((new Date(input).getMonth()) + 1) + '/' + new Date(input).getFullYear() : '';
     }
 });

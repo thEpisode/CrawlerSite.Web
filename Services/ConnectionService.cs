@@ -11,6 +11,7 @@ using System.Threading.Tasks;
 using WebApplication.Models.Entities;
 using WebApplication.Utils;
 using WebApplication;
+using System.Security.Authentication;
 
 namespace WebApplication
 {
@@ -25,6 +26,7 @@ namespace WebApplication
             _client = new HttpClient();
             _serviceUri = AppSettings.ApiUri;
             _uri = AppSettings.Uri;
+            
         }
 
         public string GetApiServiceUri()
@@ -39,112 +41,131 @@ namespace WebApplication
 
         public async Task<string> PostData(string action, string Token, params KeyValuePair<string, string>[] HttpParameters)
         {
-            string uri = string.Format("{0}/{1}", _serviceUri, action);
+            try{
+                string uri = string.Format("{0}/{1}", _serviceUri, action);
 
-            _client.DefaultRequestHeaders.Add("x-access-token", Token);
+                _client.DefaultRequestHeaders.Add("x-access-token", Token);
 
-            HttpContent keyValues = new FormUrlEncodedContent(HttpPostEncodedBuilder(HttpParameters));
+                HttpContent keyValues = new FormUrlEncodedContent(HttpPostEncodedBuilder(HttpParameters));
 
-            var response = await _client.PostAsync(uri, keyValues);
-            
-            string content = await response.Content.ReadAsStringAsync();
-            if(!String.IsNullOrEmpty(content)){
-                 return content;
+                var response = await _client.PostAsync(new Uri(uri), keyValues);
+                
+                string content = await response.Content.ReadAsStringAsync();
+                if(!String.IsNullOrEmpty(content)){
+                    return content;
+                }
+                return "{result: {\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}}";
             }
-            return String.Empty;
+            catch(HttpRequestException  ex){
+                return "{result: {\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}}";
+            }
         }
 
         public async Task<string> PostData(string action, string Token, object HttpParameters)
         {
-            string uri = string.Format("{0}/{1}", _serviceUri, action);
+            try{
+                string uri = string.Format("{0}/{1}", _serviceUri, action);
 
-             _client.DefaultRequestHeaders.Add("x-access-token", Token);
+                _client.DefaultRequestHeaders.Add("x-access-token", Token);
 
-            string keyValues = JsonConvert.SerializeObject(HttpParameters);
+                string keyValues = JsonConvert.SerializeObject(HttpParameters);
 
-            var buffer = System.Text.Encoding.UTF8.GetBytes(keyValues);
-            var byteContent = new ByteArrayContent(buffer);
+                var buffer = System.Text.Encoding.UTF8.GetBytes(keyValues);
+                var byteContent = new ByteArrayContent(buffer);
 
-            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            var response = await _client.PostAsync(uri, byteContent);
+                var response = await _client.PostAsync(uri, byteContent);
             
-            string content = await response.Content.ReadAsStringAsync();
-            if(!String.IsNullOrEmpty(content)){
-                 return content;
+                string content = await response.Content.ReadAsStringAsync();
+                if(!String.IsNullOrEmpty(content)){
+                    return content;
+                }
+                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
             }
-            return String.Empty;
+            catch(Exception){
+                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
+            }
         }
 
         public async Task<string> SimplePostData(string action, string Token, params KeyValuePair<string, string>[] HttpParameters)
         {
-            string uri = string.Format("{0}/{1}", _serviceUri, action);
+            try{
+                string uri = string.Format("{0}/{1}", _serviceUri, action);
 
-            _client.DefaultRequestHeaders.Add("x-access-token", Token);
+                _client.DefaultRequestHeaders.Add("x-access-token", Token);
 
-            HttpContent keyValues = new FormUrlEncodedContent(HttpPostEncodedBuilder(HttpParameters));
+                HttpContent keyValues = new FormUrlEncodedContent(HttpPostEncodedBuilder(HttpParameters));
 
-            var response = await _client.PostAsync(uri, keyValues);
-            
-            string content = await response.Content.ReadAsStringAsync();
-            if(!String.IsNullOrEmpty(content)){
-                 return content;
+                var response = await _client.PostAsync(uri, keyValues);
+                
+                string content = await response.Content.ReadAsStringAsync();
+                if(!String.IsNullOrEmpty(content)){
+                    return content;
+                }
+                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
             }
-            return String.Empty;
+            catch(Exception){
+                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
+            }
         }
 
         public async Task<string> SimplePostData(string action, string Token, object HttpParameters)
         {
-            string uri = string.Format("{0}/{1}", _serviceUri, action);
+            try{
+                string uri = string.Format("{0}/{1}", _serviceUri, action);
 
-             _client.DefaultRequestHeaders.Add("x-access-token", Token);
+                _client.DefaultRequestHeaders.Add("x-access-token", Token);
 
-            string keyValues = JsonConvert.SerializeObject(HttpParameters);
+                string keyValues = JsonConvert.SerializeObject(HttpParameters);
 
-            var buffer = System.Text.Encoding.UTF8.GetBytes(keyValues);
-            var byteContent = new ByteArrayContent(buffer);
+                var buffer = System.Text.Encoding.UTF8.GetBytes(keyValues);
+                var byteContent = new ByteArrayContent(buffer);
 
-            byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
+                byteContent.Headers.ContentType = new MediaTypeHeaderValue("application/json");
 
-            var response = await _client.PostAsync(uri, byteContent);
-            
-            string content = await response.Content.ReadAsStringAsync();
-            if(!String.IsNullOrEmpty(content)){
-                 return content;
+                var response = await _client.PostAsync(uri, byteContent);
+                
+                string content = await response.Content.ReadAsStringAsync();
+                if(!String.IsNullOrEmpty(content)){
+                    return content;
+                }
+                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
             }
-            return String.Empty;
+            catch(Exception){
+                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
+            }
         }
 
         public async Task<string> GetDataAsync(string action, string Token)
         {
-            _client.DefaultRequestHeaders.Add("x-access-token", Token);
-
-            string uri = string.Format("{0}/{1}", _serviceUri, action);
-            
-            string result = String.Empty;
-
             try
             {
-                result = await _client.GetStringAsync(uri);
+                _client.DefaultRequestHeaders.Add("x-access-token", Token);
+
+                string uri = string.Format("{0}/{1}", _serviceUri, action);
+                
+                string result = String.Empty;
+
+                return await _client.GetStringAsync(uri);
             }
-            catch (HttpRequestException ex)
-            {
-                result = ProcessHttpErrorString(ex);
+            catch(Exception){
+                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
             }
-            catch(Exception exc)
-            {
-                result = exc.Message;
-            }
-            return result;
         }
 
         public async Task<string> GetDataAsync(string action, string Token, params KeyValuePair<string, object>[] HttpParameters)
         {
-            string uri = string.Format("{0}/{1}{2}", _serviceUri, action, HttpParametersBuilder(HttpParameters));
+            try{
+                string uri = string.Format("{0}/{1}{2}", _serviceUri, action, HttpParametersBuilder(HttpParameters));
 
-            _client.DefaultRequestHeaders.Add("x-access-token", Token);
-            
-            return await _client.GetStringAsync(uri);
+                _client.DefaultRequestHeaders.Add("x-access-token", Token);
+                
+                return await _client.GetStringAsync(uri);
+            }
+            catch(Exception){
+                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
+            }
         }
         
         private IEnumerable<KeyValuePair<string, string>> HttpPostEncodedBuilder(KeyValuePair<string, string>[] httpParameters)

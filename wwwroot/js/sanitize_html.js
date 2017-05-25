@@ -45,6 +45,7 @@ function HtmlWhitelistedSanitizer(escape, tags, css, urls) {
                 'max': unconstrainted,
                 'maxlength': unconstrainted,
                 'min': unconstrainted,
+                'minlength': unconstrainted,
                 'multiple': unconstrainted,
                 'name': unconstrainted,
                 'pattern': unconstrainted,
@@ -59,6 +60,8 @@ function HtmlWhitelistedSanitizer(escape, tags, css, urls) {
                 'width': unconstrainted,
                 'id': unconstrainted,
                 'class': unconstrainted,
+                'onkeyup': unconstrainted,
+                'onkeydown': unconstrainted,
             }),
             'a': HtmlWhitelistedSanitizer.mergeMap(globalAttributes, {
                 'download': unconstrainted,
@@ -75,13 +78,26 @@ function HtmlWhitelistedSanitizer(escape, tags, css, urls) {
                 'src': url_sanitizer,
                 'width': unconstrainted
             }),
-            'p': globalAttributes,
-            'div': globalAttributes,
-            'span': globalAttributes,
+            'p': HtmlWhitelistedSanitizer.mergeMap(globalAttributes, {
+                'class': unconstrainted,
+            }),
+            'div': HtmlWhitelistedSanitizer.mergeMap(globalAttributes, {
+                'class': unconstrainted,
+            }),
+            'span': HtmlWhitelistedSanitizer.mergeMap(globalAttributes, {
+                'class': unconstrainted,
+            }),
             'br': globalAttributes,
-            'b': globalAttributes,
-            'i': globalAttributes,
-            'u': globalAttributes
+            'b': HtmlWhitelistedSanitizer.mergeMap(globalAttributes, {
+                'class': unconstrainted,
+            }),
+            'i': HtmlWhitelistedSanitizer.mergeMap(globalAttributes, {
+                'class': unconstrainted,
+                'aria-hidden': unconstrainted
+            }),
+            'u': HtmlWhitelistedSanitizer.mergeMap(globalAttributes, {
+                'class': unconstrainted,
+            })
         };
     }
     if (this.allowedCss == null) {

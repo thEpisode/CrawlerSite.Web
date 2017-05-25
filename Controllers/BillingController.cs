@@ -27,18 +27,22 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            object customerData = new 
+            if(!String.IsNullOrEmpty(token))
             {
-                Plan = Plan,
-                Email = Email,
-                Description = Description,
-                StripeToken = StripeToken,
-                Firstname = Firstname,
-                Lastname = Lastname
-            };
+                object customerData = new 
+                {
+                    Plan = Plan,
+                    Email = Email,
+                    Description = Description,
+                    StripeToken = StripeToken,
+                    Firstname = Firstname,
+                    Lastname = Lastname
+                };
 
-            dynamic result = await _billingService.SubscribeToPlan(customerData, token);
-            return Json(result);
+                dynamic result = await _billingService.SubscribeToPlan(customerData, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -46,8 +50,12 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            dynamic result = await _billingService.GetAllPlans(token);
-            return Json(result);
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _billingService.GetAllPlans(token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -55,13 +63,17 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            object customerData = new {
-                PlanId = PlanId,
-                UserId = UserId
-            };
+            if(!String.IsNullOrEmpty(token))
+            {
+                object customerData = new {
+                    PlanId = PlanId,
+                    UserId = UserId
+                };
 
-            dynamic result = await _billingService.ChangePlan(customerData, token);
-            return Json(result);
+                dynamic result = await _billingService.ChangePlan(customerData, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -69,14 +81,18 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            object customerData = new 
+            if(!String.IsNullOrEmpty(token))
             {
-                UserId = UserId,
-                CustomerId = CustomerId
-            };
+                object customerData = new 
+                {
+                    UserId = UserId,
+                    CustomerId = CustomerId
+                };
 
-            dynamic result = await _billingService.GetCustomerByUserId(customerData, token);
-            return Json(result);
+                dynamic result = await _billingService.GetCustomerByUserId(customerData, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -84,13 +100,17 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            object customerData = new 
+            if(!String.IsNullOrEmpty(token))
             {
-                UserId = UserId
-            };
+                object customerData = new 
+                {
+                    UserId = UserId
+                };
 
-            dynamic result = await _billingService.GetChargesByUserId(customerData, token);
-            return Json(result);
+                dynamic result = await _billingService.GetChargesByUserId(customerData, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -98,13 +118,17 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            object customerData = new 
+            if(!String.IsNullOrEmpty(token))
             {
-                UserId = UserId
-            };
+                object customerData = new 
+                {
+                    UserId = UserId
+                };
 
-            dynamic result = await _billingService.GetSubscriptionByUserId(customerData, token);
-            return Json(result);
+                dynamic result = await _billingService.GetSubscriptionByUserId(customerData, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]

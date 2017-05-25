@@ -12,35 +12,21 @@ namespace WebApplication.Controllers
     public class UserController : Controller
     {
         public UserService _userService { get; set; }
+
         public UserController()
         {
             _userService = new UserService();
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
 
-        public IActionResult Add()
-        {
-            return View();
-        }
+        public IActionResult Add() => View();
+        
+        public IActionResult AddReturn() => View();
 
-          public IActionResult AddReturn()
-        {
-            return View();
-        }
+        public IActionResult Edit(string id) => View();
 
-        public IActionResult Edit(string id)
-        {
-            return View();
-        }
-
-        public IActionResult Delete(string id)
-        {
-            return View();
-        }
+        public IActionResult Delete(string id) => View();
 
         [HttpPost]
         public async Task<JsonResult> GetByCredentials(CredentialsViewModel credentials)
@@ -52,18 +38,19 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> Register(RegisterViewModel userData)
         {
-            dynamic result = await _userService.RegisterUser(new User(){
-                FirstName= userData.FirstName,
-                LastName= userData.LastName,
-                Email= userData.Email,
-                Password= userData.Password,
-                Work= userData.Work,
-                City= userData.City,
-                Country= userData.Country,
-                AcceptTerms= userData.AcceptTerms,
-                State= userData.State
-            });
-            return Json(result);
+            dynamic result = await _userService.RegisterUser(new {
+                    FirstName= userData.FirstName,
+                    LastName= userData.LastName,
+                    Email= userData.Email,
+                    Password= userData.Password,
+                    Work= userData.Work,
+                    City= userData.City,
+                    Country= userData.Country,
+                    AcceptTerms= userData.AcceptTerms,
+                    State= userData.State,
+                    VoucherId= userData.VoucherCode
+                });
+                return Json(result);
         }        
 
         [HttpPost]
@@ -71,27 +58,24 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            dynamic result = await _userService.CreateUser(new User(){
-                
-               
-            //StripeToken=
-            //CustomerId=
-            //PlanId=
-            //SubscriptionId=
-            //FirstNameCard=
-            //LastNameCard=
-                 FirstName= FirstName,
-                LastName= LastName,
-                Email= Email,
-                Country= Country,
-                City= City,
-                //Site= Site,
-                Password= Password, 
-                Work= Work,
-                AcceptTerms =AcceptTerms,
-                State= 4 // Invited
-            }, token);
-            return Json(result);
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _userService.CreateUser(new User(){
+                    FirstName= FirstName,
+                    LastName= LastName,
+                    Email= Email,
+                    Country= Country,
+                    City= City,
+                    //Site= Site,
+                    Password= Password, 
+                    Work= Work,
+                    AcceptTerms =AcceptTerms,
+                    State= 4 // Invited
+                }, token);
+                return Json(result);
+            }
+
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -99,8 +83,12 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            dynamic result = await _userService.GetUserById(UserId, token);
-            return Json(result);
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _userService.GetUserById(UserId, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -108,16 +96,20 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            dynamic result = await _userService.EditUser(new User(){
-                _id= _id,
-                FirstName= FirstName,
-                LastName= LastName,
-                Email= Email,
-                City = City,
-                Country = Country
-            }, token);
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _userService.EditUser(new User(){
+                    _id= _id,
+                    FirstName= FirstName,
+                    LastName= LastName,
+                    Email= Email,
+                    City = City,
+                    Country = Country
+                }, token);
 
-            return Json(result);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -125,9 +117,12 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            dynamic result = await _userService.DeleteUser(_id, token);
-
-            return Json(result);
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _userService.DeleteUser(_id, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]

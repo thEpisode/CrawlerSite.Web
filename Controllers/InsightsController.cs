@@ -53,8 +53,12 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            string result = _insightsService.GetSocketUrl(token);
-            return Json(result);
+            if(!String.IsNullOrEmpty(token))
+            {
+                string result = _insightsService.GetSocketUrl(token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -62,8 +66,12 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            string result = _insightsService.GetSiteScreenshotUrl(Id, token);
-            return Json(result);
+            if(!String.IsNullOrEmpty(token))
+            {
+                string result = _insightsService.GetSiteScreenshotUrl(Id, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -71,8 +79,12 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            dynamic result = await _insightsService.GetSiteHeatmapData(ApiKey, MinWidth, MaxWidth, Type, MaxTime, Flash, Browser, OperatingSystem, Cookies, Location, Endpoint, token);
-            return Json(result);
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _insightsService.GetSiteHeatmapData(ApiKey, MinWidth, MaxWidth, Type, MaxTime, Flash, Browser, OperatingSystem, Cookies, Location, Endpoint, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
         
     }

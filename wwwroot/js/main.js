@@ -95,24 +95,26 @@ $Flinger.GetEntryPath = function () {
 $Flinger.LoggedCrawling = function (user) {
     if (user.HasCouponCode !== undefined && user.HasCouponCode !== null) {
         if (user.HasCouponCode === true) {
+            angular.element(document.querySelector('#redeem')).scope().ValidateVoucher();
             $Flinger.Dialog.SetData(
                 "Invitation code:",
-                "<input placeholder='Insert here' class='input-voucher form-control' type='text' autofocus />",
+                '<div class="input-group"><input id="invition-code-register" placeholder="Insert here" class="input-voucher form-control invition-code-register" type="text" minlength="13" maxlength="13" onkeyup="$Flinger.preventKeys(this)" onkeydown="$Flinger.alertToType(event)"><span class="input-group-addon input-group-addon-check"><i class="fa fa-check" aria-hidden="true"></i></span><span class="input-group-addon input-group-addon-error"><i class="fa fa-times" aria-hidden="true"></i></span></div>',
                 [{
                     text: 'REDEEM',
                     className: $Flinger.Dialog.GetAcceptButtonStyle(),
                     callback: function () {
-                        // Do something
+                        angular.element(document.querySelector('#redeem')).scope().RedeemVoucherCode();
                     }
                 }, {
                     text: 'CANCEL',
                     className: $Flinger.Dialog.GetCancelButtonStyle()
                 }]);
+            angular.element(document.querySelector('#redeem')).scope().InitBox();
         }
         else {
             var random = Math.floor((Math.random() * 10) + 1);
             if (random <= 5) {
-                $Flinger.Dialog.SetData(
+                /*$Flinger.Dialog.SetData(
                     "We are on beta!",
                     "Obtain premium discounts, t-shirts, early access and more...",
                     [{
@@ -124,8 +126,34 @@ $Flinger.LoggedCrawling = function (user) {
                     }, {
                         text: 'NO, THANKS',
                         className: $Flinger.Dialog.GetCancelButtonStyle()
-                    }]);
+                    }]);*/
             }
+        }
+    }
+}
+
+$Flinger.preventKeys = function (e) {
+    document.querySelector('#' + e.id).value = '';
+    return false;
+}
+
+$Flinger.alertToType = function (e) {
+    var map = {};
+    e = e || event; // to deal with IE
+    map[e.keyCode] = e.type == 'keydown';
+    console.log(map)
+    if (!map[86] && !map[17]) { // CTRL + V
+        if ($Flinger.Dialog.IsOpen()) {
+            $("#invition-code-register").tooltip({
+                trigger: 'manual',
+                animate: false,
+                placement: 'bottom',
+                title: 'Please copy voucher code from your email'
+            });
+            $("#invition-code-register").tooltip('show');
+        }
+        else {
+            $Flinger.Dialog.SetData("Ooops!", "Please copy voucher code from your email");
         }
     }
 }

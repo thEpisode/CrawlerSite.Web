@@ -34,9 +34,9 @@ namespace WebApplication
             builder.AddEnvironmentVariables();
             Configuration = builder.Build();
 
-            AppSettings.ApiUri = Configuration["ApiUri"] == null ? "http://crawlerbackend.azurewebsites.net/api" : Configuration["ApiUri"];
+            AppSettings.ApiUri = Configuration["ApiUri"] == null ? "https://backend.crawlersite.com/api" : Configuration["ApiUri"];
 
-            AppSettings.Uri = Configuration["Uri"] == null ? "http://crawlerbackend.azurewebsites.net" : Configuration["Uri"];
+            AppSettings.Uri = Configuration["Uri"] == null ? "https://backend.crawlersite.com" : Configuration["Uri"];
         }
 
         public IConfigurationRoot Configuration { get; }

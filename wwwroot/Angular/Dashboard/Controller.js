@@ -15,8 +15,9 @@ Flinger.controller("DashboardController", function ($scope, DashboardService) {
                 }
             }
             else {
-                $Flinger.Toast.InfoWithButtons(response.data.message, 'Did you want create a new site?', [['<button>Yes!</button>', function (instance, toast) { location.assign('/Site/Add') }], ['<button>Not yet</button>', function (instance, toast) { instance.hide({ transitionOut: 'fadeOutUp' }, toast); }]])
-                $Flinger.Loader.Finish();
+                /*$Flinger.Toast.InfoWithButtons(response.data.message, 'Did you want create a new site?', [['<button>Yes!</button>', function (instance, toast) { location.assign('/Site/Add') }], ['<button>Not yet</button>', function (instance, toast) { instance.hide({ transitionOut: 'fadeOutUp' }, toast); }]])
+                $Flinger.Loader.Finish();*/
+                location.assign('/Site/Add');
             }
         },
             function (response) {

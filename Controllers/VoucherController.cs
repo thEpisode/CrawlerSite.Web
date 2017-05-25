@@ -19,20 +19,25 @@ namespace WebApplication.Controllers
         public IActionResult GenerateEarlyBird() => View();
 
         [HttpPost]
-        public async Task<JsonResult> GenerateEarlyBirdVoucher(string email)
+        public async Task<JsonResult> GenerateEarlyBirdVoucher(string Email, string PlanId)
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            object voucherData = new {
-                Prefix = "eb-",
-                Length = 10,
-                Email = email,
-                Amount = 999,
-                Currency = "USD"
-            };
+            if(!String.IsNullOrEmpty(token))
+            {
+                object voucherData = new {
+                    Prefix = "eb-",
+                    Length = 10,
+                    Email = Email,
+                    PlanId = "basic",
+                    Amount = 999,
+                    Currency = "USD"
+                };
 
-            dynamic result = await _voucherService.GenerateVoucher(voucherData, token);
-            return Json(result);
+                dynamic result = await _voucherService.GenerateVoucher(voucherData, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -40,6 +45,24 @@ namespace WebApplication.Controllers
         {
             dynamic result = await _voucherService.VerifyVoucher(VoucherId);
             return Json(result);
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> RedeemVoucher(string VoucherId, string UserId)
+        {
+            string token = WebApplication.Utils.Token.Get(Request.Headers);
+
+            if(!String.IsNullOrEmpty(token))
+            {
+                object voucherData = new {
+                    VoucherId = VoucherId,
+                    UserId = UserId
+                };
+
+                dynamic result = await _voucherService.RedeemVoucherByUserId(voucherData, token);
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
     }
 }
