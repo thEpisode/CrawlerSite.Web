@@ -1,25 +1,31 @@
 Flinger.service("UserService", function ($http) {
     //CreateObj
-    this.CreateUser = function (FirstName, LastName, Email, Country, City, Site) {
+    this.CreateUser = function (userData) {
         var response = $http({
             method: "post",
             url: "/User/CreateUser",
-            params: {
-                
-                FirstName: FirstName,
-                LastName: LastName,
-                Email: Email,
-                Country: Country,
-                City: City,
-                Site: Site,
-                Password: '92/L33[(%5EH?wA',
-                State: 4 // Invited
-            }
+            params: userData
         });
         return response;
     }
 
-    this.GetUserByEmail = function(Email){
+    this.AddUserToSubscription = function (userData) {
+        userData.State = 4;// Invited
+        userData.Password = (userData.Password === undefined ? '' : userData.Password);
+        userData.UserId = $Flinger.ReadPersistentData('userId')
+        console.log(userData);
+        var response = $http({
+            method: "post",
+            url: "/User/AddUserToSubscription",
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            params: userData
+        });
+        return response;
+    }
+
+    this.GetUserByEmail = function (Email) {
         var response = $http({
             method: "get",
             url: "/User/GetUserByEmail",
@@ -30,7 +36,7 @@ Flinger.service("UserService", function ($http) {
         return response;
     }
 
-    this.GetUserById = function(Id){
+    this.GetUserById = function (Id) {
         var response = $http({
             method: "get",
             url: "/User/GetUserById",
@@ -80,7 +86,7 @@ Flinger.service("UserService", function ($http) {
         return response;
     }
 
-    this.LogOut = function(){
+    this.LogOut = function () {
         localStorage.removeItem('auth_token');
         location.assign('/');
     }

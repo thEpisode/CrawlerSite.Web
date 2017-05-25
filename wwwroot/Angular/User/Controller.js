@@ -32,22 +32,9 @@ Flinger.controller("UserController", function ($scope, UserService, SiteService)
     }
 
     $scope.InitializeAddView = function () {
-
-        var getAllSite = SiteService.GetAllSitesByUserId(localStorage.getItem("userId"));
-
-        getAllSite.then(function (response) {
-            console.log(response.data)
-
-            $scope.Sites = response.data.result;
-            $Flinger.Loader.Finish()
-        },
-            function (response) {
-                console.log(response);
-                $Flinger.Loader.Finish()
-            })
-
-
-        $Flinger.Loader.Finish()
+        $scope.User.RandomPassword = true;
+        $scope.User.ResetPassword = false;
+        $Flinger.Loader.Finish();
     }
 
     $scope.InitializeAddRetunView = function () {
@@ -100,22 +87,24 @@ Flinger.controller("UserController", function ($scope, UserService, SiteService)
     $scope.AddUser = function () {
         if ($("form[name='NewUserInfo']").valid() == true) {
             //form without errors
-            console.log('Form without errors')
+            //console.log('Form without errors')
             $Flinger.Loader.Init();
             var selectedSite = $scope.siteOption;
 
+            var userData= {
+                FirstName:$scope.User.FirstName,
+                LastName:$scope.User.LastName,
+                Email:$scope.User.Email,
+                Country:$scope.User.Country,
+                City:$scope.User.City,
+                Password:$scope.User.Password,
+                RandomPassword: $scope.User.RandomPassword,
+                ResetPassword: $scope.User.ResetPassword,
+            };
 
-            UserService.CreateUser(
+            //console.log(userData);
 
-                $scope.User.FirstName,
-                $scope.User.LastName,
-                $scope.User.Email,
-                $scope.User.Country,
-                $scope.User.City,
-                $scope.User.Site,
-                $scope.User.Password,
-                1
-            )
+            UserService.AddUserToSubscription(userData)
                 .then(function (response) {
                     //console.log(response)
                     if (response.data != undefined && response.data != null) {

@@ -6,6 +6,8 @@ using Microsoft.AspNetCore.Mvc;
 using WebApplication.Models.Entities;
 using WebApplication.Services;
 using WebApplication.Models.ViewModels;
+using System.ComponentModel;
+using Newtonsoft.Json.Linq;
 
 namespace WebApplication.Controllers
 {
@@ -21,7 +23,7 @@ namespace WebApplication.Controllers
         public IActionResult Index() => View();
 
         public IActionResult Add() => View();
-        
+
         public IActionResult AddReturn() => View();
 
         public IActionResult Edit(string id) => View();
@@ -38,44 +40,73 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> Register(RegisterViewModel userData)
         {
-            dynamic result = await _userService.RegisterUser(new {
-                    FirstName= userData.FirstName,
-                    LastName= userData.LastName,
-                    Email= userData.Email,
-                    Password= userData.Password,
-                    Work= userData.Work,
-                    City= userData.City,
-                    Country= userData.Country,
-                    AcceptTerms= userData.AcceptTerms,
-                    State= userData.State,
-                    VoucherId= userData.VoucherCode
-                });
-                return Json(result);
-        }        
+            dynamic result = await _userService.RegisterUser(new
+            {
+                FirstName = userData.FirstName,
+                LastName = userData.LastName,
+                Email = userData.Email,
+                Password = userData.Password,
+                Work = userData.Work,
+                City = userData.City,
+                Country = userData.Country,
+                AcceptTerms = userData.AcceptTerms,
+                State = userData.State,
+                VoucherId = userData.VoucherCode
+            });
+            return Json(result);
+        }
 
         [HttpPost]
-        public async Task<JsonResult> CreateUser(string FirstName, string LastName, string Email,string Country, string City,string Site,string Password,string[] Work,Boolean AcceptTerms)
+        public async Task<JsonResult> AddUserToSubscription(string FirstName, string LastName, string Email, string Country, int State, string City, string Password, string[] Work, bool RandomPassword, bool ResetPassword, string UserId)
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            if(!String.IsNullOrEmpty(token))
+            if (!String.IsNullOrEmpty(token))
             {
-                dynamic result = await _userService.CreateUser(new User(){
-                    FirstName= FirstName,
-                    LastName= LastName,
-                    Email= Email,
-                    Country= Country,
-                    City= City,
-                    //Site= Site,
-                    Password= Password, 
-                    Work= Work,
-                    AcceptTerms =AcceptTerms,
-                    State= 4 // Invited
+                dynamic result = await _userService.AddUserToSubscription(new
+                {
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    Email = Email,
+                    Country = Country,
+                    City = City,
+                    Password = Password,
+                    Work = Work,
+                    State = State,
+                    RandomPassword = RandomPassword,
+                    ResetPassword = ResetPassword,
+                    UserId = UserId
                 }, token);
                 return Json(result);
             }
 
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
+            return Json(new { success = false, message = "Something went wrong when retrieving data, try again." });
+        }
+
+        [HttpPost]
+        public async Task<JsonResult> CreateUser(string FirstName, string LastName, string Email, string Country, string City, string Site, string Password, string[] Work, Boolean AcceptTerms)
+        {
+            string token = WebApplication.Utils.Token.Get(Request.Headers);
+
+            if (!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _userService.CreateUser(new User()
+                {
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    Email = Email,
+                    Country = Country,
+                    City = City,
+                    //Site= Site,
+                    Password = Password,
+                    Work = Work,
+                    AcceptTerms = AcceptTerms,
+                    State = 4 // Invited
+                }, token);
+                return Json(result);
+            }
+
+            return Json(new { success = false, message = "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -83,12 +114,12 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            if(!String.IsNullOrEmpty(token))
+            if (!String.IsNullOrEmpty(token))
             {
                 dynamic result = await _userService.GetUserById(UserId, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
+            return Json(new { success = false, message = "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -96,20 +127,21 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            if(!String.IsNullOrEmpty(token))
+            if (!String.IsNullOrEmpty(token))
             {
-                dynamic result = await _userService.EditUser(new User(){
-                    _id= _id,
-                    FirstName= FirstName,
-                    LastName= LastName,
-                    Email= Email,
+                dynamic result = await _userService.EditUser(new User()
+                {
+                    _id = _id,
+                    FirstName = FirstName,
+                    LastName = LastName,
+                    Email = Email,
                     City = City,
                     Country = Country
                 }, token);
 
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
+            return Json(new { success = false, message = "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -117,12 +149,12 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            if(!String.IsNullOrEmpty(token))
+            if (!String.IsNullOrEmpty(token))
             {
                 dynamic result = await _userService.DeleteUser(_id, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
+            return Json(new { success = false, message = "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -130,14 +162,14 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            if(!String.IsNullOrEmpty(token))
+            if (!String.IsNullOrEmpty(token))
             {
                 dynamic result = await _userService.GetAllUser(token);
 
                 return Json(result);
             }
 
-            return Json(new { success= false, message= "Something went wrong when retrieving plans, try again." });
+            return Json(new { success = false, message = "Something went wrong when retrieving plans, try again." });
         }
 
         [HttpGet]
@@ -145,14 +177,14 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            if(!String.IsNullOrEmpty(token))
+            if (!String.IsNullOrEmpty(token))
             {
                 dynamic result = await _userService.GetAllUserOfSubscriptionByUserId(UserId, token);
 
                 return Json(result);
             }
 
-            return Json(new { success= false, message= "Something went wrong when retrieving plans, try again." });
+            return Json(new { success = false, message = "Something went wrong when retrieving plans, try again." });
         }
     }
 }

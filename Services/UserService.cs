@@ -53,6 +53,12 @@ namespace WebApplication.Services
             return JObject.Parse(jsonResult);
         }
 
+        public async Task<dynamic> AddUserToSubscription(object user, string Token)
+        {
+            string jsonResult = await _connection.PostData("User/createUserToSubscription", Token, user);
+            return JObject.Parse(jsonResult);
+        }
+
         public async Task<dynamic> EditUser(User user, string Token)
         {
             string jsonResult = await _connection.SimplePostData("User/EditByUserId", Token, user);

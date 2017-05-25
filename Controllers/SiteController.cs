@@ -41,9 +41,10 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            if(!String.IsNullOrEmpty(token))
+            if (!String.IsNullOrEmpty(token))
             {
-                dynamic result = await _siteService.CreateSite(new {
+                dynamic result = await _siteService.CreateSite(new
+                {
                     UserId = UserId,
                     Name = Name,
                     Url = Url,
@@ -52,7 +53,7 @@ namespace WebApplication.Controllers
                 }, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
+            return Json(new { success = false, message = "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -60,12 +61,12 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            if(!String.IsNullOrEmpty(token))
+            if (!String.IsNullOrEmpty(token))
             {
                 dynamic result = await _siteService.GetAllSiteByUserId(UserId, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
+            return Json(new { success = false, message = "Something went wrong when retrieving data, try again." });
         }
 
         [HttpGet]
@@ -73,12 +74,12 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            if(!String.IsNullOrEmpty(token))
+            if (!String.IsNullOrEmpty(token))
             {
                 dynamic result = await _siteService.GetSiteById(Id, token);
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
+            return Json(new { success = false, message = "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -86,9 +87,10 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            if(!String.IsNullOrEmpty(token))
+            if (!String.IsNullOrEmpty(token))
             {
-                dynamic result = await _siteService.EditSite(new Site(){
+                dynamic result = await _siteService.EditSite(new Site()
+                {
                     Name = Name,
                     Url = Url,
                     _id = _id,
@@ -97,7 +99,7 @@ namespace WebApplication.Controllers
 
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
+            return Json(new { success = false, message = "Something went wrong when retrieving data, try again." });
         }
 
         [HttpPost]
@@ -105,13 +107,13 @@ namespace WebApplication.Controllers
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
-            if(!String.IsNullOrEmpty(token))
+            if (!String.IsNullOrEmpty(token))
             {
                 dynamic result = await _siteService.DeleteSite(_id, token);
 
                 return Json(result);
             }
-            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
+            return Json(new { success = false, message = "Something went wrong when retrieving data, try again." });
         }
     }
 }
