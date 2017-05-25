@@ -13,12 +13,12 @@ Flinger.service("AdminVoucherService", function ($http) {
 
     this.RedeemVoucherCode = function (Email) {
         var response = $http({
-           method: "post",
-                url: "/Voucher/RedeemVoucher",
-                params: {
-                    VoucherId: $('.invition-code-register').val(),
-                    UserId: $Flinger.ReadPersistentData('userId')
-                }
+            method: "post",
+            url: "/Voucher/RedeemVoucher",
+            params: {
+                VoucherId: $('.invition-code-register').val(),
+                UserId: $Flinger.ReadPersistentData('userId')
+            }
         });
         return response;
     }

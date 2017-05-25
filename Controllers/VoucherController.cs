@@ -19,7 +19,7 @@ namespace WebApplication.Controllers
         public IActionResult GenerateEarlyBird() => View();
 
         [HttpPost]
-        public async Task<JsonResult> GenerateEarlyBirdVoucher(string email)
+        public async Task<JsonResult> GenerateEarlyBirdVoucher(string Email, string PlanId)
         {
             string token = WebApplication.Utils.Token.Get(Request.Headers);
 
@@ -28,7 +28,8 @@ namespace WebApplication.Controllers
                 object voucherData = new {
                     Prefix = "eb-",
                     Length = 10,
-                    Email = email,
+                    Email = Email,
+                    PlanId = "basic",
                     Amount = 999,
                     Currency = "USD"
                 };
