@@ -12,10 +12,16 @@ Flinger.controller("UserController", function ($scope, UserService, SiteService)
     $scope.InitializeIndexView = function () {
 
         UserService.GetAllUser().then(function (response) {
-            //console.log(response)
+            console.log(response)
 
-            $scope.Users = response.data.result;
-            $Flinger.Loader.Finish()
+            if (response.data.success === true) {
+                $scope.Users = response.data.result;
+                $Flinger.Loader.Finish();
+            }
+            else{
+                $Flinger.Dialog.SetData("Error", response.data.message);
+                $Flinger.Loader.Finish();
+            }
 
         },
             function (response) {

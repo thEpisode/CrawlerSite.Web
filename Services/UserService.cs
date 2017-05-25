@@ -24,7 +24,7 @@ namespace WebApplication.Services
             string jsonResult = await _connection.PostData("User/GetByCredentials", String.Empty,
                                                 HttpSimpleParameters.Of("Email", Email),
                                                 HttpSimpleParameters.Of("Password", Password));
-            
+
             return JObject.Parse(jsonResult);
         }
 
@@ -55,13 +55,19 @@ namespace WebApplication.Services
 
         public async Task<dynamic> EditUser(User user, string Token)
         {
-            string jsonResult =await _connection.SimplePostData("User/EditByUserId", Token, user);
+            string jsonResult = await _connection.SimplePostData("User/EditByUserId", Token, user);
             return JObject.Parse(jsonResult);
         }
 
         public async Task<dynamic> DeleteUser(string UserId, string Token)
         {
-            string jsonResult =await _connection.SimplePostData("User/DeleteByUserId", Token, HttpSimpleParameters.Of("UserId", UserId));
+            string jsonResult = await _connection.SimplePostData("User/DeleteByUserId", Token, HttpSimpleParameters.Of("UserId", UserId));
+            return JObject.Parse(jsonResult);
+        }
+
+        public async Task<dynamic> GetAllUserOfSubscriptionByUserId(string UserId, string Token)
+        {
+            string jsonResult = await _connection.GetDataAsync("User/GetAllUsersOfSubscriptionByUserId/" + UserId, Token);
             return JObject.Parse(jsonResult);
         }
     }

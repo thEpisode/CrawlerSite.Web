@@ -144,5 +144,20 @@ namespace WebApplication.Controllers
 
             return Json(new { success= false, message= "Something went wrong when retrieving plans, try again." });
         }
+
+        [HttpGet]
+        public async Task<JsonResult> GetAllUserOfSubscriptionByUserId(string UserId)
+        {
+            string token = WebApplication.Utils.Token.Get(Request.Headers);
+
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _userService.GetAllUserOfSubscriptionByUserId(UserId, token);
+
+                return Json(result);
+            }
+
+            return Json(new { success= false, message= "Something went wrong when retrieving plans, try again." });
+        }
     }
 }

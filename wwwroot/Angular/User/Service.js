@@ -43,7 +43,14 @@ Flinger.service("UserService", function ($http) {
 
     //GetAllObj
     this.GetAllUser = function () {
-        return $http.get("/User/GetAllUser");
+        var response = $http({
+            method: "get",
+            url: "/User/GetAllUserOfSubscriptionByUserId",
+            params: {
+                UserId: $Flinger.ReadPersistentData('userId')
+            }
+        });
+        return response;
     };
 
     this.EditUser = function (data) {
