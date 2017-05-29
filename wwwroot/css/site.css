@@ -330,3 +330,15 @@ input:-webkit-autofill:active {
     background-color: #c33232;
     color: #ffffff;
 }
+
+[coming-soon-on-click]>.card::before{
+    content: 'Coming Soon';
+    position: absolute;
+    margin-left: calc(100%/12*4.2);
+    display: block;
+    color: #a9a9a9;
+    font-weight: 300;
+    text-transform: uppercase;
+    text-align: center;
+    font-size: 0.8em;
+}
