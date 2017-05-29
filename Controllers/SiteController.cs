@@ -16,25 +16,12 @@ namespace WebApplication.Controllers
             _siteService = new SiteService();
         }
 
-        public IActionResult Index()
-        {
-            return View();
-        }
+        public IActionResult Index() => View();
 
-        public IActionResult Add()
-        {
-            return View();
-        }
-
-        public IActionResult Edit(string id)
-        {
-            return View();
-        }
-
-        public IActionResult Delete(string id)
-        {
-            return View();
-        }
+        public IActionResult Add() => View();
+        public IActionResult Edit() => View();
+        public IActionResult Delete(string id) => View();
+        public IActionResult Preview() => View();
 
         [HttpPost]
         public async Task<JsonResult> CreateSite(string UserId, string Name, string Url, string[] Tags, int State)

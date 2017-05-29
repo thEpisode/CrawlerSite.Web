@@ -64,6 +64,10 @@ Flinger.controller("SiteController", function ($scope, SiteService) {
         }
     }
 
+    $scope.InitializePreviewView = function(){
+        $Flinger.Loader.Finish();
+    }
+
     $scope.EditSite = function () {
         var editSiteProcess = SiteService.EditSite(
             $scope.Site._id,

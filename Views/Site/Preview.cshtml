@@ -1,0 +1,12 @@
+@{
+    ViewBag.Title = "Sites";
+}
+
+@section Scripts{
+    <script src="@Url.Content("~/Angular/Site/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/Site/Controller.js")"></script>
+}
+
+<section ng-controller="SiteController" ng-init="InitializePreviewView()">
+    
+</section>
