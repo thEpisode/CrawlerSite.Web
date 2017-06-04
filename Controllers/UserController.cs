@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication.Models.Entities;
-using WebApplication.Services;
-using WebApplication.Models.ViewModels;
+using CrawlerSite.Models.Entities;
+using CrawlerSite.Services;
+using CrawlerSite.Models.ViewModels;
 using System.ComponentModel;
 using Newtonsoft.Json.Linq;
 
-namespace WebApplication.Controllers
+namespace CrawlerSite.Controllers
 {
     public class UserController : Controller
     {
@@ -59,7 +59,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> AddUserToSubscription(string FirstName, string LastName, string Email, string Country, int State, string City, string Password, string[] Work, bool RandomPassword, bool ResetPassword, string UserId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if (!String.IsNullOrEmpty(token))
             {
@@ -86,7 +86,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> CreateUser(string FirstName, string LastName, string Email, string Country, string City, string Site, string Password, string[] Work, Boolean AcceptTerms)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if (!String.IsNullOrEmpty(token))
             {
@@ -112,7 +112,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public async Task<JsonResult> GetUserById(string UserId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if (!String.IsNullOrEmpty(token))
             {
@@ -125,7 +125,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> EditUser(string _id, string FirstName, string LastName, string Email, string City, string Country)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if (!String.IsNullOrEmpty(token))
             {
@@ -147,7 +147,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> DeleteUser(string _id)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if (!String.IsNullOrEmpty(token))
             {
@@ -160,7 +160,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public async Task<JsonResult> GetAllUser(string subscriptionId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if (!String.IsNullOrEmpty(token))
             {
@@ -175,7 +175,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public async Task<JsonResult> GetAllUserOfSubscriptionByUserId(string UserId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if (!String.IsNullOrEmpty(token))
             {

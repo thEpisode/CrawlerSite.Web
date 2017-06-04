@@ -8,12 +8,12 @@ using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
-using WebApplication.Models.Entities;
-using WebApplication.Utils;
-using WebApplication;
+using CrawlerSite.Models.Entities;
+using CrawlerSite.Utils;
+using CrawlerSite;
 using System.Security.Authentication;
 
-namespace WebApplication
+namespace CrawlerSite
 {
     public class ConnectionService
     {
@@ -56,7 +56,7 @@ namespace WebApplication
                 }
                 return "{result: {\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}}";
             }
-            catch(HttpRequestException  ex){
+            catch(HttpRequestException){
                 return "{result: {\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}}";
             }
         }

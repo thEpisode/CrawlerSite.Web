@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication.Models.Entities;
-using WebApplication.Services;
+using CrawlerSite.Models.Entities;
+using CrawlerSite.Services;
 
-namespace WebApplication.Controllers
+namespace CrawlerSite.Controllers
 {
     public class SiteController : Controller
     {
@@ -26,7 +26,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> CreateSite(string UserId, string Name, string Url, string[] Tags, int State)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if (!String.IsNullOrEmpty(token))
             {
@@ -46,7 +46,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public async Task<JsonResult> GetAllSitesByUserId(string UserId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if (!String.IsNullOrEmpty(token))
             {
@@ -59,7 +59,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public async Task<JsonResult> GetSiteById(string Id)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if (!String.IsNullOrEmpty(token))
             {
@@ -72,7 +72,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> EditSite(string _id, string Name, string Url, string Tags)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if (!String.IsNullOrEmpty(token))
             {
@@ -92,7 +92,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> DeleteSite(string _id)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if (!String.IsNullOrEmpty(token))
             {

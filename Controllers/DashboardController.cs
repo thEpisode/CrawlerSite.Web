@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication.Attributes;
-using WebApplication.Services;
+using CrawlerSite.Attributes;
+using CrawlerSite.Services;
 
-namespace WebApplication.Controllers
+namespace CrawlerSite.Controllers
 {
     [ServiceFilter(typeof(AuthenticateAttribute))]
     public class DashboardController : Controller
@@ -25,7 +25,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public async Task<JsonResult> GetInsights(string UserId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {

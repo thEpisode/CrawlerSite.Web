@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-using WebApplication.Services;
+using CrawlerSite.Services;
 
-namespace WebApplication.Controllers
+namespace CrawlerSite.Controllers
 {
     public class AccountController : Controller
     {
@@ -25,7 +25,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> ChangePasswordByUserId(string UserId, string OldPassword, string NewPassword)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
             
             if(!String.IsNullOrEmpty(token))
             {
@@ -45,7 +45,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> DeleteAccountByUserId(string UserId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {

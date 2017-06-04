@@ -1,13 +1,13 @@
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
-using WebApplication.Models.Entities;
-using WebApplication.Utils;
+using CrawlerSite.Models.Entities;
+using CrawlerSite.Utils;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace WebApplication.Services
+namespace CrawlerSite.Services
 {
     public class PriceService
     {

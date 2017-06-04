@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Http;
 
-namespace WebApplication.Utils
+namespace CrawlerSite.Utils
 {
     public static class Token
     {

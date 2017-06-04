@@ -3,9 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication.Services;
+using CrawlerSite.Services;
 
-namespace WebApplication.Controllers
+namespace CrawlerSite.Controllers
 {
     public class VoucherController : Controller
     {
@@ -21,7 +21,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> GenerateEarlyBirdVoucher(string Email, string PlanId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
@@ -50,7 +50,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> RedeemVoucher(string VoucherId, string UserId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {

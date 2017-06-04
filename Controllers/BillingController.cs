@@ -4,9 +4,9 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-using WebApplication.Services;
+using CrawlerSite.Services;
 
-namespace WebApplication.Controllers
+namespace CrawlerSite.Controllers
 {
     public class BillingController : Controller
     {
@@ -25,7 +25,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> SubscribeToPlan(string Plan, string Email, string Description, string StripeToken, string Firstname, string Lastname)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
@@ -48,7 +48,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public async Task<JsonResult> GetAllPlans()
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
@@ -61,7 +61,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> ChangePlan(string PlanId, string UserId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
@@ -79,7 +79,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> GetCustomerByUserId(string UserId, string CustomerId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
@@ -98,7 +98,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> GetChargesByUserId(string UserId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
@@ -116,7 +116,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> GetSubscriptionByUserId(string UserId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
@@ -134,7 +134,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> CheckIfHasNoPaymentMethodByUserId(string UserId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {

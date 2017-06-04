@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Http.Headers;
 using Microsoft.Net.Http.Headers;
 
-namespace WebApplication.Attributes
+namespace CrawlerSite.Attributes
 {
     public class AuthenticateAttribute : IActionFilter
     {

@@ -1,4 +1,4 @@
-namespace WebApplication.Models.ViewModels
+namespace CrawlerSite.Models.ViewModels
 {
     public class RegisterViewModel
     {

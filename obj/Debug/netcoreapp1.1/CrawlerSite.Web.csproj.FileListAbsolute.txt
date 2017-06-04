@@ -1,0 +1,8 @@
+C:\Users\camie\Desktop\CrawlerSite.Web\bin\Debug\netcoreapp1.1\CrawlerSite.Web.deps.json
+C:\Users\camie\Desktop\CrawlerSite.Web\bin\Debug\netcoreapp1.1\CrawlerSite.Web.runtimeconfig.json
+C:\Users\camie\Desktop\CrawlerSite.Web\bin\Debug\netcoreapp1.1\CrawlerSite.Web.runtimeconfig.dev.json
+C:\Users\camie\Desktop\CrawlerSite.Web\obj\Debug\netcoreapp1.1\CrawlerSite.Web.AssemblyInfo.cs
+C:\Users\camie\Desktop\CrawlerSite.Web\bin\Debug\netcoreapp1.1\CrawlerSite.Web.dll
+C:\Users\camie\Desktop\CrawlerSite.Web\bin\Debug\netcoreapp1.1\CrawlerSite.Web.pdb
+C:\Users\camie\Desktop\CrawlerSite.Web\obj\Debug\netcoreapp1.1\CrawlerSite.Web.dll
+C:\Users\camie\Desktop\CrawlerSite.Web\obj\Debug\netcoreapp1.1\CrawlerSite.Web.pdb

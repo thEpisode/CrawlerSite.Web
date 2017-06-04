@@ -1,9 +1,9 @@
-using WebApplication.Models.Entities;
+using CrawlerSite.Models.Entities;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WebApplication.Models.ViewModels
+namespace CrawlerSite.Models.ViewModels
 {
     public class CredentialsViewModel
     {

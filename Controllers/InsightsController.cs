@@ -4,10 +4,10 @@ using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 
-using WebApplication.Models.Entities;
-using WebApplication.Services;
+using CrawlerSite.Models.Entities;
+using CrawlerSite.Services;
 
-namespace WebApplication.Controllers
+namespace CrawlerSite.Controllers
 {
     public class InsightsController : Controller
     {
@@ -51,7 +51,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public JsonResult GetSocketUrl()
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
@@ -64,7 +64,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public JsonResult GetSiteScreenshotUrl(string Id)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
@@ -77,7 +77,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public async Task<JsonResult> GetSiteHeatmapData(string ApiKey, int MinWidth, int MaxWidth, string Type, int MaxTime, bool? Flash, string Browser, string OperatingSystem, bool? Cookies, string Location, string Endpoint)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {

@@ -1,4 +1,4 @@
-namespace WebApplication
+namespace CrawlerSite
 {
     public static class AppSettings
     {

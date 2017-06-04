@@ -1,4 +1,4 @@
-namespace WebApplication.Models.Entities
+namespace CrawlerSite.Models.Entities
 {
     public class ApiResult
     {

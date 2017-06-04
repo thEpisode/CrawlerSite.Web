@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication.Services;
-using WebApplication.Models.Entities;
+using CrawlerSite.Services;
+using CrawlerSite.Models.Entities;
 
-namespace WebApplication.Controllers
+namespace CrawlerSite.Controllers
 {
     public class IpController : Controller
     {
@@ -40,7 +40,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> CreateIp(string ApiKey, string Name, string ip, int State)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
@@ -58,7 +58,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public async Task<JsonResult> GetAllIp(string UserId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
@@ -71,7 +71,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public async Task<JsonResult> GetIpById(string Id)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
@@ -84,7 +84,7 @@ namespace WebApplication.Controllers
         [HttpGet]
         public async Task<JsonResult> GetIpByApiKey(string ApiKey)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
@@ -97,7 +97,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> EditIp(string Id, string Name, string IP)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
@@ -115,7 +115,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> DeleteIp(string Id)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {

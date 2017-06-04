@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
-using WebApplication.Models.Entities;
-using WebApplication.Services;
+using CrawlerSite.Models.Entities;
+using CrawlerSite.Services;
 
-namespace WebApplication.Controllers
+namespace CrawlerSite.Controllers
 {
     public class VoteController : Controller
     {
@@ -19,7 +19,7 @@ namespace WebApplication.Controllers
         [HttpPost]
         public async Task<JsonResult> CreateVote(string Feature, string UserId)
         {
-            string token = WebApplication.Utils.Token.Get(Request.Headers);
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if (!String.IsNullOrEmpty(token))
             {

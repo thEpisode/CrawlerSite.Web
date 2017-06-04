@@ -3,7 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WebApplication.Utils
+namespace CrawlerSite.Utils
 {
     public class KeyValuePairToJSON : JsonConverter
     {

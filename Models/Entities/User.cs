@@ -2,7 +2,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace WebApplication.Models.Entities
+namespace CrawlerSite.Models.Entities
 {
     public class User
     {
