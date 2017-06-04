@@ -1497,6 +1497,7 @@ textarea.form-control {
     border-color: #d43f3a;
     border-radius: 0!important;
     min-width: 140px;
+    border-width: 1px!important;
 }
 
 .btn-danger2:hover{
