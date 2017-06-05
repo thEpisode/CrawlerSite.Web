@@ -6,3 +6,11 @@ C:\Users\camie\Desktop\CrawlerSite.Web\bin\Debug\netcoreapp1.1\CrawlerSite.Web.d
 C:\Users\camie\Desktop\CrawlerSite.Web\bin\Debug\netcoreapp1.1\CrawlerSite.Web.pdb
 C:\Users\camie\Desktop\CrawlerSite.Web\obj\Debug\netcoreapp1.1\CrawlerSite.Web.dll
 C:\Users\camie\Desktop\CrawlerSite.Web\obj\Debug\netcoreapp1.1\CrawlerSite.Web.pdb
+c:\CrawlerSite Git\CrawlerSite.Web\bin\Debug\netcoreapp1.1\CrawlerSite.Web.deps.json
+c:\CrawlerSite Git\CrawlerSite.Web\bin\Debug\netcoreapp1.1\CrawlerSite.Web.runtimeconfig.json
+c:\CrawlerSite Git\CrawlerSite.Web\bin\Debug\netcoreapp1.1\CrawlerSite.Web.runtimeconfig.dev.json
+c:\CrawlerSite Git\CrawlerSite.Web\bin\Debug\netcoreapp1.1\CrawlerSite.Web.dll
+c:\CrawlerSite Git\CrawlerSite.Web\bin\Debug\netcoreapp1.1\CrawlerSite.Web.pdb
+c:\CrawlerSite Git\CrawlerSite.Web\obj\Debug\netcoreapp1.1\CrawlerSite.Web.AssemblyInfo.cs
+c:\CrawlerSite Git\CrawlerSite.Web\obj\Debug\netcoreapp1.1\CrawlerSite.Web.dll
+c:\CrawlerSite Git\CrawlerSite.Web\obj\Debug\netcoreapp1.1\CrawlerSite.Web.pdb
