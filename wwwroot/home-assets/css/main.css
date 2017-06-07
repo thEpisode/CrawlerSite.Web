@@ -200,13 +200,17 @@ a:after {
 /* Copyright Wrap */
 
 #c {
-	background: #222222;
+	background: #2f2f2f;
 	padding-top: 15px;
 	text-align: right;
 }
 
-#c p {
-	color: white
+#c img {
+  max-width: 160px;
+    color: white;
+    text-align: right;
+    margin-right: 0px;
+    margin-bottom: 2px;
 }
 
 .nav-bar-right{
