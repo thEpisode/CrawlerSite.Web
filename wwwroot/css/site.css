@@ -289,6 +289,10 @@ input:-webkit-autofill:active {
     color: #D61010;
     font-weight: 300;
 }
+.app-name-mono{
+    color: #FFFFFF;
+    font-weight: 300;
+}
 .crawler-logo{
     padding-bottom: 0!important;
 }
@@ -296,6 +300,16 @@ input:-webkit-autofill:active {
     content: "";
     display: block;
     background: url(/images/CrawlerLogo.png) no-repeat;
+    width: 40px;
+    height: 35px;
+    float: left;
+    background-size: 40px;
+    margin-right: 5px;
+}
+.crawler-logo-mono::before{
+    content: "";
+    display: block;
+    background: url(/images/CrawlerLogo-white.png) no-repeat;
     width: 40px;
     height: 35px;
     float: left;
@@ -341,4 +355,9 @@ input:-webkit-autofill:active {
     text-transform: uppercase;
     text-align: center;
     font-size: 0.8em;
+}
+
+.btn-default-border-white{
+    color: #fff;
+    border: 1px solid #fff !important;
 }
