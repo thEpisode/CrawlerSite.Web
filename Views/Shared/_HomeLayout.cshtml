@@ -195,79 +195,82 @@
         </div>
     </div>
 
-
-    @RenderBody()
+    <div class="container-fluid">
+        @RenderBody()
+    </div>
 
     <div id="footerwrap">
-        <div class="row">
-            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 footer-options">
-                <div class="col-lg-3 col-lg-offset-1">
-                    <ul class="brand">
-                        <li><a class="navbar-brand crawler-logo-mono" href="@Url.Action("Index", "Home")"><b class="app-name-mono">Crawler Site</b></a></li>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 footer-options">
+                    <div class="col-lg-3 col-lg-offset-1">
+                        <ul class="brand">
+                            <li><a class="navbar-brand crawler-logo-mono" href="@Url.Action("Index", "Home")"><b class="app-name-mono">Crawler Site</b></a></li>
 
-                        <li>
-                            <a href="https://twitter.com/CrawlerSite" target="_blank"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse" aria-hidden="true"></i></span></a>
-                            <a href="https://www.facebook.com/CrawlerSite/" target="_blank"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse" aria-hidden="true"></i></span> </a>
-                            <a href="https://www.linkedin.com/company-beta/16260366/" target="_blank"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin fa-stack-1x fa-inverse" aria-hidden="true"></i></li></span></a> 
-                        <li>&nbsp;</li>
-                        <li>&copy; <script>document.write(new Date().getFullYear())</script> Crawler Site Inc. All Rights Reserved.</li>
-                    </ul>
-                </div>
-                <div class="col-lg-2">
-                    <h3>Product & benefits</h3>
-                    <ul>
-                        <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">Services</a></li>
-                        <li><a href="@Url.Action("Pricing", "Home")" class="footer-link">Plans & pricing</a></li>
-                        <li><a href="@Url.Action("Calculator", "Home")" class="footer-link">Calculator</a></li>
-                        <li><a href="@Url.Action("Pricing", "Home")" class="footer-link">Stats Engine</a></li>
+                            <li>
+                                <a href="https://twitter.com/CrawlerSite" target="_blank"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-twitter fa-stack-1x fa-inverse" aria-hidden="true"></i></span></a>
+                                <a href="https://www.facebook.com/CrawlerSite/" target="_blank"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-facebook fa-stack-1x fa-inverse" aria-hidden="true"></i></span> </a>
+                                <a href="https://www.linkedin.com/company-beta/16260366/" target="_blank"><span class="fa-stack"><i class="fa fa-circle fa-stack-2x"></i><i class="fa fa-linkedin fa-stack-1x fa-inverse" aria-hidden="true"></i></li></span></a> 
+                            <li>&nbsp;</li>
+                            <li>&copy; <script>document.write(new Date().getFullYear())</script> Crawler Site Inc. All Rights Reserved.</li>
+                        </ul>
+                    </div>
+                    <div class="col-lg-2">
+                        <h3>Product & benefits</h3>
+                        <ul>
+                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">Services</a></li>
+                            <li><a href="@Url.Action("Pricing", "Home")" class="footer-link">Plans & pricing</a></li>
+                            <li><a href="@Url.Action("Calculator", "Home")" class="footer-link">Calculator</a></li>
+                            <li><a href="@Url.Action("Pricing", "Home")" class="footer-link">Stats Engine</a></li>
 
-                    </ul>
-                </div>
+                        </ul>
+                    </div>
 
-                <div class="col-lg-2">
-                    <h3>RESOURCES</h3>
-                    <ul>
-                        <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">Documentation</a></li>
-                        <li><a href="#" class="footer-link">Chat</a></li>
-                        <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">Case Studies</a></li>
-                        <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">What is a heatmap?</a></li>
-                        <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">What is A/B Testing?</a></li>
-                        <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">What is Remote Assistance?</a></li>
-                        <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">What is Funnel?</a></li>
-                        <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">UX & Usability</a></li>
-                    </ul>
-                </div>
+                    <div class="col-lg-2">
+                        <h3>RESOURCES</h3>
+                        <ul>
+                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">Documentation</a></li>
+                            <li><a href="#" class="footer-link">Chat</a></li>
+                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">Case Studies</a></li>
+                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">What is a heatmap?</a></li>
+                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">What is A/B Testing?</a></li>
+                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">What is Remote Assistance?</a></li>
+                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">What is Funnel?</a></li>
+                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">UX & Usability</a></li>
+                        </ul>
+                    </div>
 
-                <div class="col-lg-2">
-                    <h3>COMPANY</h3>
-                    <ul>
-                        <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">Why Crawler Site?</a></li>
-                        <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">Events</a></li>
-                        <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">About us</a></li>
-                        <li><a href="@Url.Action("Blog", "Home")" class="footer-link">Blog</a></li>
-                        <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">Solution Partners</a></li>
-                        <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">Non profits</a></li>
-                        <li><a href="@Url.Action("Contact", "Home")" class="footer-link">Contact us</a></li>
-                    </ul>
-                </div>
+                    <div class="col-lg-2">
+                        <h3>COMPANY</h3>
+                        <ul>
+                            <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">Why Crawler Site?</a></li>
+                            <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">Events</a></li>
+                            <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">About us</a></li>
+                            <li><a href="@Url.Action("Blog", "Home")" class="footer-link">Blog</a></li>
+                            <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">Solution Partners</a></li>
+                            <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">Non profits</a></li>
+                            <li><a href="@Url.Action("Contact", "Home")" class="footer-link">Contact us</a></li>
+                        </ul>
+                    </div>
 
-                <div class="col-lg-2 footer-separator">
-                    <h3>LEGAL</h3>
-                    <ul>
-                        <li><a href="@Url.Action("Terms", "Home")" class="footer-link">Terms & conditions</a></li>
-                        <li><a href="@Url.Action("Privacy", "Home")" class="footer-link">Privacy policy</a></li>
-                        <li><a href="@Url.Action("Cookies", "Home")" class="footer-link">Cookies information</a></li>
-                        <li><a href="@Url.Action("Security", "Home")" class="footer-link">Security</a></li>
-                    </ul>
+                    <div class="col-lg-2 footer-separator">
+                        <h3>LEGAL</h3>
+                        <ul>
+                            <li><a href="@Url.Action("Terms", "Home")" class="footer-link">Terms & conditions</a></li>
+                            <li><a href="@Url.Action("Privacy", "Home")" class="footer-link">Privacy policy</a></li>
+                            <li><a href="@Url.Action("Cookies", "Home")" class="footer-link">Cookies information</a></li>
+                            <li><a href="@Url.Action("Security", "Home")" class="footer-link">Security</a></li>
+                        </ul>
+                    </div>
                 </div>
             </div>
         </div>
-        
     </div>
     <div id="c"> 
         <div class="container"> 
-            <img class="img-responsive" src="~/home-assets/img/GoDaddy.png" alt="">
- 
+            <div class="row">
+                <img class="img-responsive" src="~/home-assets/img/GoDaddy.png" alt="">
+            </div> 
         </div> 
     </div>
     <div id="dialog" class="dialog">

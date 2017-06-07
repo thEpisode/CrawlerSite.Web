@@ -361,3 +361,7 @@ input:-webkit-autofill:active {
     color: #fff;
     border: 1px solid #fff !important;
 }
+
+.center-img{
+    margin: 0 auto;
+}

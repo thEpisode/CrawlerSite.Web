@@ -3,55 +3,58 @@
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
-<section id="home" name="home"></section>
-<div id="headerwrap">
-	<div class="container">
-		<div class="row centered">
-			<div class="col-lg-12 animate-box" data-animate-effect="fadeIn">
+<div id="headerwrap row">
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 animate-box text-center" data-animate-effect="fadeIn">
 				<h1>Welcome To <b class="app-name">Crawler Site</b></h1> 
 				<h3>Understanding your users has never been so easy</h3>
 				<br>
 			</div>
+	</div>
+	<div class="row">
+		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
+				<div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 animate-box col-lg-offset-1" data-animate-effect="fadeInRight" data-animate-time="500">
+					<h5>Easy to understand</h5>
+					<p>We make everything for you, only select your site and enjoy.</p>
+					<img class="hidden-xs hidden-sm hidden-md" src="~/home-assets/img/arrow1.png">
+				</div>
+				<div class="col-lg-6 animate-box" data-animate-effect="fadeIn">
+					<img class="img-responsive" src="~/home-assets/img/app-bg.jpg" alt="">
+				</div>
+				<div class="col-lg-2 animate-box" data-animate-effect="fadeInLeft" data-animate-time="200">
+					<br>
+					<img class="hidden-xs hidden-sm hidden-md" src="~/home-assets/img/arrow2.png">
+					<h5>Easy to use</h5>
+					<p>With only 3 steps you can setting up your Web App.</p>
+				</div>
+			</div>
+	</div>
 			
-			<div class="col-lg-2 animate-box" data-animate-effect="fadeInRight" data-animate-time="500">
-				<h5>Easy to understand</h5>
-				<p>We make everything for you, only select your site and enjoy.</p>
-				<img class="hidden-xs hidden-sm hidden-md" src="~/home-assets/img/arrow1.png">
-			</div>
-			<div class="col-lg-8 animate-box" data-animate-effect="fadeIn">
-				<img class="img-responsive" src="~/home-assets/img/app-bg.jpg" alt="">
-			</div>
-			<div class="col-lg-2 animate-box" data-animate-effect="fadeInLeft" data-animate-time="200">
-				<br>
-				<img class="hidden-xs hidden-sm hidden-md" src="~/home-assets/img/arrow2.png">
-				<h5>Easy to use</h5>
-				<p>With only 3 steps you can setting up your Web App.</p>
-			</div>
-		</div>
-	</div> <!--/ .container -->
+			
+			
+
+	
 </div><!--/ #headerwrap -->
 
-
-<section id="desc" name="desc"></section>
 <!-- INTRO WRAP -->
-<div id="intro">
-	<div class="container">
-		<div class="row">
-			<h2 class="intro-header animate-box">Stop Improvising.</h2>
-			<h2 class="intro-header animate-box">Start analyzing.</h2>
+<div id="intro" class="row">
+		<div>
+			<div class="col-lg-10 col-sm-12 col-md-12 col-xs-12 col-lg-offset-1">
+				<h2 class="intro-header animate-box">Stop Improvising.</h2>
+				<h2 class="intro-header animate-box">Start analyzing.</h2>
+			</div>
 		</div>
 		<br>
-	</div> <!--/ .container -->
+		
 	<div class="overlay"></div>
 </div><!--/ #introwrap -->
 
-<section class="what-is">
-	<div class="container">
-		<div  class="row">	
+<section class="what-is row">
+
 			<div class="hidden-xs">
 				<img class="principal-features-laptop" src="~/home-assets/img/laptop.png" alt="">
 			</div>	
-			<div class="col-lg-7 col-md-6 col-sm-12 col-xs-12 col-lg-offset-5">
+			<div class="col-lg-6 col-md-12 col-sm-6 col-xs-12 col-lg-offset-5 col-sm-offset-4">
 				<h2>Features</h2>
 				<ul class="principal-features">
 					<li class="animate-box" data-animate-effect="fadeIn">
@@ -98,15 +101,12 @@
 					</li>
 				</ul>
 			</div>
-		</div>
-	</div>
+
 </section>
 
-<section class="integrations">
-	<div class="container">
-		<div  class="row">	
+<section class="integrations row">
 				
-			<div class="col-lg-7 col-md-6 col-sm-12 col-xs-12">
+			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-1">
 				<h2>Integrations</h2>
 				<ul class="integration-features">
 					<li class="animate-box" data-animate-effect="fadeIn">
@@ -133,31 +133,26 @@
 					
 				</ul>
 			</div>
-			<div class="hidden-xs col-sm-6 col-md-12 col-lg-3">
+			<div class="hidden-xs col-sm-6 col-md-6 col-lg-3">
 				<img class="integration-features-mobile" src="~/home-assets/img/nexus.png" alt="">
 			</div>
-		</div>
-	</div>
+
 </section>
 
 <!-- FEATURES WRAP -->
-<div id="features">
-	<div class="container">
-		<div class="row">
-			<div class="col-md-8 col-md-offset-2 text-center">
-				<img class="img-responsive" src="~/home-assets/img/img_devices.png" alt="">
+<div id="features" class="row">
+
+			<div class="col-lg-8 col-sm-12 col-xs-12 col-md-8 col-lg-offset-2 col-md-offset-2 text-center">
+				<img class="img-responsive center-img" src="~/home-assets/img/img_devices.png" alt="">
 				<h2 class="animate-box" data-animate-effect="fadeIn">Work anytime, anywhere</h2>
 				<p class="animate-box" data-animate-effect="fadeIn">Our platform every day improve user experience to run in every browser, feel free to use without limitations or enterprise restrictions. Develop lasting relationships with your most loyal customers by delivering relevant experiences at every interaction.</p>
 			</div>
-		</div>
 	
-	</div>
 </div>
 
-<div id="showcase">
-	<div class="container">
-		<div class="row">
-			<div class="col-lg-12 col-sm-12 col-xs-12 col-md-12">
+<div id="showcase" class="row">
+	
+			<div class="col-lg-10 col-sm-12 col-xs-12 col-md-12 col-lg-offset-1">
 				<aside class="stats col-lg-4 col-sm-3 col-md-3 col-sm-12">
 					<h5>At a glance</h5>
 					<h2>100+</h2>
@@ -174,22 +169,5 @@
 					<a href="/Home/Register" class="btn btn-danger btn-lg" title="">TRY IT FOR FREE</a>
 				</div>
 			</div>
-		</div>	
-	</div>
+
 </div>	
-
-
-<section id="contact" name="contact"></section>
-
-@section Scripts{
-	<script>
-		$('.carousel').carousel({
-			interval: 3500
-		})
-
-		$('.navbar-nav>li').click(function(){
-			$('.navbar-nav>li').removeClass('active');
-			$(this).addClass('active');
-		})
-	</script>
-}

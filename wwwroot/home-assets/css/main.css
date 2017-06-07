@@ -100,6 +100,26 @@ a:after {
 	text-align: left;
 }
 
+@media screen and (max-width: 768px) {
+    #headerwrap h1{
+        font-size:20px;
+    }
+
+    #headerwrap h3{
+      font-size: 16px;
+    }
+
+    #headerwrap h5{
+      font-size: 14px;
+    }
+
+    #headerwrap p {
+      font-size: 13px;
+    }
+}
+
+
+
 #headerwrap p {
 	text-align: left;
 }
@@ -125,10 +145,17 @@ a:after {
     position: relative;
     z-index: 1;
 }
-
 .intro-header{
     font-size: 4em;
     color: #f2f2f2;
+}
+
+@media screen and (max-width: 768px) {
+    .intro-header{
+        font-size:20px;
+        color: #f2f2f2;
+        margin-left: 5px;
+    }
 }
 
 .overlay {
