@@ -65,7 +65,20 @@ Flinger.controller("SiteController", function ($scope, SiteService) {
     }
 
     $scope.InitializePreviewView = function(){
-        $Flinger.Loader.Finish();
+        var SiteId = $Flinger.QueryString().Id;
+
+        if (SiteId != undefined && SiteId != null) {
+            var getSiteProcess = SiteService.GetSiteById(SiteId);
+
+            getSiteProcess.then(function (response) {
+                $scope.Site = response.data.result;
+                $Flinger.Loader.Finish();
+                console.log(response.data);
+            },
+                function (response) {
+                    console.log(response);
+                })
+        }
     }
 
     $scope.EditSite = function () {

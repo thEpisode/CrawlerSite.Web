@@ -251,39 +251,8 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                                     }
 
                                     $scope.ScreenshotReceived = true;
-                                    var currentFrameIdx = 0;
-                                    var framesContainer = document.querySelector('#frame-container');
-                                    var blob = new Blob([data.Values.Screenshot], { type: 'text/html' });
-                                    document.querySelector('#frame-container').innerHTML = '';
 
-                                    var iframe = document.createElement('iframe');
-                                    iframe.src = window.URL.createObjectURL(blob);
-                                    iframe.style.height = '100%';
-                                    iframe.style.width = '100%';
-                                    iframe.hidden = true;
-                                    iframe.onload = function () {
-                                        if (framesContainer.children.length) {
-                                            var frame = framesContainer.children[currentFrameIdx];
-
-                                            if (!frame) {
-                                                return;
-                                            }
-
-                                            if (currentFrameIdx > 0) {
-                                                var prevFrame = frame.previousElementSibling;
-                                                prevFrame.hidden = true;
-                                                window.URL.revokeObjectURL(prevFrame.src);
-                                            }
-
-                                            frame.hidden = false;
-
-                                            currentFrameIdx++;
-                                        }
-                                    };
-
-                                    // Force the iframe content to load by appending to the DOM.
-                                    framesContainer.appendChild(iframe);
-
+                                    $scope.PrintFrame(data);
                                     //$scope.Screenshot = data.Values.Screenshot;
                                 });
                                 break;
@@ -294,6 +263,85 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                 }
             }
         });
+    }
+
+    $scope.PrintFrame = function (data) {
+        var browserSize = {};
+        var w = window,
+            d = document,
+            e = d.documentElement,
+            g = d.getElementsByTagName('body')[0],
+            x = w.innerWidth || e.clientWidth || g.clientWidth,
+            y = w.innerHeight || e.clientHeight || g.clientHeight;
+        browserSize.width = x;
+        browserSize.height = y;
+        document.querySelector('#frame-container').innerHTML = '';
+
+        var currentFrameIdx = 0;
+        var framesContainer = document.querySelector('#frame-container');
+        var blob = new Blob([data.Values.Screenshot], { type: 'text/html' });
+
+        var iframeVisorWidthBorder = browserSize.width - 20;
+        var iframeVisorHeightBorder = browserSize.height - 20;
+        var originalWidthSize = data.Values.UserBrowserScreen.width;
+        var originalHeightSize = data.Values.UserBrowserScreen.height;
+        var widthAverage = iframeVisorWidthBorder / originalWidthSize;
+        var heightAverage = iframeVisorHeightBorder / originalHeightSize;
+
+        var iframeScale = Math.min(1, Math.min(widthAverage, heightAverage));console.log(iframeScale);
+        var iframeScaleCSS = "scale(" + iframeScale + "," + iframeScale + ")";
+        var iframeWidthRate = data.Values.UserBrowserScreen.width * iframeScale;
+        var iframeHeightRate = data.Values.UserBrowserScreen.height * iframeScale;
+        var iframeMarginLeft = Math.min(Math.round((iframeVisorWidthBorder - iframeWidthRate) / 2) + 10, 10);
+        var iframeMarginTop = Math.min(Math.round((iframeVisorHeightBorder - iframeHeightRate) / 2) + 10, 10);
+
+        /// Creating iframe
+        var iframe = document.createElement('iframe');
+        /// Rendering content
+        iframe.src = window.URL.createObjectURL(blob);
+        /// Setting Dimensions
+        iframe.setAttribute("width", Math.round(iframeWidthRate) + "px");
+        iframe.setAttribute("height", Math.round(iframeHeightRate) + "px");
+        iframe.style.width = Math.round(data.Values.UserBrowserScreen.width) + "px";
+        iframe.style.height = Math.round(data.Values.UserBrowserScreen.height) + "px";
+
+        /// Setting Scale
+        iframe.style.webkitTransform = iframeScaleCSS;
+        iframe.style.transform = iframeScaleCSS;
+        iframe.style.OTransform = iframeScaleCSS;
+        iframe.style.MozTransform = iframeScaleCSS;
+        iframe.style.msTransform = iframeScaleCSS;
+        iframe.style.transformOrigin = "0 0";
+
+        ///Setting Frames Container
+        framesContainer.style.marginTop = iframeMarginTop + "px";
+        framesContainer.style.marginLeft = iframeMarginLeft + "px";
+        framesContainer.style.width = Math.round(iframeWidthRate) + 2 + "px";
+        framesContainer.style.height = Math.round(iframeHeightRate) + 2 + "px";
+
+        iframe.hidden = true;
+        iframe.onload = function () {
+            if (framesContainer.children.length) {
+                var frame = framesContainer.children[currentFrameIdx];
+
+                if (!frame) {
+                    return;
+                }
+
+                if (currentFrameIdx > 0) {
+                    var prevFrame = frame.previousElementSibling;
+                    prevFrame.hidden = true;
+                    window.URL.revokeObjectURL(prevFrame.src);
+                }
+
+                frame.hidden = false;
+
+                currentFrameIdx++;
+            }
+        };
+
+        // Force the iframe content to load by appending to the DOM.
+        framesContainer.appendChild(iframe);
     }
 
     $scope.CheckSiteNamespace = function () {
@@ -336,8 +384,8 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
             $scope._ratSocket.emit('Coplest.Flinger.RAT', { Command: 'SetScrollDelta#Request', Values: { RoomId: $scope.RoomId, Delta: delta } });
 
             var step = 80;
-			var currentPosition = document.querySelector('iframe').contentWindow.document.body.scrollTop || 0;
-			$scope._scrollPos = (currentPosition + (step * (delta)) * -1);
+            var currentPosition = document.querySelector('iframe').contentWindow.document.body.scrollTop || 0;
+            $scope._scrollPos = (currentPosition + (step * (delta)) * -1);
             document.querySelector('iframe').contentWindow.scrollTo(0, $scope._scrollPos);
         }
 

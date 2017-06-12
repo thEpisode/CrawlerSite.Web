@@ -177,10 +177,10 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li class="active"><a href="#home" class="smoothScroll">Home</a></li>
-                    <li><a href="#desc" class="smoothScroll">Services</a></li>
+                    <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li><a href="@Url.Action("Services", "Home")">Services</a></li>
                     <li><a href="@Url.Action("Pricing", "Home")">Pricing</a></li>
-                    <li><a href="#screenshots" class="smoothScroll">Support</a></li>
+                    <li><a href="@Url.Action("Support", "Home")">Support</a></li>
 
                     <li><a href="@Url.Action("Register", "Home")" class="btn btn-danger hidden-lg hidden-md hidden-sm" style="color: #ffffff;">TRY IT FOR FREE</a></li>
                     <li><a href="@Url.Action("Login", "Home")" class="btn btn-default  hidden-lg hidden-md hidden-sm">Login</a></li>
