@@ -518,6 +518,8 @@ label.error:not(.form-control) {
 .rat-visor{
     width: 100%;
     height: 100%;
+    border-radius: 3px;
+    border-bottom: 2px solid #ccc;
     background-color: #252422;
     position: absolute;
     top:0;
@@ -545,6 +547,80 @@ label.error:not(.form-control) {
     height: 100%;
 }
 
+.frame-container{
+    padding: 65px 0 0;
+    border-radius: 3px;
+    border-bottom: 2px solid #ccc;
+    background: #ddd;
+    display: inline-block;
+    position: relative;
+    line-height: 0;
+}
+
+.frame-container .frame {
+    display: block;
+    width: calc(100% - 20px);;
+    height: 48px;
+    position: absolute;
+    top: 7px;
+    left: 10px;
+}
+
+.frame-container .window-bar span {
+    height: 13px;
+    width: 13px;
+    border-radius: 50%;
+    background-color: #FDD800;
+    border: 1px solid #dadada;
+    float: left;
+    margin: 0 0 0 4px;
+    cursor: pointer;
+}
+
+.frame-container .window-bar .pull-right, .frame-container .tools-bar .pull-right{
+  position: absolute;
+  right: 0px;
+}
+
+.frame-container .window-bar span:first-child{
+  background-color: #ED594A;
+}
+
+.frame-container .window-bar span:last-of-type{
+  background-color: #5AC05A;
+}
+
+.frame-container .window-bar .current-window-title{
+  width: 100%;
+    text-align: center;
+    padding-top: 5px;
+}
+
+.frame-container .window-bar, .frame-container .tools-bar{
+  height: 30px;
+}
+.frame-container .window-bar .is-button, .frame-container .tools-bar .is-button{
+  cursor: pointer;
+}
+
+.frame-container .tools-bar i{
+  cursor: pointer;
+}
+
+.frame-container .tools-bar .icon-disabled{
+  color: #b2b2b2;
+}
+
+.frame-container .tools-bar input{
+    padding: 2px 5px;
+    border: 1px solid #b2b2b2;
+    background: rgba(0, 0, 0, 0.01);
+    width: 87%;
+    border-radius: 3px;
+}
+.frame-container .tools-bar input:focus{
+  background: #fff;
+}
 .rat-client-connected{
     cursor: pointer;
 }
@@ -856,4 +932,15 @@ span.seperator {
   font-size: 12px;
   -webkit-animation: changeColor 10s ease-in-out infinite;
           animation: changeColor 10s ease-in-out infinite;
+}
+
+#map_container{
+  position: relative;
+}
+#map{
+    height: 0;
+    overflow: hidden;
+    padding-bottom: 22.25%;
+    padding-top: 30px;
+    position: relative;
 }

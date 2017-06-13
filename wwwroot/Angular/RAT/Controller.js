@@ -1,3 +1,107 @@
+Flinger.filter('devicetype', function () {
+    return function (input) {
+        var DeviceIcons = {
+            Type: {
+                Desktop: { Value: 'fa fa-desktop' },
+                Mobile: { Value: 'fa fa-mobile' },
+                Tablet: { Value: 'fa fa-tablet' }
+            }
+        }
+        if (parseInt(input) < 765) {
+            return DeviceIcons.Type.Mobile.Value;
+        }
+        else if (parseInt(input) >= 765 && parseInt(input) < 1025) {
+            return DeviceIcons.Type.Tablet.Value;
+        }
+        else if (parseInt(input) >= 1025) {
+            return DeviceIcons.Type.Desktop.Value;
+        }
+        else {
+            return DeviceIcons.Type.Mobile.Value;
+        }
+    }
+})
+
+Flinger.filter('devicetypename', function () {
+    return function (input) {
+
+        if (parseInt(input) < 765) {
+            return 'Phone';
+        }
+        else if (parseInt(input) >= 765 && parseInt(input) < 1025) {
+            return 'Tablet';
+        }
+        else if (parseInt(input) >= 1025) {
+            return 'Desktop';
+        }
+        else {
+            return 'Phone';
+        }
+    }
+})
+
+Flinger.filter('deviceos', function () {
+    return function (input) {
+        var DeviceIcons = {
+            OS: {
+                Windows: { Value: 'fa fa-windows' },
+                Apple: { Value: 'fa fa-apple' },
+                Linux: { Value: 'fa fa-linux' },
+                Android: { Value: 'fa fa-android' }
+            }
+        }
+        switch (input) {
+            case 'Windows':
+                return DeviceIcons.OS.Windows.Value;
+            case 'Mac OS X':
+            case 'iOS':
+                return DeviceIcons.OS.Apple.Value;
+            case 'Android':
+                return DeviceIcons.OS.Android.Value;
+            default:
+                return DeviceIcons.OS.Linux.Value;
+        }
+    }
+})
+
+Flinger.filter('devicebrowser', function () {
+    return function (input) {
+        var DeviceIcons = {
+            Browser: {
+                Opera: { Value: 'fa fa-opera' },
+                Edge: { Value: 'fa fa-edge' },
+                IE: { Value: 'fa fa-internet-explorer' },
+                Chrome: { Value: 'fa fa-chrome' },
+                Safari: { Value: 'fa fa-safari' },
+                Firefox: { Value: 'fa fa-firefox' },
+                Other: { Value: 'fa fa-html5' }
+            }
+        }
+        switch (input) {
+            case 'Opera':
+                return DeviceIcons.Browser.Opera.Value;
+            case 'Edge':
+                return DeviceIcons.Browser.Edge.Value;
+            case 'Microsoft Internet Explorer':
+                return DeviceIcons.Browser.IE.Value;
+            case 'Chrome':
+                return DeviceIcons.Browser.Chrome.Value;
+            case 'Safari':
+                return DeviceIcons.Browser.Safari.Value;
+            case 'Firefox':
+                return DeviceIcons.Browser.Firefox.Value;
+            default:
+                return DeviceIcons.Browser.Other.Value;
+        }
+    }
+})
+
+Flinger.filter('splitid', function () {
+    return function (input) {
+        return input.slice(0, input.length/2);
+    }
+})
+
 Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
 
     $scope.SocketId = {};
@@ -15,6 +119,32 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
     $scope.MousePos = {};
     $scope.Screenshot = "";
     $scope._scrollPos = 0;
+    $scope.CurrentUserPath = "";
+    $scope.CurrentWindowTitle = "";
+    $scope.isInFullScreen = false;
+    $scope.IsMaximized = false;
+    $scope.DeviceIcons = {
+        Type: {
+            Desktop: { Value: 'fa fa-desktop' },
+            Mobile: { Value: 'fa fa-mobile' },
+            Tablet: { Value: 'fa fa-tablet' }
+        },
+        OS: {
+            Windows: { Value: 'fa fa-windows' },
+            Apple: { Value: 'fa fa-apple' },
+            Linux: { Value: 'fa fa-linux' },
+            Android: { Value: 'fa fa-android' }
+        },
+        Browser: {
+            Opera: { Value: 'fa fa-opera' },
+            Edge: { Value: 'fa fa-edge' },
+            IE: { Value: 'fa fa-internet-explorer' },
+            Chrome: { Value: 'fa fa-chrome' },
+            Safari: { Value: 'fa fa-safari' },
+            Firefox: { Value: 'fa fa-firefox' },
+            Other: { Value: 'fa fa-html5' }
+        }
+    }
 
     $scope.InitializeView = function () {
 
@@ -251,6 +381,8 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                                     }
 
                                     $scope.ScreenshotReceived = true;
+                                    $scope.CurrentUserPath = data.Values.CurrentUserPath;
+                                    $scope.CurrentWindowTitle = data.Values.CurrentWindowTitle;
 
                                     $scope.PrintFrame(data);
                                     //$scope.Screenshot = data.Values.Screenshot;
@@ -266,6 +398,9 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
     }
 
     $scope.PrintFrame = function (data) {
+        /**
+         * Preserving aspect radio
+         */
         var browserSize = {};
         var w = window,
             d = document,
@@ -275,10 +410,11 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
             y = w.innerHeight || e.clientHeight || g.clientHeight;
         browserSize.width = x;
         browserSize.height = y;
-        document.querySelector('#frame-container').innerHTML = '';
+        //document.querySelector('#frame-container').innerHTML = '';
 
         var currentFrameIdx = 0;
         var framesContainer = document.querySelector('#frame-container');
+        var eventHandler = document.querySelector('.event-handler');
         var blob = new Blob([data.Values.Screenshot], { type: 'text/html' });
 
         var iframeVisorWidthBorder = browserSize.width - 20;
@@ -288,7 +424,7 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
         var widthAverage = iframeVisorWidthBorder / originalWidthSize;
         var heightAverage = iframeVisorHeightBorder / originalHeightSize;
 
-        var iframeScale = Math.min(1, Math.min(widthAverage, heightAverage));console.log(iframeScale);
+        var iframeScale = Math.min(1, Math.min(widthAverage, heightAverage)); console.log(iframeScale);
         var iframeScaleCSS = "scale(" + iframeScale + "," + iframeScale + ")";
         var iframeWidthRate = data.Values.UserBrowserScreen.width * iframeScale;
         var iframeHeightRate = data.Values.UserBrowserScreen.height * iframeScale;
@@ -312,14 +448,25 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
         iframe.style.MozTransform = iframeScaleCSS;
         iframe.style.msTransform = iframeScaleCSS;
         iframe.style.transformOrigin = "0 0";
+        iframe.style.display = "block";
 
-        ///Setting Frames Container
+        /// Setting Frames Container
         framesContainer.style.marginTop = iframeMarginTop + "px";
         framesContainer.style.marginLeft = iframeMarginLeft + "px";
-        framesContainer.style.width = Math.round(iframeWidthRate) + 2 + "px";
-        framesContainer.style.height = Math.round(iframeHeightRate) + 2 + "px";
+        framesContainer.style.width = Math.round(iframeWidthRate) + "px";
+        framesContainer.style.height = Math.round(iframeHeightRate) + "px";
+
+        /// Setting Event Handler
+        eventHandler.style.marginTop = "75px";
+        //eventHandler.style.marginTop = iframeMarginTop + "px";
+        eventHandler.style.marginLeft = iframeMarginLeft + "px";
+        eventHandler.style.width = Math.round(iframeWidthRate) + "px";
+        eventHandler.style.height = Math.round(iframeHeightRate) + "px";
+
+        //// End Preserving aspect ratio
 
         iframe.hidden = true;
+        iframe.id = "rat-iframe"
         iframe.onload = function () {
             if (framesContainer.children.length) {
                 var frame = framesContainer.children[currentFrameIdx];
@@ -341,7 +488,13 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
         };
 
         // Force the iframe content to load by appending to the DOM.
-        framesContainer.appendChild(iframe);
+        if (document.querySelector('#rat-iframe') !== null) {
+            document.querySelector('#rat-iframe').parentNode.replaceChild(iframe, document.querySelector('#rat-iframe'));
+        }
+        else {
+            //document.querySelector('#frame-container').innerHTML = '';
+            framesContainer.appendChild(iframe);
+        }
     }
 
     $scope.CheckSiteNamespace = function () {
@@ -389,8 +542,10 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
             document.querySelector('iframe').contentWindow.scrollTo(0, $scope._scrollPos);
         }
 
-        document.onmousemove = function () {
+        document.querySelector('.event-handler').onmousemove = function () {
             var eventDoc, doc, body, pageX, pageY;
+            var relativeElementX = document.querySelector('.event-handler').getBoundingClientRect().left - document.getElementsByTagName("html")[0].getBoundingClientRect().left;
+            var relativeElementY = document.querySelector('.event-handler').getBoundingClientRect().top - document.getElementsByTagName("html")[0].getBoundingClientRect().left;
 
             if (event.pageX == null && event.clientX != null) {
                 eventDoc = (event.target && event.target.ownerDocument) || document;
@@ -407,16 +562,61 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
 
             $scope.MousePos = {
                 RoomId: $scope.RoomId,
-                X: event.pageX,
-                Y: event.pageY
+                X: event.pageX - relativeElementX,
+                Y: event.pageY - relativeElementY
             };
 
             $scope._ratSocket.emit('Coplest.Flinger.RAT', { Command: 'SetPositionMouse#Request', Values: $scope.MousePos })
         };
 
-        document.querySelector('#rat-visor').onclick = function () {
+        document.querySelector('.event-handler').onclick = function () {
             console.log($scope.MousePos)
             $scope._ratSocket.emit('Coplest.Flinger.RAT', { Command: 'Click#Request', Values: $scope.MousePos })
         }
+    }
+
+    $scope.ExpandRATViewer = function () {
+        if ($scope.isInFullScreen === false) {
+            $scope.isInFullScreen = true;
+            var ratVisor = document.querySelector('#rat-visor');
+            if (ratVisor.requestFullscreen) {
+                ratVisor.requestFullscreen();
+            } else if (ratVisor.webkitRequestFullscreen) {
+                ratVisor.webkitRequestFullscreen();
+            } else if (ratVisor.mozRequestFullScreen) {
+                ratVisor.mozRequestFullScreen();
+            } else if (ratVisor.msRequestFullscreen) {
+                ratVisor.msRequestFullscreen();
+            }
+        }
+        else {
+            $scope.isInFullScreen = false;
+            if (document.exitFullscreen) {
+                document.exitFullscreen();
+            } else if (document.webkitExitFullscreen) {
+                document.webkitExitFullscreen();
+            } else if (document.mozCancelFullScreen) {
+                document.mozCancelFullScreen();
+            } else if (document.msExitFullscreen) {
+                document.msExitFullscreen();
+            }
+        }
+    }
+
+    $scope.MazimizeRATViewer = function () {
+        if ($scope.IsMaximized === false) {
+            $scope.IsMaximized = true;
+            document.querySelector('.sidebar').style.display = 'none';
+            document.querySelector('.main-panel').style.width = '100%';
+        }
+        else {
+            $scope.IsMaximized = false;
+            document.querySelector('.sidebar').style.display = 'block';
+            document.querySelector('.main-panel').style.width = 'calc(100% - 260px)';
+        }
+    }
+
+    $scope.ReloadRATViewer = function () {
+        window.location.reload();
     }
 });
