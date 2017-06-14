@@ -123,28 +123,7 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
     $scope.CurrentWindowTitle = "";
     $scope.isInFullScreen = false;
     $scope.IsMaximized = false;
-    $scope.DeviceIcons = {
-        Type: {
-            Desktop: { Value: 'fa fa-desktop' },
-            Mobile: { Value: 'fa fa-mobile' },
-            Tablet: { Value: 'fa fa-tablet' }
-        },
-        OS: {
-            Windows: { Value: 'fa fa-windows' },
-            Apple: { Value: 'fa fa-apple' },
-            Linux: { Value: 'fa fa-linux' },
-            Android: { Value: 'fa fa-android' }
-        },
-        Browser: {
-            Opera: { Value: 'fa fa-opera' },
-            Edge: { Value: 'fa fa-edge' },
-            IE: { Value: 'fa fa-internet-explorer' },
-            Chrome: { Value: 'fa fa-chrome' },
-            Safari: { Value: 'fa fa-safari' },
-            Firefox: { Value: 'fa fa-firefox' },
-            Other: { Value: 'fa fa-html5' }
-        }
-    }
+    $scope._iframe = null;
 
     $scope.InitializeView = function () {
 
@@ -432,23 +411,23 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
         var iframeMarginTop = Math.min(Math.round((iframeVisorHeightBorder - iframeHeightRate) / 2) + 10, 10);
 
         /// Creating iframe
-        var iframe = document.createElement('iframe');
+        $scope._iframe = document.createElement('iframe');
         /// Rendering content
-        iframe.src = window.URL.createObjectURL(blob);
+        $scope._iframe.src = window.URL.createObjectURL(blob);
         /// Setting Dimensions
-        iframe.setAttribute("width", Math.round(iframeWidthRate) + "px");
-        iframe.setAttribute("height", Math.round(iframeHeightRate) + "px");
-        iframe.style.width = Math.round(data.Values.UserBrowserScreen.width) + "px";
-        iframe.style.height = Math.round(data.Values.UserBrowserScreen.height) + "px";
+        $scope._iframe.setAttribute("width", Math.round(iframeWidthRate) + "px");
+        $scope._iframe.setAttribute("height", Math.round(iframeHeightRate) + "px");
+        $scope._iframe.style.width = Math.round(data.Values.UserBrowserScreen.width) + "px";
+        $scope._iframe.style.height = Math.round(data.Values.UserBrowserScreen.height) + "px";
 
         /// Setting Scale
-        iframe.style.webkitTransform = iframeScaleCSS;
-        iframe.style.transform = iframeScaleCSS;
-        iframe.style.OTransform = iframeScaleCSS;
-        iframe.style.MozTransform = iframeScaleCSS;
-        iframe.style.msTransform = iframeScaleCSS;
-        iframe.style.transformOrigin = "0 0";
-        iframe.style.display = "block";
+        $scope._iframe.style.webkitTransform = iframeScaleCSS;
+        $scope._iframe.style.transform = iframeScaleCSS;
+        $scope._iframe.style.OTransform = iframeScaleCSS;
+        $scope._iframe.style.MozTransform = iframeScaleCSS;
+        $scope._iframe.style.msTransform = iframeScaleCSS;
+        $scope._iframe.style.transformOrigin = "0 0";
+        $scope._iframe.style.display = "block";
 
         /// Setting Frames Container
         framesContainer.style.marginTop = iframeMarginTop + "px";
@@ -464,10 +443,9 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
         eventHandler.style.height = Math.round(iframeHeightRate) + "px";
 
         //// End Preserving aspect ratio
-
-        iframe.hidden = true;
-        iframe.id = "rat-iframe"
-        iframe.onload = function () {
+        $scope._iframe.hidden = true;
+        $scope._iframe.id = "rat-iframe"
+        $scope._iframe.onload = function () {
             if (framesContainer.children.length) {
                 var frame = framesContainer.children[currentFrameIdx];
 
@@ -485,15 +463,16 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
 
                 currentFrameIdx++;
             }
+            
         };
 
         // Force the iframe content to load by appending to the DOM.
         if (document.querySelector('#rat-iframe') !== null) {
-            document.querySelector('#rat-iframe').parentNode.replaceChild(iframe, document.querySelector('#rat-iframe'));
+            document.querySelector('#rat-iframe').parentNode.replaceChild($scope._iframe, document.querySelector('#rat-iframe'));
         }
         else {
             //document.querySelector('#frame-container').innerHTML = '';
-            framesContainer.appendChild(iframe);
+            framesContainer.appendChild($scope._iframe);
         }
     }
 
@@ -539,7 +518,8 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
             var step = 80;
             var currentPosition = document.querySelector('iframe').contentWindow.document.body.scrollTop || 0;
             $scope._scrollPos = (currentPosition + (step * (delta)) * -1);
-            document.querySelector('iframe').contentWindow.scrollTo(0, $scope._scrollPos);
+            //document.querySelector('iframe').contentWindow.scrollTo(0, $scope._scrollPos);
+            $scope._iframe.contentWindow.scrollTo(0, $scope._scrollPos);
         }
 
         document.querySelector('.event-handler').onmousemove = function () {
