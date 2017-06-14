@@ -1490,19 +1490,3 @@ textarea.form-control {
 .uppercase{
   text-transform: uppercase;
 }
-
-.btn-danger2 {
-    color: #ffffff;
-    background-color: #d9534f;
-    border-color: #d43f3a;
-    border-radius: 0!important;
-    min-width: 140px;
-    border-width: 1px!important;
-}
-
-.btn-danger2:hover{
-  color: #ffffff!important;
-  background-color: #d2322d;
-  border-color: #ac2925;
-  border-radius: 0;
-}
