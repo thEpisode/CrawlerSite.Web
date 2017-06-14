@@ -18,10 +18,10 @@
             // For more options see: https://developers.google.com/maps/documentation/javascript/reference#MapOptions
             var mapOptions = {
                 // How zoomed in you want the map to start at (always required)
-                zoom: 11,
+                zoom: 3,
 
                 // The latitude and longitude to center the map (always required)
-                center: new google.maps.LatLng(40.6700, -73.9400), // New York
+                center: new google.maps.LatLng(30.6700, -40.9400), // New York
 
                 // How you would like to style the map. 
                 // This is where you would paste any style found on Snazzy Maps.
@@ -30,17 +30,17 @@
 
             // Get the HTML DOM element that will contain your map 
             // We are using a div with id="map" seen below in the <body>
-            var mapElement = document.getElementById('map');
+            var mapElement = document.querySelector('.map');
 
             // Create the Google Map using our element and options defined above
             var map = new google.maps.Map(mapElement, mapOptions);
 
             // Let's also add a marker while we're at it
-            var marker = new google.maps.Marker({
-                position: new google.maps.LatLng(40.6700, -73.9400),
+            /*var marker = new google.maps.Marker({
+                position: new google.maps.LatLng(30.6700, -40.9400),
                 map: map,
                 title: 'Snazzy!'
-            });
+            });*/
         }
     </script>
     
@@ -49,28 +49,37 @@
 
 <section ng-controller="RATController" ng-init="InitializeView()" class="rat-container">
     <section ng-hide="IsOnService">
-        <section class="card col-sm-12">
-            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-                <h2 class="text-center">Real Time Users</h2>
-                <div class="col-lg-4 col-sm-3 col-md-6 col-xs-12">
-                    <div class="table-responsive">
-                        <ul>
-                            <li ng-repeat="socket in ConnectedSockets" ng-click="GetEndpointRPN(socket.SocketId)" class="rat-client-connected"> 
-                                    <div>
-                                        <span>Visitor {{socket.SocketId | splitid}}</span>
-                                        <i class="{{socket.ClientInformation.browserSize.width | devicetype}}" title="{{socket.ClientInformation.browserSize.width | devicetypename}}" aria-hidden="true"></i>
-                                        <i class="{{socket.ClientInformation.browser | devicebrowser}}" title="{{socket.ClientInformation.browser}} {{socket.ClientInformation.browserVersion}}" aria-hidden="true"></i>
-                                        <i class="{{socket.ClientInformation.os | deviceos}}" title="{{socket.ClientInformation.os}} {{socket.ClientInformation.osVersion}}" aria-hidden="true"></i>
-                                        <span>{{socket.ClientInformation.windowTitle}}</span>
-                                    </div>
-                                   
-                                </li>
-                        </ul>
-                    </div>
+        <section class="card col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 no-padding users-preview-container">
+                <div class="col-lg-4 col-sm-3 col-md-6 col-xs-12 no-padding users-container">
+                    <h4 class="text-center realtime-users-title">Realtime Users</h4>
+                    <ul class="users-list">
+                        <li ng-repeat="socket in ConnectedSockets" ng-click="GetEndpointRPN(socket.SocketId)" class="user-online-row"> 
+                                <div class="user-online col-lg-12 col-sm-12 col-xs-12 col-md-12 no-padding">
+                                    <section class="avatar col-lg-4 col-md-4 col-sm-6 hidden-xs no-padding">
+                                        <img class="img-responsive img-circle" alt="user online" src="~/dashboard-assets/img/online-user.svg" />
+                                    </section>
+                                    <section class="details col-lg-8 col-md-8 col-sm-6 col-xs-12">
+                                        <section class="info">
+                                            <span>Visitor {{socket.SocketId | splitid}}</span>
+                                            <i class="{{socket.ClientInformation.browserSize.width | devicetype}}" title="{{socket.ClientInformation.browserSize.width | devicetypename}}" aria-hidden="true"></i>
+                                            <i class="{{socket.ClientInformation.browser | devicebrowser}}" title="{{socket.ClientInformation.browser}} {{socket.ClientInformation.browserVersion}}" aria-hidden="true"></i>
+                                            <i class="{{socket.ClientInformation.os | deviceos}}" title="{{socket.ClientInformation.os}} {{socket.ClientInformation.osVersion}}" aria-hidden="true"></i>
+                                        </section>
+                                        <section class="actions">
+                                            <span>{{socket.ClientInformation.windowTitle}}</span>
+                                        </section>
+                                    </section>
+                                </div>
+                                
+                            </li>
+                    </ul>
                 </div>
-                <div class="map col-lg-8 col-sm-9 col-md-6 xs-hidden">
-                    <div id="map_container"></div>
-	                <div id="map"></div>
+                <div class="col-lg-8 col-sm-9 col-md-6 xs-hidden no-padding map">
+                    <div id="map_container">
+                        <div id="map"></div>
+                    </div>
+	                <h3 class="text-center online-users-txt">{{ConnectedSockets.length}} Users online</h3>
                 </div>
             </div>
         </section>
