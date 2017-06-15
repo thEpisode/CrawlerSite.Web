@@ -138,12 +138,12 @@
                         <i title="Expand" class="fa fa-expand pull-right is-button" aria-hidden="true" ng-click="ExpandRATViewer()"></i>
                     </section>
                     <section class="tools-bar">
-                        <i title="Back" class="fa fa-chevron-left icon-disabled is-button" aria-hidden="true"></i>
-                        <i title="Forward" class="fa fa-chevron-right icon-disabled is-button" aria-hidden="true"></i>
-                        <i title="Reload" class="fa fa-repeat is-button" aria-hidden="true"></i>
-                        <i title="Home" class="fa fa-home is-button" aria-hidden="true"></i>
+                        <i title="Back" class="fa fa-chevron-left icon-disabled is-button" aria-hidden="true" ng-click="BackVisor()"></i>
+                        <i title="Forward" class="fa fa-chevron-right icon-disabled is-button" aria-hidden="true" ng-click="ForwardVisor()"></i>
+                        <i title="Reload" class="fa fa-repeat is-button" aria-hidden="true" ng-click="ReloadVisor()"></i>
+                        <i title="Home" class="fa fa-home is-button" aria-hidden="true" ng-click="HomeVisor()"></i>
 
-                        <input type="text" placeholder="Web address" val="" ng-model="CurrentUserPath" />
+                        <input type="text" placeholder="Web address" val="" ng-model="CurrentUserPath" ng-keypress="($event.charCode==13)? NavigateVisor() : return"/>
                         
                         <i title="Options" class="fa fa-bars pull-right icon-disabled is-button" aria-hidden="true"></i>
                     </section>
