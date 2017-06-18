@@ -1,0 +1,23 @@
+@{
+    ViewData["Title"] = "Events";
+    Layout = "~/Views/Shared/_HomeLayout.cshtml";
+}
+
+<section class="main">
+    <div class="container">
+        <div class="row">
+            <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 text-center">
+                <h1>We're working on it</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script>
+        (function(){
+            $('.navbar-nav>li.active').removeClass('active');
+            $('.navbar-nav>li[data-support]').addClass('active');
+        })();
+    </script>
+}

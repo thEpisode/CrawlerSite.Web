@@ -368,7 +368,7 @@ input:-webkit-autofill:active {
 
 
 .btn-danger2 {
-    color: #ffffff;
+    color: #ffffff!important;
     background-color: #d9534f;
     border-color: #d43f3a;
     border-radius: 0!important;
@@ -377,8 +377,8 @@ input:-webkit-autofill:active {
 }
 
 .btn-danger2:hover{
-  color: #ffffff!important;
-  background-color: #d2322d;
-  border-color: #ac2925;
-  border-radius: 0;
+    color: #ffffff!important;
+    background-color: #d2322d!important;
+    border-color: #ac2925!important;
+    border-radius: 0;
 }

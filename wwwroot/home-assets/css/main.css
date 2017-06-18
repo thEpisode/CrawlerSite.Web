@@ -5,7 +5,6 @@ body {
     font-weight: 300;
     font-size: 16px;
     color: #555;
-    padding-top: 50px;
 
     -webkit-font-smoothing: antialiased;
     -webkit-overflow-scrolling: touch;
@@ -67,29 +66,68 @@ a:after {
     padding: 0;
 }
 
+.navbar-default{
+    background-color: transparent;
+    border-color: transparent;
+    position: absolute;
+    display: block;
+    width: 100%;
+}
+.navbar-default .navbar-nav > li > a{
+  color: rgba(51, 51, 51, 1);
+  padding: 5px;
+  margin: 10px;
+}
+.navbar-default .navbar-nav > .active > a{
+  color: rgba(51, 51, 51, 1);
+  font-weight: 400;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.3);
+  transition: all 0.2s ease-in;
+}
+
+.navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a:focus{
+  color: rgba(51, 51, 51, 1);
+  font-weight: 400;
+  background-color: transparent;
+  border-bottom: 1px solid rgba(51, 51, 51, 1);
+  transition: all 0.2s ease-in;
+}
+
+.navbar-default .navbar-nav > li > a{
+  border-bottom: 1px solid rgba(51, 51, 51, 0);
+  transition: all 0.2s ease;
+}
+
+.navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:focus{
+  color: rgba(51, 51, 51, 1);
+  background-color: transparent;
+  border-bottom: 1px solid rgba(51, 51, 51, 0.3);
+  transition: all 0.2s ease;
+}
 
 /* ==========================================================================
    Wrap Sections
    ========================================================================== */
 
 #headerwrap {
-	/*background-color: #34495e;*/
-    /*background: url(../img/bg-pattern.png),#F7ECE3;
-    background: url(../img/bg-pattern.png),-webkit-linear-gradient(to left,#C3D6D6,#F7ECE3);
-    background: url(../img/bg-pattern.png),linear-gradient(to left,#C3D6D6,#F7ECE3);*/
+	background-color: #34495e;
+  background: url(../img/headerwrap.jpg);
+  background-size: cover;
 	padding-top: 20px;
+  height: 100vh;
 }
 
 #headerwrap h1 {
-	margin-top: 30px;
-	color: #333;
+	margin-top: 30vh;
+	color: #4f4f4f;
 	font-size: 50px;
-  font-weight: 100;
+  font-weight: 300;
 	
 }
 
 #headerwrap h3 {
-	color: #85919d;
+	color: #5f666d;
   font-size: 25px;
   font-weight: 300;
 }
@@ -392,6 +430,10 @@ sup, .small {
  overflow: hidden;
 }
 
+.integrations{
+  background-color: #eaeaea;
+}
+
 .what-is h2{
   padding-left: 40px;
   margin-bottom: 10px;
@@ -633,4 +675,9 @@ only screen and (                min-resolution: 2dppx) {
   text-align: left;
   color: #85919d;
   position: relative;
+}
+
+.main{
+  padding-top: 30vh;
+  margin-bottom: 30vh;
 }

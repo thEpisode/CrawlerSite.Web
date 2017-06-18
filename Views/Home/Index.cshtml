@@ -4,53 +4,23 @@
 }
 
 <div id="headerwrap">
-	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 animate-box text-center" data-animate-effect="fadeIn">
-				<h1>Welcome To <b class="app-name">Crawler Site</b></h1> 
-				<h3>Understanding your users has never been so easy</h3>
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+				<h1 class="animate-box" data-animate-effect="fadeIn">Any Company, Any Web App, Any Platform</h1> 
+				<h3 class="animate-box" data-animate-effect="fadeIn">Understanding your users has never been so easy</h3>
 				<br>
-			</div>
-	</div>
-	<div class="row">
-		<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 text-center">
-				<div class="col-lg-2 col-md-12 col-sm-12 col-xs-12 animate-box col-lg-offset-1" data-animate-effect="fadeInRight" data-animate-time="500">
-					<h5>Easy to understand</h5>
-					<p>We make everything for you, only select your site and enjoy.</p>
-					<img class="hidden-xs hidden-sm hidden-md" src="~/home-assets/img/arrow1.png">
-				</div>
-				<div class="col-lg-6 animate-box" data-animate-effect="fadeIn">
-					<img class="img-responsive" src="~/home-assets/img/app-bg.jpg" alt="">
-				</div>
-				<div class="col-lg-2 animate-box" data-animate-effect="fadeInLeft" data-animate-time="200">
-					<br>
-					<img class="hidden-xs hidden-sm hidden-md" src="~/home-assets/img/arrow2.png">
-					<h5>Easy to use</h5>
-					<p>With only 3 steps you can setting up your Web App.</p>
-				</div>
-			</div>
-	</div>
-			
-			
-			
-
-	
-</div><!--/ #headerwrap -->
-
-<!-- INTRO WRAP -->
-<div id="intro" class="row">
-		<div>
-			<div class="col-lg-10 col-sm-12 col-md-12 col-xs-12 col-lg-offset-1">
-				<h2 class="intro-header animate-box">Stop Improvising.</h2>
-				<h2 class="intro-header animate-box">Start analyzing.</h2>
+				<a href="@Url.Action("Register", "Home")" class="btn btn-danger btn-lg">Get Started</a>
+				<br>
+				<a href="@Url.Action("Index", "Services")" class="btn btn-default">Learn more</a>
 			</div>
 		</div>
-		<br>
-		
-	<div class="overlay"></div>
-</div><!--/ #introwrap -->
+	</div>
+</div>
 
-<section class="what-is row">
-
+<section class="what-is">
+	<div class="container">
+		<div class="row">
 			<div class="hidden-xs">
 				<img class="principal-features-laptop" src="~/home-assets/img/laptop.png" alt="">
 			</div>	
@@ -101,17 +71,19 @@
 					</li>
 				</ul>
 			</div>
-
+		</div>
+	</div>
 </section>
 
-<section class="integrations row">
-				
+<section class="integrations">
+	<div class="container">
+		<div class="row">
 			<div class="col-lg-6 col-md-6 col-sm-6 col-xs-12 col-lg-offset-1">
 				<h2>Integrations</h2>
 				<ul class="integration-features">
 					<li class="animate-box" data-animate-effect="fadeIn">
 						<div class="right-position">
-							<h4>Slack integration</h4>
+							<h4>Slack</h4>
 							<p>Unparalleled accuracy. Genuine impact. Leverage high-fidelity, data-rich desktop and mobile heatmaps to gain true insight into user intent.</p>
 						</div>
 						<div><span class="ti-check"></span></div>
@@ -136,22 +108,26 @@
 			<div class="hidden-xs col-sm-6 col-md-6 col-lg-3">
 				<img class="integration-features-mobile" src="~/home-assets/img/nexus.png" alt="">
 			</div>
-
+		</div>
+	</div>
 </section>
 
 <!-- FEATURES WRAP -->
-<div id="features" class="row">
-
+<div id="features">
+	<div class="container">
+		<div class="row">
 			<div class="col-lg-8 col-sm-12 col-xs-12 col-md-8 col-lg-offset-2 col-md-offset-2 text-center">
 				<img class="img-responsive center-img" src="~/home-assets/img/img_devices.png" alt="">
 				<h2 class="animate-box" data-animate-effect="fadeIn">Work anytime, anywhere</h2>
 				<p class="animate-box" data-animate-effect="fadeIn">Our platform every day improve user experience to run in every browser, feel free to use without limitations or enterprise restrictions. Develop lasting relationships with your most loyal customers by delivering relevant experiences at every interaction.</p>
 			</div>
-	
+		</div>
+	</div>
 </div>
 
-<div id="showcase" class="row">
-	
+<div id="showcase">
+	<div class="container">
+		<div class="row">
 			<div class="col-lg-10 col-sm-12 col-xs-12 col-md-12 col-lg-offset-1">
 				<aside class="stats col-lg-4 col-sm-3 col-md-3 col-sm-12">
 					<h5>At a glance</h5>
@@ -165,9 +141,19 @@
 				</aside>
 				<div class="join-us col-lg-7 col-sm-3 col-md-3 col-sm-12 col-lg-offset-1">
 					<h3>Let’s get started. Where will you experiment next?</h3>
-					<a href="/Home/Register" class="btn btn-default btn-default-border-white btn-lg" title="">LEARN MORE</a>
-					<a href="/Home/Register" class="btn btn-danger btn-lg" title="">TRY IT FOR FREE</a>
+					<a href="@Url.Action("Index", "Services")" class="btn btn-default btn-default-border-white btn-lg" title="">LEARN MORE</a>
+					<a href="@Url.Action("Register", "Home")" class="btn btn-danger btn-lg" title="">TRY IT FOR FREE</a>
 				</div>
 			</div>
-
+		</div>
+	</div>
 </div>	
+
+@section Scripts{
+    <script>
+        (function(){
+            $('.navbar-nav>li.active').removeClass('active');
+            $('.navbar-nav>li[data-home]').addClass('active');
+        })();
+    </script>
+}

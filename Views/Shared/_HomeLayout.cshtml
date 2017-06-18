@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html amp lang="en">
+<html lang="en">
 
 <head>
     <meta charset="utf-8">
-    <script async src="https://cdn.ampproject.org/v0.js"></script>
+    
     <title>@ViewBag.Title | Crawler Site</title>
 
     <link rel="canonical" href="https://www.crawlersite.com" />
@@ -48,71 +48,8 @@
     <meta property="og:description" content="Easy way to truly understand your web and mobile site visitors" />
     <meta property="og:site_name" content="Crawler Site" />
 
-    <script type="application/ld+json">
-    {
-        "@@context": "http://schema.org",
-        "@@type": "NewsArticle",
-        "mainEntityOfPage": "https://www.crawlersite.com",
-        "headline": "Crawler Site",
-        "datePublished": "2017-05-25T12:02:41Z",
-        "dateModified": "2017-05-25T12:02:41Z",
-        "description": "Easy way to truly understand your web and mobile site visitors",
-        "author": {
-            "@@type": "Person",
-            "name": "Crawler Site Inc."
-        },
-        "publisher": {
-            "@@type": "Organization",
-            "name": "Crawler Site In.c",
-            "logo": {
-                "@@type": "ImageObject",
-                "url": "https://www.crawlersite.com/Images/CrawlerLogo.png",
-                "width": 300,
-                "height": 208
-            }
-        },
-        "image": {
-            "@@type": "ImageObject",
-            "url": "https://www.crawlersite.com/Images/CrawlerLogo.png",
-            "width": 300,
-            "height": 208
-        }
-    }
-    </script>
-    <style amp-boilerplate>
-        body{
-            -webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;
-            -moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;
-            -ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;
-            animation:-amp-start 8s steps(1,end) 0s 1 normal both
-        }
-            @@-webkit-keyframes -amp-start{
-                from{visibility:hidden}
-                to{visibility:visible}
-            }
-            @@-moz-keyframes -amp-start
-            {
-                from{visibility:hidden}
-                to{visibility:visible}
-            }
-            @@-ms-keyframes -amp-start{
-                from{visibility:hidden}
-                to{visibility:visible}
-            }
-            @@-o-keyframes -amp-start{
-                from{visibility:hidden}
-                to{visibility:visible}
-            }
-            @@keyframes -amp-start{
-                from{visibility:hidden}
-                to{visibility:visible}
-            }
-            </style>
-            <noscript>
-                <style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style>
-            </noscript>
+   
     
-
     <environment names="Development">
         <!-- Bootstrap core CSS -->
         <link href="~/home-assets/css/bootstrap.css" rel="stylesheet">
@@ -164,8 +101,7 @@
 
 <body data-spy="scroll" data-offset="0" data-target="#navigation">
 
-    <!-- Fixed navbar -->
-    <div id="navigation" class="navbar navbar-default navbar-fixed-top">
+    <div id="navigation" class="navbar navbar-default">
         <div class="container">
             <div class="navbar-header">
                 <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
@@ -176,28 +112,20 @@
                 <a class="navbar-brand crawler-logo" href="@Url.Action("Index", "Home")"><b class="app-name">Crawler Site</b></a>
             </div>
             <div class="navbar-collapse collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active"><a href="@Url.Action("Index", "Home")">Home</a></li>
-                    <li><a href="@Url.Action("Services", "Home")">Services</a></li>
-                    <li><a href="@Url.Action("Pricing", "Home")">Pricing</a></li>
-                    <li><a href="@Url.Action("Support", "Home")">Support</a></li>
+                <ul class="nav navbar-nav pull-right">
+                    <li data-home><a href="@Url.Action("Index", "Home")">Home</a></li>
+                    <li data-services><a href="@Url.Action("Index", "Services")">Services</a></li>
+                    <li data-pricing><a href="@Url.Action("Index", "Pricing")">Pricing</a></li>
+                    <li data-support><a href="@Url.Action("Index", "Support")">Support</a></li>
 
-                    <li><a href="@Url.Action("Register", "Home")" class="btn btn-danger hidden-lg hidden-md hidden-sm" style="color: #ffffff;">TRY IT FOR FREE</a></li>
-                    <li><a href="@Url.Action("Login", "Home")" class="btn btn-default  hidden-lg hidden-md hidden-sm">Login</a></li>
+                    <li data-register><a href="@Url.Action("Register", "Home")" class="btn btn-danger2" data-toggle="tooltip" data-placement="bottom" title="No Credit Card Required">TRY IT FOR FREE</a></li>
+                    <li data-login><a href="@Url.Action("Login", "Home")" class="btn btn-default">Login</a></li>
                 </ul>
             </div>
-            <!--/.nav-collapse -->
-        </div>
-        <div class="nav-bar-right hidden-xs">
-            <a href="@Url.Action("Register", "Home")" class="btn btn-danger" data-toggle="tooltip" data-placement="left" title="No Credit Card Required">TRY IT FOR FREE</a>
-            <!--https://picjumbo.com/macbook-pro-keyboard-detail/-->
-            <a href="@Url.Action("Login", "Home")" class="btn btn-default">Login</a>
         </div>
     </div>
 
-    <div class="container-fluid">
-        @RenderBody()
-    </div>
+    @RenderBody()
 
     <div id="footerwrap">
         <div class="container">
@@ -229,37 +157,37 @@
                     <div class="col-lg-2">
                         <h3>RESOURCES</h3>
                         <ul>
-                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">Documentation</a></li>
-                            <li><a href="#" class="footer-link">Chat</a></li>
-                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">Case Studies</a></li>
-                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">What is a heatmap?</a></li>
-                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">What is A/B Testing?</a></li>
-                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">What is Remote Assistance?</a></li>
-                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">What is Funnel?</a></li>
-                            <li><a href="@Url.Action("Documentation", "Home")" class="footer-link">UX & Usability</a></li>
+                            <li><a href="@Url.Action("Index", "Documentation")" class="footer-link">Documentation</a></li>
+                            <li><a href="@Url.Action("Index", "Support")" class="footer-link">Support</a></li>
+                            <li><a href="@Url.Action("Index", "Cases")" class="footer-link">Case of use</a></li>
+                            <li><a href="@Url.Action("Index", "Documentation")" class="footer-link">What is a heatmap?</a></li>
+                            <li><a href="@Url.Action("Index", "Documentation")" class="footer-link">What is A/B Testing?</a></li>
+                            <li><a href="@Url.Action("Index", "Documentation")" class="footer-link">What is Remote Assistance?</a></li>
+                            <li><a href="@Url.Action("Index", "Documentation")" class="footer-link">What is Funnel?</a></li>
+                            <li><a href="@Url.Action("Index", "Documentation")" class="footer-link">UX & Usability</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-2">
                         <h3>COMPANY</h3>
                         <ul>
-                            <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">Why Crawler Site?</a></li>
-                            <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">Events</a></li>
-                            <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">About us</a></li>
-                            <li><a href="@Url.Action("Blog", "Home")" class="footer-link">Blog</a></li>
-                            <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">Solution Partners</a></li>
-                            <li><a href="@Url.Action("AboutUS", "Home")" class="footer-link">Non profits</a></li>
-                            <li><a href="@Url.Action("Contact", "Home")" class="footer-link">Contact us</a></li>
+                            <li><a href="@Url.Action("WhyUs", "Company")" class="footer-link">Why Crawler Site?</a></li>
+                            <li><a href="@Url.Action("Events", "Company")" class="footer-link">Events</a></li>
+                            <li><a href="@Url.Action("AboutUS", "Company")" class="footer-link">About us</a></li>
+                            <li><a href="@Url.Action("Index", "Blog")" class="footer-link">Blog</a></li>
+                            <li><a href="@Url.Action("AboutUS", "Company")" class="footer-link">Solution Partners</a></li>
+                            <li><a href="@Url.Action("NonProfits", "Company")" class="footer-link">Non profits</a></li>
+                            <li><a href="@Url.Action("Index", "Contact")" class="footer-link">Contact us</a></li>
                         </ul>
                     </div>
 
                     <div class="col-lg-2 footer-separator">
                         <h3>LEGAL</h3>
                         <ul>
-                            <li><a href="@Url.Action("Terms", "Home")" class="footer-link">Terms & conditions</a></li>
-                            <li><a href="@Url.Action("Privacy", "Home")" class="footer-link">Privacy policy</a></li>
-                            <li><a href="@Url.Action("Cookies", "Home")" class="footer-link">Cookies information</a></li>
-                            <li><a href="@Url.Action("Security", "Home")" class="footer-link">Security</a></li>
+                            <li><a href="@Url.Action("Terms", "Legal")" class="footer-link">Terms & conditions</a></li>
+                            <li><a href="@Url.Action("PrivacyPolicy", "Legal")" class="footer-link">Privacy policy</a></li>
+                            <li><a href="@Url.Action("Cookies", "Legal")" class="footer-link">Cookies information</a></li>
+                            <li><a href="@Url.Action("Security", "Legal")" class="footer-link">Security</a></li>
                         </ul>
                     </div>
                 </div>
