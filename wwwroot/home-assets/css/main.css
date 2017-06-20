@@ -123,7 +123,6 @@ a:after {
 	color: #4f4f4f;
 	font-size: 50px;
   font-weight: 300;
-	
 }
 
 #headerwrap h3 {
@@ -677,7 +676,36 @@ only screen and (                min-resolution: 2dppx) {
   position: relative;
 }
 
-.main{
+.main-working{
   padding-top: 30vh;
   margin-bottom: 30vh;
+}
+
+.main.without-margin{
+  margin-bottom: 0!important;
+  padding-bottom: 30vh;
+}
+
+.main.with-secondary-background{
+  background-color: #34495e;
+  background: url(../img/headerwrap-secondary.jpg);
+  background-size: cover;
+	padding-top: 20px;
+  height: 100vh;
+}
+
+.main h1 {
+	margin-top: 10%;
+	color: #4f4f4f;
+	font-size: 50px;
+  font-weight: 300;
+}
+
+.main p{
+  color: #50575e;
+}
+
+.btn-contactus{
+  margin: 10px 0;
+  min-width: 200px;
 }

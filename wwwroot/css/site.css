@@ -382,3 +382,8 @@ input:-webkit-autofill:active {
     border-color: #ac2925!important;
     border-radius: 0;
 }
+
+.main{
+  padding-top: 15vh;
+  margin-bottom: 30vh;
+}

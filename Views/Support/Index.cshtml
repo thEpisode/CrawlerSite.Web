@@ -1,13 +1,21 @@
 @{
-    ViewData["Title"] = "Services";
+    ViewData["Title"] = "Support";
     Layout = "~/Views/Shared/_HomeLayout.cshtml";
 }
 
-<section class="main">
+<section class="main without-margin with-secondary-background">
     <div class="container">
         <div class="row">
             <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12 text-center">
-                <h1>We're working on it</h1>
+                <h1>We’d love to hear from you</h1>
+
+                <p class="text-center">Please feel free to choose one and we response as soon posible</p>
+
+                <a href="#" class="btn btn-lg btn-contactus btn-chat btn-primary">Chat with us <i class="fa fa-comments-o" aria-hidden="true"></i></a>
+                <br>
+                <a href="@Url.Action("Index","Contact")" class="btn btn-lg btn-contactus btn-message btn-info">Send message <i class="fa fa-commenting-o" aria-hidden="true"></i></a>
+                <br>
+                <a href="mailto:info@crawlersite.com" class="btn btn-lg btn-contactus btn-email btn-warning">Send an email <i class="fa fa-envelope-o" aria-hidden="true"></i></a>
             </div>
         </div>
     </div>
@@ -19,5 +27,12 @@
             $('.navbar-nav>li.active').removeClass('active');
             $('.navbar-nav>li[data-support]').addClass('active');
         })();
+
+        $('.btn-chat').click(function(e){
+            e.preventDefault();
+
+            $crisp.do('chat:open');
+        })
+        
     </script>
 }
