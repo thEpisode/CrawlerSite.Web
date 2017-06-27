@@ -9,38 +9,40 @@
 }
 
 <section ng-controller="IpController" ng-init="InitializeAddView()">
-	<div class="card col-sm-6 col-sm-offset-3">
-		<h2 class="text-center">Add new IP</h2>
 
-		<div class="col-lg-12">
-			<form  class="form-horizontal" ng-submit="AddIp()">
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Site:</label>
-					<div class="col-sm-10">
-						<select class="form-control sites-list" ng-options="site.Name disable when site.ApiKey == '0' for site in Sites track by site.ApiKey" ng-model="siteOption" ng-change="OnSiteSelected()">
-						</select>
+	<div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-lg-offset-3">
+		<div class="card">
+			<div class="header">
+				<h4 class="title text-center">Add new IP</h4>
+				<p class="category">Warning: You may block all data from this new IP</p>
+			</div>
+			
+			<div class="content">
+				<form  class="form-horizontal" ng-submit="AddIp()">
+					<div class="form-group">
+						<label class="col-sm-2 control-label">Friendly name:</label>
+						<div class="col-sm-10">
+							<input class="form-control" id="Name" name="Name" type="text" placeholder="Development team" ng-model="Site.Name" />
+						</div>
 					</div>
-				</div>
-				<div class="form-group">
-					<label class="col-sm-2 control-label">Name</label>
-					<div class="col-sm-10">
-						<input class="form-control" id="Name" name="Name" type="text" placeholder="Development team" ng-model="Site.Name" />
-					</div>
-				</div>
 
-				<div class="form-group">
-					<label class="col-sm-2 control-label">IP</label>
-					<div class="col-sm-10">
-						<input class="form-control" id="IP" name="IP" type="text" placeholder="181.49.66.xxx" ng-model="Site.IP" />
+					<div class="form-group">
+						<label class="col-sm-2 control-label">IP:</label>
+						<div class="col-sm-10">
+							<input class="form-control" id="IP" name="IP" type="text" placeholder="181.49.66.xxx" ng-model="Site.IP" />
+						</div>
 					</div>
-				</div>
 
-				<div class="text-center pull-right">
-					<input type="submit" id="Createbtn"  value="Create" class="btn btn-danger btn-wd btn-fill" enabled/>
-				
-					<a class="btn btn-danger btn-wd"  href="@Url.Action("Index")" >Cancel</a>
-				</div>
-			</form>
+					<div class="form-group">
+						<div class="text-center">
+							<input type="submit" id="Createbtn"  value="Create" class="btn btn-danger btn-wd btn-fill" enabled/>
+						
+							<a class="btn btn-danger btn-wd"  href="@Url.Action("Index")" >Cancel</a>
+						</div>
+					</div>
+				</form>
+			</div>
 		</div>
 	</div>
+	
 </section>
