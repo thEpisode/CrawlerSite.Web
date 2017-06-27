@@ -20,6 +20,14 @@
 			<div class="content">
 				<form  class="form-horizontal" ng-submit="AddIp()">
 					<div class="form-group">
+						<label class="col-sm-2 control-label">Site:</label>
+						<div class="col-sm-10">
+							<select class="form-control sites-list" ng-options="site.Name disable when site.ApiKey == '0' for site in Sites track by site.ApiKey" ng-model="siteOption" ng-change="OnSiteSelected()">
+							</select>
+						</div>
+					</div>
+
+					<div class="form-group">
 						<label class="col-sm-2 control-label">Friendly name:</label>
 						<div class="col-sm-10">
 							<input class="form-control" id="Name" name="Name" type="text" placeholder="Development team" ng-model="Site.Name" />

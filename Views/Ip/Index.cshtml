@@ -21,14 +21,17 @@
         <div class="content">
             <div>
                 <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                        <a href="@Url.Action("Add")" class="btn btn-action"><i class="ti-plus"></i> New Ip</a>
+                    <div class="col-lg-3 col-md-3 col-sm-6 col-xs-12">
+                        <select class="sites-list form-control" ng-options="site.Name for site in Sites track by site.ApiKey" ng-model="siteOption" ng-change="OnSiteSelected()"></select>
+                    </div>
+                    <a href="@Url.Action("Add")" class="btn btn-action"><i class="ti-plus"></i> New Ip</a>
                 </div>
                 
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <table class="table table-hover table-border-middle">
                         <thead>
                             <tr>
-                                <td class="text-center">
+                                <td>
                                     <a href="#" alt="Sort by IP" class="sort-element" ng-click="sortType = 'IP'; sortReverse = !sortReverse">
                                         IP
                                         <span ng-hide="sortType == 'IP'" class="ti-exchange-vertical"></span>
@@ -36,7 +39,7 @@
                                         <span ng-show="sortType == 'IP' && sortReverse" class="ti-angle-up"></span>
                                     </a>
                                 </td>
-                                <td class="text-center">
+                                <td>
                                     <a href="#" alt="Sort by friendly name" class="sort-element" ng-click="sortType = 'Name'; sortReverse = !sortReverse">
                                         Friendly Name
                                         <span ng-hide="sortType == 'Name'" class="ti-exchange-vertical"></span>
@@ -51,15 +54,12 @@
 
                         <tbody>
                             <tr ng-repeat="ip in Ips  | orderBy:sortType:sortReverse | filter:searchIP">
-                                <td class="text-center">{{ ip.IP }}</td>
-                                <td class="text-center">{{ ip.Name }}</td>
-                                <td width="7%" class="text-center">
+                                <td>{{ ip.IP }}</td>
+                                <td>{{ ip.Name }}</td>
+                                <td class="text-center">
                                     <a href="@Url.Action("Edit")?Id={{ ip._id }}" class=" list-actions ti-pencil"></a>
                                     <a href="@Url.Action("Delete")?Id={{ ip._id }}" class=" list-actions ti-trash"></a>
                                 </td>
-
-
-                                @*<td><a href="@Url.Action("Edit")?Id={{ ip._id }}" class=" list-actions glyphicon-pencil"></a>  <a href="@Url.Action("Delete")?Id={{ ip._id }}" class=" list-actions glyphicon-trash"></a></col>*@
                             </tr>
                         </tbody>
                     </table>

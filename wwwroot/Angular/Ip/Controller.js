@@ -23,8 +23,6 @@ Flinger.controller("IpController", function ($scope, IpService, SiteService) {
                 $Flinger.Loader.Finish();
 
                 if (response.data.result.length > 0) {
-
-
                     IpService.GetIpByApiKey(response.data.result[0].ApiKey).then(function (response) {
                         console.log(response.data)
                         if (response.data.success) {
@@ -55,7 +53,7 @@ Flinger.controller("IpController", function ($scope, IpService, SiteService) {
         },
             function (response) {
                 console.log(response);
-                $Flinger.Loader.Finish()
+                
             })
     }
 
@@ -98,7 +96,7 @@ Flinger.controller("IpController", function ($scope, IpService, SiteService) {
         var selectedSite = $scope.siteOption;
 
         IpService.CreateIp(
-            selectedSite,
+            selectedSite.ApiKey,
             $scope.Site.IP,
             $scope.Site.Name,
             1
@@ -106,7 +104,7 @@ Flinger.controller("IpController", function ($scope, IpService, SiteService) {
             .then(function (response) {
                 console.log(response)
                 if (response.data != undefined && response.data != null) {
-                    // edit succesfully
+                    // Added succesfully
                     location.assign("/Ip/")
                 }
                 else {
