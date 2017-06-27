@@ -27,14 +27,14 @@
                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="createUserLabel">City</label>
-                                <input type="text" name="City" id="City" class="form-control" placeholder="City" ng-model="User.City" required>
+                                <label class="createUserLabel">Country</label>
+                                <input type="text" name="Country" id="Country"  type="text" class="form-control" placeholder="Country" ng-model="User.Country" required>
                             </div>
                         </div>
                         <div class="col-md-6">
                             <div class="form-group">
-                                <label class="createUserLabel">Country</label>
-                                <input type="text" name="Country" id="Country"  type="text" class="form-control" placeholder="Country" ng-model="User.Country" required>
+                                <label class="createUserLabel">City</label>
+                                <input type="text" name="City" id="City" class="form-control" placeholder="City" ng-model="User.City" required>
                             </div>
                         </div>
                     </div>
@@ -96,21 +96,21 @@
                     </div>
                     
                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                        <div class="Inlinebtn col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="switch-inline col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <label class="control-label createUserLabel">Change Password At Logon</label>
-                            <div class="onoffswitch">
-                                <input type="checkbox" name="ChangeOnSign" class="onoffswitch-checkbox" id="ChangeOnSign" ng-model="User.ResetPassword">
-                                <label class="onoffswitch-label" for="ChangeOnSign"></label>
+                            <div class="switch">
+                                <input type="checkbox" name="ChangeOnSign" class="switch-checkbox" id="ChangeOnSign" ng-model="User.ResetPassword">
+                                <label class="switch-label" for="ChangeOnSign"></label>
                             </div>
                         </div>
                     </div>
 
                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
-                        <div class="Inlinebtn col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <div class="switch-inline col-xs-12 col-sm-12 col-md-12 col-lg-12">
                             <label class="control-label createUserLabel">Create a Random Password</label>
-                            <div class="onoffswitch">
-                                <input type="checkbox" name="onoffswitch" class="onoffswitch-checkbox" id="myonoffswitch" checked ng-model="User.RandomPassword">
-                                <label class="onoffswitch-label" for="myonoffswitch"></label>
+                            <div class="switch">
+                                <input type="checkbox" name="switch" class="switch-checkbox" id="myswitch" checked ng-model="User.RandomPassword">
+                                <label class="switch-label" for="myswitch"></label>
                             </div>
                         </div>
                     </div>

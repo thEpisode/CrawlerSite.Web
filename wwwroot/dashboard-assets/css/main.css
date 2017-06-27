@@ -69,9 +69,14 @@
 
 /* ---- Connection Filtering styles ---- */
 
-.List-box-icons{
-     color: #66615b;
+.list-actions{
+  color: #66615b;
+  font-size: 1.2em;
+  margin: 10px;
+}
 
+.list-actions:hover, .list-actions:focus{
+  color: #D61010;
 }
 
 .Filtering-box{
@@ -312,7 +317,7 @@ height: 111px;
     box-shadow:none;
 }
 .label-info{
-    background-color: #EB5E28!important;
+    background-color: #D61010!important;
 }
 
 .bootstrap-tagsinput>input::-webkit-input-placeholder { /* WebKit, Blink, Edge */
@@ -342,37 +347,37 @@ height: 111px;
 }
 
 label.error:not(.form-control) {
-    color: #EB5E28;
+    color: #D61010;
     font-weight: 300;
     font-size: 0.8em;
 }
 
 .has-error .form-control, .form-control.error {
   background-color: #FFC0A4;
-  color: #EB5E28;
-  border-color: #EB5E28;
+  color: #D61010;
+  border-color: #D61010;
 }
 
 
-.onoffswitch {
+.switch {
     position: relative;
     margin-left: 12px;
     -webkit-user-select:none; -moz-user-select:none; -ms-user-select: none;
 }
 
-.Inlinebtn {
+.switch-inline {
     display: inline-flex;
-    padding: 25px;
+    margin-bottom:20px;
 }
 .hiddenpass
 {
     display: none;
 }
 
-.onoffswitch-checkbox {
+.switch-checkbox {
     display: none;
 }
-.onoffswitch-label {
+.switch-label {
     display: block; overflow: hidden; cursor: pointer;
     height: 25px; 
     padding: 0; 
@@ -382,26 +387,50 @@ label.error:not(.form-control) {
     
     transition: background-color 0.3s ease-in;
 }
-.onoffswitch-label:before {
-    content: "";
-    display: block;
-    width: 25px;
-    height: 25px;
-    margin: 0px;
-    background: #FFFFFF;
-    position: absolute; top: 0; bottom: 0;
-    right: 25px;
-    border: 2px solid #E3E3E3; border-radius: 25px;
-    transition: all 0.3s ease-in 0s; 
+.switch-label:before {
+  content: "";
+  display: block;
+  width: 25px;
+  height: 25px;
+  margin: 0px;
+  background: #FFFFFF;
+  position: absolute; top: 0; bottom: 0;
+  right: 25px;
+  border: 2px solid #E3E3E3; border-radius: 25px;
+  transition: all 0.3s ease-in 0s; 
 }
-.onoffswitch-checkbox:checked + .onoffswitch-label {
+.switch-label-small {
+    display: block; overflow: hidden; cursor: pointer;
+    height: 16px; 
+    padding: 0; 
+    line-height: 25px; 
+    width: 25px;
+    border: 2px solid #E3E3E3; border-radius: 25px;
+    
+    transition: background-color 0.3s ease-in;
+}
+.switch-label-small:before{
+  content: "";
+  display: block;
+  width: 15px;
+  height: 15px;
+  margin: 0px;
+  background: #FFFFFF;
+  position: absolute; top: 1px; bottom: 0;
+  right: 10px;
+  border: 2px solid #E3E3E3; border-radius: 25px;
+  transition: all 0.3s ease-in 0s; 
+}
+.switch-checkbox:checked + .switch-label, .switch-checkbox:checked + .switch-label-small {
     background-color: #B33C12;
 }
-.onoffswitch-checkbox:checked + .onoffswitch-label, .onoffswitch-checkbox:checked + .onoffswitch-label:before {
+.switch-checkbox:checked + .switch-label, .switch-checkbox:checked + .switch-label:before,
+.switch-checkbox:checked + .switch-label-small, .switch-checkbox:checked + .switch-label-small:before{
    border-color: #B33C12;
 }
-.onoffswitch-checkbox:checked + .onoffswitch-label:before {
-    right: 0px; 
+.switch-checkbox:checked + .switch-label:before,
+.switch-checkbox:checked + .switch-label-small:before {
+    right: 0px;
 }
 
 .card .card-checkboxes {
@@ -426,7 +455,7 @@ label.error:not(.form-control) {
 }
 
 .choice.active .card-checkboxes {
-  color: #EB5E28;
+  color: #D61010;
 }
 
 .register {
@@ -1143,4 +1172,44 @@ a[href^="http://maps.google.com/maps"]{display:none !important}
             transform: scale(1.2, 1.2);
     opacity: 0;
   }
+}
+
+.search-box{
+  position: absolute;
+  top: 25px;
+  right: 0;
+}
+
+.btn-action>i{
+  color: #252422;
+  margin-right: 10px;
+}
+
+.btn-action{
+  color: #a6a6a6;
+  background-color: transparent;
+  border-color: transparent;
+  border-radius: 0!important;
+  min-width: 140px;
+  border-width: 0px!important;
+}
+
+.btn-action:hover{
+    color: #ffffff!important;
+    background-color: #d2322d!important;
+    border-color: #ac2925!important;
+    border-radius: 0!important;
+}
+
+.btn-action:hover ~ .btn-action>i{
+  color: #ffffff!important;
+}
+
+.sort-element{
+  font-weight: 700;
+  color: #252422;
+}
+
+.sort-element:hover, .sort-element:focus{
+  color: #D61010;
 }

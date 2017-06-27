@@ -24,7 +24,7 @@ namespace CrawlerSite.Controllers
 
         public IActionResult Add() => View();
 
-        public IActionResult AddReturn() => View();
+        public IActionResult Invited() => View();
 
         public IActionResult Edit(string id) => View();
 

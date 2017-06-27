@@ -1,0 +1,92 @@
+@{
+    ViewBag.Title = "Users";
+}
+
+<section ng-controller="UserController" ng-init="InitializeInvitedView()">
+    
+    <div class="col-xs-12 col-sm-8 col-md-8 col-lg-8 col-sm-offset-2">
+        <div class="card">
+            <div class="header">
+                <h4 class="title text-center">{{ User.FirstName + ' ' + User.LastName }}</h4>
+                <p class="category text-center">Was succesfully created</p>
+            </div>
+            <div class="content">
+                <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
+                    <table class="table table-bordered table-hover">
+                        <thead>
+                            <tr></tr>
+                            <tr></tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <th>First Name:</th>
+                                <td>{{ User.FirstName }}</td>
+                            </tr>
+                            <tr>
+                                <th>Last name:</th>
+                                <td>{{ User.LastName}}</td>
+                            </tr>
+                            <tr>
+                                <th>City:</th>
+                                <td>{{ User.City}}</td>
+                            </tr>
+                            <tr>
+                                <th>Country:</th>
+                                <td>{{ User.Country}}</td>
+                            </tr>
+                            <tr>
+                                <th>Email address:</th>
+                                <td>{{ User.Email}}</td>
+                            </tr>
+                            <tr>
+                                <th>Password:</th>
+                                <td>{{ User.Password}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <form>
+                    <div class="switch-inline col-xs-12 col-sm-12 col-md-12 col-lg-12">
+                        <h4 class="action">Send password to {{User.Email}}</h4>
+                        <div class="switch">
+                            <input type="checkbox" name="switch" class="switch-checkbox" id="myswitch" checked>
+                            <label class="switch-label-small" for="myswitch"></label>
+                        </div>
+                    </div>
+                    
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenpass" id="Sendemail">
+                        <div class="form-group">
+                            <label for="emailto">Send the account information to:</label>
+                            <input id="emailto" type="email" class="form-control border-input" placeholder="Email">
+                        </div>
+                    </div>
+                    
+                    <div class="text-center pull-right">  
+                        <a class="btn btn-danger btn-wd"  href="@Url.Action("Index", "User")" >Close</a>
+                    </div>
+
+                    <div class="clearfix"></div>
+                </form>
+            </div>
+         </div>
+    </div>
+</section>
+
+@section Scripts{
+    <script src="~/js/countries.js"></script>
+    <script src="@Url.Content("~/Angular/User/Service.js")"></script>
+    <script src="@Url.Content("~/Angular/User/Controller.js")"></script>
+    <script src="@Url.Content("~/Angular/Site/Service.js")"></script>
+    <script>
+        $('#myswitch').on('click', function () {
+             if (!this.checked) {
+                 $('#Sendemail').removeClass('hiddenpass');
+             }
+             else {
+                 $('#Sendemail').addClass('hiddenpass');
+             }
+         });
+    </script>
+}
+

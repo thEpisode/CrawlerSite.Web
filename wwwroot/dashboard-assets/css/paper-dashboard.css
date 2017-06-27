@@ -16,7 +16,7 @@
 }
 
 .ct-red {
-  stroke: #EB5E28 !important;
+  stroke: #D61010 !important;
 }
 
 h1, .h1, h2, .h2, h3, .h3, h4, .h4, h5, .h5, h6, .h6, p, .navbar, .brand, a, .td-name, td {
@@ -139,7 +139,7 @@ strong {
 }
 
 .icon-danger {
-  color: #EB5E28;
+  color: #D61010;
 }
 
 .chart-legend .text-primary, .chart-legend .text-primary:hover {
@@ -155,7 +155,7 @@ strong {
   color: #F3BB45;
 }
 .chart-legend .text-danger, .chart-legend .text-danger:hover {
-  color: #EB5E28;
+  color: #D61010;
 }
 
 /*     General overwrite     */
@@ -454,7 +454,7 @@ hr {
 }
 .sidebar[data-active-color="danger"] .nav li.active > a,
 .off-canvas-sidebar[data-active-color="danger"] .nav li.active > a {
-  color: #EB5E28;
+  color: #D61010;
   opacity: 1;
 }
 
@@ -782,24 +782,24 @@ hr {
 }
 
 .navbar .navbar-nav > li > a.btn-danger, .btn-danger {
-  border-color: #EB5E28;
-  color: #EB5E28;
+  border-color: #D61010;
+  color: #D61010;
 }
 .navbar .navbar-nav > li > a.btn-danger:hover, .navbar .navbar-nav > li > a.btn-danger:focus, .navbar .navbar-nav > li > a.btn-danger:active, .navbar .navbar-nav > li > a.btn-danger.active, .open > .navbar .navbar-nav > li > a.btn-danger.dropdown-toggle, .btn-danger:hover, .btn-danger:focus, .btn-danger:active, .btn-danger.active, .open > .btn-danger.dropdown-toggle {
-  background-color: #EB5E28;
+  background-color: #D61010;
   color: rgba(255, 255, 255, 0.7);
-  border-color: #EB5E28;
+  border-color: #D61010;
 }
 .navbar .navbar-nav > li > a.btn-danger:hover .caret, .navbar .navbar-nav > li > a.btn-danger:focus .caret, .navbar .navbar-nav > li > a.btn-danger:active .caret, .navbar .navbar-nav > li > a.btn-danger.active .caret, .open > .navbar .navbar-nav > li > a.btn-danger.dropdown-toggle .caret, .btn-danger:hover .caret, .btn-danger:focus .caret, .btn-danger:active .caret, .btn-danger.active .caret, .open > .btn-danger.dropdown-toggle .caret {
   border-top-color: rgba(255, 255, 255, 0.7);
 }
 .navbar .navbar-nav > li > a.btn-danger.disabled, .navbar .navbar-nav > li > a.btn-danger.disabled:hover, .navbar .navbar-nav > li > a.btn-danger.disabled:focus, .navbar .navbar-nav > li > a.btn-danger.disabled.focus, .navbar .navbar-nav > li > a.btn-danger.disabled:active, .navbar .navbar-nav > li > a.btn-danger.disabled.active, .navbar .navbar-nav > li > a.btn-danger:disabled, .navbar .navbar-nav > li > a.btn-danger:disabled:hover, .navbar .navbar-nav > li > a.btn-danger:disabled:focus, .navbar .navbar-nav > li > a.btn-danger:disabled.focus, .navbar .navbar-nav > li > a.btn-danger:disabled:active, .navbar .navbar-nav > li > a.btn-danger:disabled.active, .navbar .navbar-nav > li > a.btn-danger[disabled], .navbar .navbar-nav > li > a.btn-danger[disabled]:hover, .navbar .navbar-nav > li > a.btn-danger[disabled]:focus, .navbar .navbar-nav > li > a.btn-danger[disabled].focus, .navbar .navbar-nav > li > a.btn-danger[disabled]:active, .navbar .navbar-nav > li > a.btn-danger[disabled].active, fieldset[disabled] .navbar .navbar-nav > li > a.btn-danger, fieldset[disabled] .navbar .navbar-nav > li > a.btn-danger:hover, fieldset[disabled] .navbar .navbar-nav > li > a.btn-danger:focus, fieldset[disabled] .navbar .navbar-nav > li > a.btn-danger.focus, fieldset[disabled] .navbar .navbar-nav > li > a.btn-danger:active, fieldset[disabled] .navbar .navbar-nav > li > a.btn-danger.active, .btn-danger.disabled, .btn-danger.disabled:hover, .btn-danger.disabled:focus, .btn-danger.disabled.focus, .btn-danger.disabled:active, .btn-danger.disabled.active, .btn-danger:disabled, .btn-danger:disabled:hover, .btn-danger:disabled:focus, .btn-danger:disabled.focus, .btn-danger:disabled:active, .btn-danger:disabled.active, .btn-danger[disabled], .btn-danger[disabled]:hover, .btn-danger[disabled]:focus, .btn-danger[disabled].focus, .btn-danger[disabled]:active, .btn-danger[disabled].active, fieldset[disabled] .btn-danger, fieldset[disabled] .btn-danger:hover, fieldset[disabled] .btn-danger:focus, fieldset[disabled] .btn-danger.focus, fieldset[disabled] .btn-danger:active, fieldset[disabled] .btn-danger.active {
   background-color: transparent;
-  border-color: #EB5E28;
+  border-color: #D61010;
 }
 .navbar .navbar-nav > li > a.btn-danger.btn-fill, .btn-danger.btn-fill {
   color: #FFFFFF;
-  background-color: #EB5E28;
+  background-color: #D61010;
   opacity: 1;
   filter: alpha(opacity=100);
 }
@@ -819,7 +819,7 @@ hr {
   border-top-color: #FFFFFF;
 }
 .navbar .navbar-nav > li > a.btn-danger .caret, .btn-danger .caret {
-  border-top-color: #EB5E28;
+  border-top-color: #D61010;
 }
 
 .btn-neutral {
@@ -997,10 +997,10 @@ hr {
 }
 .has-error .form-control {
   background-color: #FFC0A4;
-  color: #EB5E28;
+  color: #D61010;
 }
 .has-error .form-control.border-input {
-  border: 1px solid #EB5E28;
+  border: 1px solid #D61010;
 }
 .has-error .form-control:focus {
   background-color: #FFFFFF;
@@ -1027,7 +1027,7 @@ hr {
 }
 
 .has-error .form-control-feedback, .has-error .control-label {
-  color: #EB5E28;
+  color: #D61010;
 }
 
 .has-success .form-control-feedback, .has-success .control-label {
@@ -1043,7 +1043,7 @@ hr {
   background-color: #FFFFFF;
 }
 .has-error .form-control:focus + .input-group-addon {
-  color: #EB5E28;
+  color: #D61010;
 }
 .has-success .form-control:focus + .input-group-addon {
   color: #7AC29A;
@@ -1586,7 +1586,7 @@ textarea.form-control {
   text-align: center;
 }
 .footer .heart {
-  color: #EB5E28;
+  color: #D61010;
 }
 
 .dropdown-menu {
@@ -1693,7 +1693,7 @@ textarea.form-control {
   background-color: #F3BB45;
 }
 .dropdown-menu.dropdown-danger > li > a:hover, .dropdown-menu.dropdown-danger > li > a:focus {
-  background-color: #EB5E28;
+  background-color: #D61010;
 }
 
 .btn-group.select {
@@ -1763,6 +1763,14 @@ textarea.form-control {
 .card .title-inverse{
   color: #ffffff;
 }
+
+.card .action {
+  margin: 0;
+  color: #797979;
+  font-weight: 300;
+  font-size: 1.3em;
+}
+
 .card .avatar {
   width: 50px;
   height: 50px;
@@ -2140,10 +2148,10 @@ textarea.form-control {
 }
 
 .ct-series-c .ct-point, .ct-series-c .ct-line, .ct-series-c .ct-bar, .ct-series-c .ct-slice-donut {
-  stroke: #EB5E28;
+  stroke: #D61010;
 }
 .ct-series-c .ct-slice-pie, .ct-series-c .ct-area {
-  fill: #EB5E28;
+  fill: #D61010;
 }
 
 .ct-series-d .ct-point, .ct-series-d .ct-line, .ct-series-d .ct-bar, .ct-series-d .ct-slice-donut {

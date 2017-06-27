@@ -37,7 +37,7 @@ Flinger.controller("UserController", function ($scope, UserService, SiteService)
         $Flinger.Loader.Finish();
     }
 
-    $scope.InitializeAddRetunView = function () {
+    $scope.InitializeInvitedView = function () {
 
         var UserId = $Flinger.QueryString().Id;
 
@@ -52,7 +52,6 @@ Flinger.controller("UserController", function ($scope, UserService, SiteService)
                 })
         }
     }
-
 
     $scope.InitializeEditView = function () {
         var UserId = $Flinger.QueryString().Id;
@@ -111,7 +110,7 @@ Flinger.controller("UserController", function ($scope, UserService, SiteService)
                         console.log(response.data)
                         if (response.data.success == true) {
                             // edit succesfully
-                            location.assign("/User/AddReturn?Id=" + response.data.result._id)
+                            location.assign("/User/Invited?Id=" + response.data.result._id)
                         }
                         else {
                             $Flinger.Dialog.SetData("Something was wrong", response.data.message);

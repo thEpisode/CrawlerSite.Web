@@ -366,6 +366,14 @@ input:-webkit-autofill:active {
     margin: 0 auto;
 }
 
+.table-border-middle>tbody>tr>td{
+    border-right: 1px #ccc5b9 solid;
+}
+
+.table-border-middle>tbody>tr>td:last-of-type{
+    border-right: 0px transparent solid;
+}
+
 
 .btn-danger2 {
     color: #ffffff!important;
