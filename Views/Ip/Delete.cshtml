@@ -9,13 +9,21 @@
 }
 
 <section ng-controller="IpController" ng-init="InitializeDeleteView()">
-    <div class="card col-sm-6 col-sm-offset-3">
-        <h2 class="text-center">Are you sure to delete permanently <span>{{Ip.IP}}</span>?</h2>
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-md-offset-3 col-lg-offset-3">
+        <div class="card">
+            <div class="header">
+                <h4 class="title text-center">Are you sure to delete?</h4>
+                <p class="category">This action delete <span>{{Ip.IP}}</span> IP permanently</p>
+            </div>
+            
+            <div class="content">
+                <form  class="form-horizontal text-center" ng-submit="DeleteIp()">            
+                    <input type="submit" value="Yes" class="btn btn-danger btn-wd btn-fill" />
 
-        <form  class="form-horizontal text-center" ng-submit="DeleteIp()">            
-            <input type="submit" value="Yes" class="btn btn-danger btn-wd btn-fill" />
-
-            <a href="@Url.Action("Index")" class="btn btn-danger btn-wd">No</a>
-        </form>
+                    <a href="@Url.Action("Index")" class="btn btn-danger btn-wd">No</a>
+                </form>
+            </div>
+        </div>    
     </div>
+    
 </section>
