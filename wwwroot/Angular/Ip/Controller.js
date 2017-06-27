@@ -64,8 +64,16 @@ Flinger.controller("IpController", function ($scope, IpService, SiteService) {
             IpService.GetIpById(IpId)
                 .then(function (response) {
                     $scope.Ip = response.data.result;
-                    $Flinger.Loader.Finish();
+                    
+                    console.log('Ip Data:')
                     console.log(response.data.result);
+                    SiteService.GetSiteByApiKey($scope.Ip.ApiKey).then(function(response){
+                        console.log('Site Data:');
+                        console.log(response.data.result);
+
+                        $scope.Site = response.data.result;
+                        $Flinger.Loader.Finish();
+                    })
                 },
                 function (response) {
                     console.log(response);

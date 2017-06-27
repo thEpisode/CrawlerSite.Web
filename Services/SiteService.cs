@@ -36,6 +36,12 @@ namespace CrawlerSite.Services
             return JObject.Parse(jsonResult);
         }
 
+        public async Task<dynamic> GetSiteByApiKey(string ApiKey, string Token)
+        {
+            string jsonResult = await _connection.GetDataAsync("Site/ApiKey/" + ApiKey, Token);
+            return JObject.Parse(jsonResult);
+        }
+
         public async Task<dynamic> CreateSite(object site, string Token)
         {
             string jsonResult = await _connection.PostData("Site/Create", Token, site);

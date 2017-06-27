@@ -37,6 +37,18 @@ Flinger.service("SiteService", function ($http) {
         return response;
     }
 
+    this.GetSiteByApiKey = function(ApiKey){
+        var response = $http({
+            method: "get",
+            url: "/Site/GetSiteByApiKey",
+            params:{
+                ApiKey: ApiKey
+            }
+        });
+
+        return response;
+    }
+
     //GetAllObj
     this.GetAllSite = function () {
         return $http.get("/Site/GetAllSite");

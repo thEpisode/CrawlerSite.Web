@@ -69,6 +69,20 @@ namespace CrawlerSite.Controllers
             return Json(new { success = false, message = "Something went wrong when retrieving data, try again." });
         }
 
+        [HttpGet]
+        public async Task<JsonResult> GetSiteByApiKey(string ApiKey)
+        {
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
+
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _siteService.GetSiteByApiKey(ApiKey, token);
+                return Json(result);
+            }
+
+            return Json(new {success = false, message = "Something went wrong when retrieving data, try again."});
+        }
+
         [HttpPost]
         public async Task<JsonResult> EditSite(string _id, string Name, string Url, string Tags)
         {
