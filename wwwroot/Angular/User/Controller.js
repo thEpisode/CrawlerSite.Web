@@ -44,6 +44,7 @@ Flinger.controller("UserController", function ($scope, UserService, SiteService)
         if (UserId != undefined && UserId != null) {
             UserService.GetUserById(UserId).then(function (response) {
                 $scope.User = response.data.result;
+                $scope.User.SendSameEmail = true;
                 $Flinger.Loader.Finish();
                 console.log(response.data);
             },

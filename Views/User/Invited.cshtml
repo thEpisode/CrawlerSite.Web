@@ -50,12 +50,12 @@
                     <div class="switch-inline col-xs-12 col-sm-12 col-md-12 col-lg-12">
                         <h4 class="action">Send password to {{User.Email}}</h4>
                         <div class="switch">
-                            <input type="checkbox" name="switch" class="switch-checkbox" id="myswitch" checked>
+                            <input type="checkbox" name="switch" class="switch-checkbox" id="myswitch" checked ng-model="User.SendSameEmail">
                             <label class="switch-label-small" for="myswitch"></label>
                         </div>
                     </div>
                     
-                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12 hiddenpass" id="Sendemail">
+                    <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" ng-hide="User.SendSameEmail" id="Sendemail">
                         <div class="form-group">
                             <label for="emailto">Send the account information to:</label>
                             <input id="emailto" type="email" class="form-control border-input" placeholder="Email">
@@ -78,15 +78,5 @@
     <script src="@Url.Content("~/Angular/User/Service.js")"></script>
     <script src="@Url.Content("~/Angular/User/Controller.js")"></script>
     <script src="@Url.Content("~/Angular/Site/Service.js")"></script>
-    <script>
-        $('#myswitch').on('click', function () {
-             if (!this.checked) {
-                 $('#Sendemail').removeClass('hiddenpass');
-             }
-             else {
-                 $('#Sendemail').addClass('hiddenpass');
-             }
-         });
-    </script>
 }
 

@@ -2,20 +2,27 @@
     ViewBag.Title = "Users";
 }
 
-<section ng-controller="UserController" ng-init="InitializeDeleteView()">
-    <div class="card col-sm-6 col-sm-offset-3">
-        <h2 class="text-center">Are you sure to delete permanently <span>{{ User.FirstName }} {{ User.LastName }}</span>?</h2>
-
-        <form class="form-horizontal text-center" ng-submit="DeleteUser()">
-            <input type="submit" value="Yes" class="btn btn-danger btn-wd btn-fill" />
-
-            <a href="@Url.Action("Index")" class="btn btn-danger btn-wd">No</a>
-        </form>
-    </div>
-</section>
-
 @section Scripts{
     <script src="@Url.Content("~/Angular/User/Service.js")"></script>
     <script src="@Url.Content("~/Angular/Site/Service.js")"></script>
     <script src="@Url.Content("~/Angular/User/Controller.js")"></script>
 }
+
+<section ng-controller="UserController" ng-init="InitializeDeleteView()">
+    <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12 col-md-offset-3 col-lg-offset-3">
+        <div class="card">
+            <div class="header">
+                <h4 class="title text-center">Are you sure to delete?</h4>
+                <p class="category">This action delete <span>{{ User.FirstName }} {{ User.LastName }}</span> permanently</p>
+            </div>
+
+            <div class="content">
+                <form class="form-horizontal text-center" ng-submit="DeleteUser()">
+                    <input type="submit" value="Yes" class="btn btn-danger btn-wd btn-fill" />
+
+                    <a href="@Url.Action("Index")" class="btn btn-danger btn-wd">No</a>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

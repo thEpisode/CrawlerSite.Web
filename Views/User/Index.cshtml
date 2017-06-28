@@ -8,19 +8,18 @@
     <script src="@Url.Content("~/Angular/Site/Service.js")"></script>
     <script src="@Url.Content("~/Angular/User/Controller.js")"></script>
 }
+<section ng-controller="UserController" ng-init="InitializeIndexView()">
+    <div class="card col-xs-12 col-sm-12 col-md-12 col-lg-12">
+        <div class="header">
+            <h4 class="title text-center">Manage Users</h4>
+            <p class="category">All users listed above can manage your sites</p>
 
-<div class="card col-xs-12 col-sm-12 col-md-12 col-lg-12">
-    <div class="header">
-        <h4 class="title text-center">Manage Users</h4>
-        <p class="category">All users listed above can manage your sites</p>
-
-        <div class="col-lg-3 col-md-3 hidden-xs hidden-sm search-box">
-            <input type="text" class="form-control" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome" ng-model="searchUser" />
+            <div class="col-lg-3 col-md-3 hidden-xs hidden-sm search-box">
+                <input type="text" class="form-control" placeholder="&#xF002; Search" style="font-family:Arial, FontAwesome" ng-model="searchUser" />
+            </div>
         </div>
-    </div>
-    <div class="content">
-        <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
-            <section ng-controller="UserController" ng-init="InitializeIndexView()">
+        <div class="content">
+            <div class="col-xs-12 col-sm-12 col-md-12 col-lg-12">
                 <div>
                     <div class="col-lg-12 col-sm-12 col-md-12 col-xs-12">
                             <a href="@Url.Action("Add")" class="btn btn-action"><i class="ti-plus"></i> New User</a>
@@ -65,7 +64,7 @@
                     </div>
                     
                 </div>
-            </section>
-        </div>
-    </div>    
-</div>
+            </div>
+        </div>    
+    </div>
+</section>
