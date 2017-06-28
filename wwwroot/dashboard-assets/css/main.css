@@ -1201,7 +1201,7 @@ a[href^="http://maps.google.com/maps"]{display:none !important}
     border-radius: 0!important;
 }
 
-.btn-action:hover ~ .btn-action>i{
+.btn-action:hover > i{
   color: #ffffff!important;
 }
 
