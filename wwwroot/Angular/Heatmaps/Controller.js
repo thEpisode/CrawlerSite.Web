@@ -193,20 +193,21 @@ Flinger.controller("HeatmapController", function ($scope, HeatmapService) {
             } catch (e) { }
 
             /// Set real size
-            var heatmapScreenshot = document.querySelector('.heatmap-screenshot');
-            $("#heatmapContainer").css("width", heatmapScreenshot.clientWidth + ("px"))
-            $("#heatmapContainer").css("height", heatmapScreenshot.clientHeight + ("px"))
+            $("#heatmapContainer").css("width", $scope.Screenshot.DocumentSize.width + ("px"))
+            $("#heatmapContainer").css("height", $scope.Screenshot.DocumentSize.height + ("px"))
 
             createHeatmap();
 
             heatmap.addData($scope.HeatmapData);
+
+            var heatmapScreenshot = document.querySelector('.frame-container');
+            $(".heatmap-canvas").css("width", heatmapScreenshot.clientWidth + ("px"))
+            $(".heatmap-canvas").css("height", heatmapScreenshot.clientHeight + ("px"))
             $Flinger.Loader.Finish();
 
             /// Set screen size
             $("#heatmapContainer").removeAttr("style");
-
-            $('.heatmap-screenshot').addClass("img-responsive");
-            $('.heatmap-canvas').css('width', '100%')
+            $('.heatmap-canvas').css('left', '0px');
         }
     }
 
@@ -214,6 +215,7 @@ Flinger.controller("HeatmapController", function ($scope, HeatmapService) {
         /**
          * Preserving aspect radio
          */
+
         var browserSize = {};
         var w = window,
             d = document,
@@ -255,14 +257,14 @@ Flinger.controller("HeatmapController", function ($scope, HeatmapService) {
 
         var blob = b64toBlob($scope.Screenshot.Screenshot, 'text/html');
 
-        var iframeVisorWidthBorder = browserSize.width - 20;
+        var iframeVisorWidthBorder = framesContainer.clientWidth + 15;
         var iframeVisorHeightBorder = browserSize.height - 20;
         var originalWidthSize = $scope.Screenshot.DocumentSize.width;
         var originalHeightSize = $scope.Screenshot.DocumentSize.height;
         var widthAverage = iframeVisorWidthBorder / originalWidthSize;
         var heightAverage = iframeVisorHeightBorder / originalHeightSize;
 
-        var iframeScale = Math.min(1, Math.min(widthAverage, heightAverage)); console.log(iframeScale);
+        var iframeScale = Math.min(1, widthAverage); //console.log(iframeScale);
         var iframeScaleCSS = "scale(" + iframeScale + "," + iframeScale + ")";
         var iframeWidthRate = $scope.Screenshot.DocumentSize.width * iframeScale;
         var iframeHeightRate = $scope.Screenshot.DocumentSize.height * iframeScale;
@@ -289,8 +291,10 @@ Flinger.controller("HeatmapController", function ($scope, HeatmapService) {
         $scope._iframe.style.display = "block";
 
         /// Setting Frames Container
-        framesContainer.style.marginTop = iframeMarginTop + "px";
-        framesContainer.style.marginLeft = iframeMarginLeft + "px";
+        /*framesContainer.style.marginTop = iframeMarginTop + "px";
+        
+        */
+        framesContainer.style.marginLeft ="-15px";
         framesContainer.style.width = Math.round(iframeWidthRate) + "px";
         framesContainer.style.height = Math.round(iframeHeightRate) + "px";
 
@@ -298,8 +302,8 @@ Flinger.controller("HeatmapController", function ($scope, HeatmapService) {
         eventHandler.style.marginTop = "75px";
         //eventHandler.style.marginTop = iframeMarginTop + "px";
         eventHandler.style.marginLeft = iframeMarginLeft + "px";
-        eventHandler.style.width = Math.round(iframeWidthRate) + "px";
-        eventHandler.style.height = Math.round(iframeHeightRate) + "px";
+        /* eventHandler.style.width = Math.round(iframeWidthRate) + "px";
+        eventHandler.style.height = Math.round(iframeHeightRate) + "px"; */
 
         //// End Preserving aspect ratio
         $scope._iframe.hidden = true;
@@ -321,6 +325,8 @@ Flinger.controller("HeatmapController", function ($scope, HeatmapService) {
                 frame.hidden = false;
 
                 currentFrameIdx++;
+
+                $scope.ScreenShotIsLoaded();
             }
 
         };

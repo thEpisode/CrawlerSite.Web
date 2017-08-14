@@ -575,8 +575,11 @@ label.error:not(.form-control) {
     height: 100%;
 }
 
+.frame-container-window{
+	padding: 65px 0 0;
+}
+
 .frame-container{
-    padding: 65px 0 0;
     border-radius: 3px;
     border-bottom: 2px solid #ccc;
     background: #ddd;
