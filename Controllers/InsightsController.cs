@@ -62,13 +62,13 @@ namespace CrawlerSite.Controllers
         }
 
         [HttpGet]
-        public JsonResult GetSiteScreenshotUrl(string Id)
+        public async Task<JsonResult> GetSiteScreenshot(string Id)
         {
             string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
-                string result = _insightsService.GetSiteScreenshotUrl(Id, token);
+                dynamic result = await _insightsService.GetSiteScreenshot(Id, token);
                 return Json(result);
             }
             return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });

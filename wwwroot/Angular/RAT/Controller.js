@@ -420,7 +420,7 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
 
         var currentFrameIdx = 0;
         var framesContainer = document.querySelector('#frame-container');
-        var eventHandler = document.querySelector('.event-handler');
+        var eventHandler = document.querySelector('.event-handler');debugger;
         var blob = new Blob([data.Values.Screenshot], { type: 'text/html' });
 
         var iframeVisorWidthBorder = browserSize.width - 20;

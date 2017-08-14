@@ -10,10 +10,10 @@ Flinger.service("HeatmapService", function ($http) {
         return response;
     }
 
-    this.GetSiteScreenshotUrl = function(Id){
+    this.GetSiteScreenshot = function(Id){
         var response = $http({
             method: "get",
-            url: "/Insights/GetSiteScreenshotUrl",
+            url: "/Insights/GetSiteScreenshot",
             params: {
                 Id: Id
             }

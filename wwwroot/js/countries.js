@@ -11,13 +11,13 @@ function getCountryValues(obj) {
     return ret;
 };
 
-function getInternationalCountryCode(country){
+function getInternationalCountryCode(country) {
     var keys = Object.keys(countriesList);
     var internationalCode = "";
 
-    for (var i = 0; i < keys.length; i++) { 
-        
-        if(countriesList[keys[i]].toLowerCase() === country.toLowerCase()){
+    for (var i = 0; i < keys.length; i++) {
+
+        if (countriesList[keys[i]].toLowerCase() === country.toLowerCase()) {
             internationalCode = keys[i];
             break;
         }

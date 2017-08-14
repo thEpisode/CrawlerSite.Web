@@ -18,9 +18,11 @@ namespace CrawlerSite.Services
             _connection = new ConnectionService();
         }
 
-        public string GetSiteScreenshotUrl(string Id, string Token)
+        public async Task<dynamic> GetSiteScreenshot(string Id, string token)
         {
-            return _connection.GetApiServiceUri() + "/Insights/HeatmapScreenshotById/" + Id;
+            string jsonResult = await _connection.GetDataAsync("Insights/HeatmapScreenshotById/" + Id, token);
+
+            return JObject.Parse(jsonResult);            
         }
 
         public string GetSocketUrl(string Token)
