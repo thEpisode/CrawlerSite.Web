@@ -553,7 +553,9 @@ label.error:not(.form-control) {
     top:0;
     left: 0;
     z-index: 999;
-    overflow:hidden;
+	overflow:hidden;
+	background: url(../img/rat_background.jpg);
+    background-size: cover;
 }
 
 .rat-visor>.event-handler{
