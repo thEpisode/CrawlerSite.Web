@@ -1079,6 +1079,10 @@ position: absolute;
     opacity: 1;
 }
 
+.user-online .details .actions a{
+    color: #646262;
+}
+
 .no-padding {
    padding: 0 !important;
    margin: 0 !important;
