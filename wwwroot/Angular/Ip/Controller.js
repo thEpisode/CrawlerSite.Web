@@ -9,7 +9,7 @@ Flinger.controller("IpController", function ($scope, $timeout, IpService, SiteSe
     $scope.sortReverse = false;  // set the default sort order
     $scope.searchFish = '';     // set the default search/filter term
     $scope.PrivateIPs = '';
-
+    $scope.BlockAllSubnetwork = true;
 
     $scope.InitializeIndexView = function () {
 
@@ -111,9 +111,14 @@ Flinger.controller("IpController", function ($scope, $timeout, IpService, SiteSe
 
         var privateIps = [];
 
-        $scope.PrivateIPs.split(',').forEach(function (ip, index) {
-            privateIps.push(ip.trim());
-        });
+        if ($scope.BlockAllSubnetwork == false) {
+            $scope.PrivateIPs.split(',').forEach(function (ip, index) {
+                privateIps.push(ip.trim());
+            });
+        }
+        else{
+            privateIps.push(`192.168.0.*`);
+        }
 
         IpService.CreateIp({
             ApiKey: selectedSite.ApiKey,
