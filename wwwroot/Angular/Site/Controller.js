@@ -111,7 +111,7 @@ Flinger.controller("SiteController", function ($scope, SiteService) {
             console.log(response)
             if (response.data.result == true) {
                 // edit succesfully
-                location.assign("/Site/")
+                $Flinger.GoTo.ControllerIndex();
             }
             else {
                 // can't edit 

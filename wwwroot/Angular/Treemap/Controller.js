@@ -22,7 +22,7 @@ Flinger.controller("TreemapController", function ($scope, TreemapService) {
             $Flinger.Loader.Init()
             
             // Navigate to Heatmap
-            window.location.assign('/Insights/Heatmap?Id=' + $Flinger.QueryString().Id)
+            $Flinger.GoTo.Action('Insights', 'Heatmap?Id=' + $Flinger.QueryString().Id)
         }
     }
 

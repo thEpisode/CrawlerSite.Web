@@ -238,7 +238,7 @@
                 if (response !== undefined) {
                     if (response.success !== undefined && response.success !== false) {
                         if (response.Result !== null) {
-                            location.assign('@Url.Action("Login")');
+                            $Flinger.GoTo.Action('Home', 'Login')
                         }
                     }
                     else if (response.success !== undefined && response.success === false) {

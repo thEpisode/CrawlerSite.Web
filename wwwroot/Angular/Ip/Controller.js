@@ -1,4 +1,4 @@
-Flinger.controller("IpController", function ($scope, IpService, SiteService) {
+Flinger.controller("IpController", function ($scope, $timeout, IpService, SiteService) {
 
     $scope.Ips = [];
     $scope.Sites = [];
@@ -8,7 +8,7 @@ Flinger.controller("IpController", function ($scope, IpService, SiteService) {
     $scope.sortType = 'name'; // set the default sort type
     $scope.sortReverse = false;  // set the default sort order
     $scope.searchFish = '';     // set the default search/filter term
-
+    $scope.PrivateIPs = '';
 
 
     $scope.InitializeIndexView = function () {
@@ -53,7 +53,7 @@ Flinger.controller("IpController", function ($scope, IpService, SiteService) {
         },
             function (response) {
                 console.log(response);
-                
+
             })
     }
 
@@ -64,15 +64,21 @@ Flinger.controller("IpController", function ($scope, IpService, SiteService) {
             IpService.GetIpById(IpId)
                 .then(function (response) {
                     $scope.Ip = response.data.result;
-                    
+
                     console.log('Ip Data:')
                     console.log(response.data.result);
-                    SiteService.GetSiteByApiKey($scope.Ip.ApiKey).then(function(response){
+                    SiteService.GetSiteByApiKey($scope.Ip.ApiKey).then(function (response) {
                         console.log('Site Data:');
                         console.log(response.data.result);
 
                         $scope.Site = response.data.result;
-                        $Flinger.Loader.Finish();
+
+                        $timeout(function () {
+                            $scope.Ip.PrivateIPs.forEach(function (ip, index) {
+                                $('#PrivateIPs').tagsinput('add', ip);
+                            });
+                            $Flinger.Loader.Finish();
+                        }, 500);
                     })
                 },
                 function (response) {
@@ -103,17 +109,24 @@ Flinger.controller("IpController", function ($scope, IpService, SiteService) {
         $Flinger.Loader.Init();
         var selectedSite = $scope.siteOption;
 
-        IpService.CreateIp(
-            selectedSite.ApiKey,
-            $scope.Site.IP,
-            $scope.Site.Name,
-            1
-        )
+        var privateIps = [];
+
+        $scope.PrivateIPs.split(',').forEach(function (ip, index) {
+            privateIps.push(ip.trim());
+        });
+
+        IpService.CreateIp({
+            ApiKey: selectedSite.ApiKey,
+            PublicIP: $scope.Site.PublicIP,
+            PrivateIPs: privateIps,
+            Name: $scope.Site.Name,
+            State: 1
+        })
             .then(function (response) {
                 console.log(response)
                 if (response.data != undefined && response.data != null) {
                     // Added succesfully
-                    location.assign("/Ip/")
+                    $Flinger.GoTo.ControllerIndex();
                 }
                 else {
                     // can't edit 
@@ -127,15 +140,21 @@ Flinger.controller("IpController", function ($scope, IpService, SiteService) {
 
     $scope.EditIp = function () {
         $Flinger.Loader.Init();
+        var privateIps = [];
+
+        $scope.PrivateIPs.split(',').forEach(function (ip, index) {
+            privateIps.push(ip.trim());
+        });
         IpService.EditIp({
             Id: $scope.Ip._id,
-            IP: $scope.Ip.IP,
+            PublicIP: $scope.Ip.PublicIP,
+            PrivateIPs: PrivateIPs,
             Name: $scope.Ip.Name,
         }).then(function (response) {
             console.log(response)
             if (response.data != undefined && response.data != null) {
                 // edit succesfully
-                location.assign("/Ip/")
+                $Flinger.GoTo.ControllerIndex();
             }
             else {
                 // can't edit 
@@ -154,7 +173,7 @@ Flinger.controller("IpController", function ($scope, IpService, SiteService) {
             console.log(response)
             if (response.data != undefined && response.data != null) {
                 // edit succesfully
-                location.assign("/Ip/")
+                $Flinger.GoTo.ControllerIndex();
             }
             else {
                 // can't edit 

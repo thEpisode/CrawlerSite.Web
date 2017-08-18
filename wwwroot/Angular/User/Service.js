@@ -88,6 +88,6 @@ Flinger.service("UserService", function ($http) {
 
     this.LogOut = function () {
         localStorage.removeItem('auth_token');
-        location.assign('/');
+        $Flinger.GoTo.Root();
     }
 });

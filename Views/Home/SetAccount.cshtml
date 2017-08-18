@@ -71,7 +71,7 @@
                     if (response.result.Success !== undefined && response.result.Success !== false) {
                         localStorage.setItem('auth_token', response.result.AuthToken);
                         localStorage.setItem('userId', response.result.UserId);
-                        location.assign("@Url.Action("Index", "Dashboard")?AuthToken="+ response.result.AuthToken);
+                        $Flinger.GoTo.Action('Dashboard', `Index?AuthToken=${response.result.AuthToken}`)
                     }
                     else if (response.result.Success !== undefined && response.result.Success === false) {
                         $Flinger.Dialog.SetData("Please check your credentials", response.result.Message);

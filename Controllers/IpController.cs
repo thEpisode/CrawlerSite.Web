@@ -38,15 +38,16 @@ namespace CrawlerSite.Controllers
         }
 
         [HttpPost]
-        public async Task<JsonResult> CreateIp(string ApiKey, string Name, string ip, int State)
+        public async Task<JsonResult> CreateIp(string ApiKey, string Name, string PublicIP, string[] PrivateIPs, int State)
         {
             string token = CrawlerSite.Utils.Token.Get(Request.Headers);
 
             if(!String.IsNullOrEmpty(token))
             {
-                dynamic result = await _ipService.CreateIp(new Ip(){
+                dynamic result = await _ipService.CreateIp(new {
                     ApiKey= ApiKey,
-                    IP = ip,
+                    PublicIP = PublicIP,
+                    PrivateIPs = PrivateIPs,
                     Name= Name,
                     State= State
                 }, token);

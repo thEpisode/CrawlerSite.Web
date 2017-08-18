@@ -36,7 +36,7 @@ namespace CrawlerSite.Services
             return JObject.Parse(jsonResult);
         }
 
-        public async Task<dynamic> CreateIp(Ip ip, string Token)
+        public async Task<dynamic> CreateIp(object ip, string Token)
         {
            string jsonResult = await _connection.PostData("Ip/Create", Token, ip);
             return JObject.Parse(jsonResult);

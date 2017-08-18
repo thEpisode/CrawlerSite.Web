@@ -111,7 +111,7 @@ Flinger.controller("UserController", function ($scope, UserService, SiteService)
                         console.log(response.data)
                         if (response.data.success == true) {
                             // edit succesfully
-                            location.assign("/User/Invited?Id=" + response.data.result._id)
+                            $Flinger.GoTo.Action('User', 'Invited?Id=' + response.data.result._id)
                         }
                         else {
                             $Flinger.Dialog.SetData("Something was wrong", response.data.message);
@@ -149,7 +149,7 @@ Flinger.controller("UserController", function ($scope, UserService, SiteService)
         }).then(function (response) {
             if (response != undefined) {
                 if (response.data.success == true) {
-                    location.assign("/User/")
+                    $Flinger.GoTo.ControllerIndex();
                 }
                 else {
                     $Flinger.Dialog.SetData('Error', response.data.message);
@@ -167,7 +167,7 @@ Flinger.controller("UserController", function ($scope, UserService, SiteService)
         UserService.DeleteUser($scope.User._id).then(function (response) {
             if (response != undefined) {
                 if (response.data.success == true) {
-                    location.assign("/User/")
+                    $Flinger.GoTo.ControllerIndex();
                 }
                 else {
                     $Flinger.Dialog.SetData('Error', response.data.message);

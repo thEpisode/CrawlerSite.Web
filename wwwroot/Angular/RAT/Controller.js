@@ -655,4 +655,58 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
     $scope.ReloadRATViewer = function () {
         window.location.reload();
     }
+
+    $scope.BlockUser = function (socketId) {
+        if (socketId !== undefined && socketId !== null) {
+            var sd = $scope.ConnectedSockets;
+            debugger;
+           /*  RATService.BlockUser(socketId).then(function (response) {
+                // Do something
+            },
+                function (response) {
+                    console.log(response);
+                }) */
+        }
+    }
+
+    $scope.EditBlockUserText = function (text) {
+        if ($scope.Site.BlockUserText !== text) {
+            RATService.EditBlockUserText($scope.Site._id, text).then(function (response) {
+                // Do something
+            },
+                function (response) {
+                    console.log(response);
+                });
+        }
+    }
+
+    $scope.PromptToBlockUser = function (socketId) {
+        console.log(socketId)
+        console.log($scope.Site.BlockUserText);
+        $Flinger.Dialog.SetData(
+            `Block user ${socketId}`,
+            `<p class="text-center">Your users needs to see something when they are blocked, we created a scary screen for spammers and hackers</p><input placeholder='Insert some text to show on blocked user' class='edit-block-text-input form-control' type='text' autofocus value="${$scope.Site.BlockUserText}" /><p>Warning: Message is displayed for all blocked users!</p>`,
+            [
+                {
+                    text: 'BLOCK',
+                    className: $Flinger.Dialog.GetAcceptButtonStyle(),
+                    attributes: [
+                        { action: 'data-accept', value: '' }
+                    ],
+                    callback: function () {
+                        $scope.EditBlockUserText($('.edit-block-text-input').val());
+                        $scope.BlockUser(socketId);
+                        $Flinger.Dialog.Toggle();
+                    }
+                },
+                {
+                    text: 'CANCEL',
+                    className: $Flinger.Dialog.GetCancelButtonStyle(),
+                    attributes: [
+                        { action: 'data-cancel', value: '' },
+                        { action: 'data-dialog-close', value: '' }
+                    ]
+                }
+            ]);
+    }
 });

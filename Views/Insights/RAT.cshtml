@@ -86,7 +86,7 @@
                 <div class="col-lg-4 col-sm-3 col-md-6 col-xs-12 no-padding users-container">
                     <h4 class="text-center realtime-users-title">Realtime Users</h4>
                     <ul class="users-list">
-                        <li ng-repeat="socket in ConnectedSockets" ng-click="GetEndpointRPN(socket.SocketId)" class="user-online-row"> 
+                        <li ng-repeat="socket in ConnectedSockets" class="user-online-row"> 
                                 <div class="user-online col-lg-12 col-sm-12 col-xs-12 col-md-12 no-padding">
                                     <section class="avatar col-lg-4 col-md-4 col-sm-6 hidden-xs no-padding">
                                         <img class="img-responsive img-circle" alt="user online" src="~/dashboard-assets/img/online-user.svg" />
@@ -104,8 +104,8 @@
                                         <section class="actions">
                                             <span>{{socket.ClientInformation.windowTitle}}</span>
                                             <section class="open text-center">
-                                                <button class="btn btn-danger2">New session</button>
-                                                <a href="" class="" title="Block User"><i class="fa fa-ban" aria-hidden="true"></i></a>
+                                                <button class="btn btn-danger2" ng-click="GetEndpointRPN(socket.SocketId)">New session</button>
+                                                <a href="#" class="" title="Block User" ng-click="PromptToBlockUser(socket.SocketId)"><i class="fa fa-ban" aria-hidden="true"></i></a>
                                             </section>
                                         </section>
                                     </section>

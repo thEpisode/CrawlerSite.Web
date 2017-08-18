@@ -59,5 +59,11 @@ namespace CrawlerSite.Services
             string jsonResult = await _connection.SimplePostData("Site/Delete", Token, HttpSimpleParameters.Of("_id", SiteId));
             return JObject.Parse(jsonResult);
         }
+
+        public async Task<dynamic> EditBlockUserText(string SiteId, string Text, string Token)
+        {
+            string jsonResult = await _connection.SimplePostData("Site/EditBlockUserText", Token, HttpSimpleParameters.Of("_id", SiteId), HttpSimpleParameters.Of("Text", Text));
+            return JObject.Parse(jsonResult);
+        }
     }
 }

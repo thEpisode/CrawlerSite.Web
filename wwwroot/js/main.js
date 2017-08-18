@@ -157,3 +157,43 @@ $Flinger.alertToType = function (e) {
         }
     }
 }
+
+$Flinger.GoTo = {
+    Root: function(){
+        location.assign(location.origin);
+    },
+    RootApp: function(){
+        location.assign(`${location.origin}/Dashboard/`);
+    },
+    Controller: function(controller){
+        if(controller !== undefined && controller !== null){
+            location.assign(`${location.origin}/${controller}/`);
+        }
+    },
+    Action: function(controller, action){
+        if(controller !== undefined && controller !== null){
+            if(action !== undefined && action !== null){//
+                if(action[0]==='?'){
+                    location.assign(`${location.origin}/${controller}${action}`);
+                }
+                else{
+                    location.assign(`${location.origin}/${controller}/${action}`);
+                }
+            }
+        }
+    },
+    ControllerIndex: function(){
+        location.assign(`${location.origin}/${location.pathname.split('/')[1]}/`)
+    },
+    ControllerAction: function(action){
+        if(action !== undefined && action !== null){
+            location.assign(`${location.origin}/${location.pathname.split('/')[1]}/${action}`)
+        }
+    },
+    Back: function(){
+        history.back();
+    },
+    Forward: function(){
+        history.forward;
+    }
+}

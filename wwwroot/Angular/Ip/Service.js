@@ -1,14 +1,15 @@
 Flinger.service("IpService", function ($http) {
     //CreateIp
-    this.CreateIp = function (ApiKey, IP, Name, State) {
+    this.CreateIp = function (data) {
         var response = $http({
             method: "post",
             url: "/Ip/CreateIp",
             params: {
-                ApiKey: ApiKey,
-                IP: IP,
-                Name: Name,
-                State: State
+                ApiKey: data.ApiKey,
+                PublicIP: data.PublicIP,
+                PrivateIPs: data.PrivateIPs,
+                Name: data.Name,
+                State: data.State
             }
         });
         return response;
@@ -47,7 +48,8 @@ Flinger.service("IpService", function ($http) {
             url: "/Ip/EditIp",
             params: {
                 Id: data.Id,
-                IP: data.IP,
+                publicIP: data.IP,
+                PrivateIPs: data.PrivateIPs,
                 Name: data.Name,
             }
         });

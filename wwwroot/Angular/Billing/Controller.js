@@ -90,7 +90,7 @@ Flinger.controller("BillingController", function ($scope, BillingService) {
             $scope.Subscription.CreditCard.LastNameCard
         ).then(function (response) {
             console.log(response);
-            location.assign("/Dashboard/")
+            $Flinger.GoTo.Controller('Dashboard')
         },
             function (response) {
                 console.log(response);
@@ -119,7 +119,7 @@ Flinger.controller("BillingController", function ($scope, BillingService) {
             if (response.data != undefined && response.data != null) {
                 // edit succesfully
                 if (response.data.success == true) {
-                    location.assign("/Billing/");
+                    $Flinger.GoTo.ControllerIndex();
                 }
                 else {
                     // can't edit 

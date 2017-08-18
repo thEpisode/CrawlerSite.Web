@@ -116,5 +116,19 @@ namespace CrawlerSite.Controllers
             }
             return Json(new { success = false, message = "Something went wrong when retrieving data, try again." });
         }
+
+        [HttpPost]
+        public async Task<JsonResult> EditBlockUserText(string Id, string Text)
+        {
+            string token = CrawlerSite.Utils.Token.Get(Request.Headers);
+
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _siteService.EditBlockUserText(Id, Text, token);
+
+                return Json(result);
+            }
+            return Json(new{ succes=false, message = "Something went wrong when retrieving data, try again."});
+        }
     }
 }

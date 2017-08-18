@@ -6,6 +6,7 @@ Flinger.controller("DashboardController", function ($scope, DashboardService) {
         $scope.GetUserById();
 
         DashboardService.GetInsights().then(function (response) {
+            console.log('GetInsights');
             console.log(response.data)
 
             if (response.data.result != undefined && response.data.result != null) {
@@ -15,12 +16,11 @@ Flinger.controller("DashboardController", function ($scope, DashboardService) {
                 }
             }
             else {
-                /*$Flinger.Toast.InfoWithButtons(response.data.message, 'Did you want create a new site?', [['<button>Yes!</button>', function (instance, toast) { location.assign('/Site/Add') }], ['<button>Not yet</button>', function (instance, toast) { instance.hide({ transitionOut: 'fadeOutUp' }, toast); }]])
-                $Flinger.Loader.Finish();*/
-                location.assign('/Site/Add');
+                $Flinger.GoTo.Action('Site', 'Add');
             }
         },
             function (response) {
+                console.log('GetInsights error');
                 console.log(response);
             })
 
@@ -160,7 +160,7 @@ Flinger.controller("DashboardController", function ($scope, DashboardService) {
             if (response.data.result != undefined && response.data.result != null) {
                 if (response.data.success == true) {
                     if (response.data.result === false) {
-                        $Flinger.Toast.WarningWithButtons('You haven\'t a valid payment method', 'Did you want add any?', [['<button>Yes!</button>', function (instance, toast) { location.assign('/Billing/') }], ['<button>Not yet</button>', function (instance, toast) { instance.hide({ transitionOut: 'fadeOutUp' }, toast); }]])
+                        $Flinger.Toast.WarningWithButtons('You haven\'t a valid payment method', 'Did you want add any?', [['<button>Yes!</button>', function (instance, toast) { $Flinger.GoTo.Controller('Billing') }], ['<button>Not yet</button>', function (instance, toast) { instance.hide({ transitionOut: 'fadeOutUp' }, toast); }]])
                     }
                 }
             }

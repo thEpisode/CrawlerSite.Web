@@ -74,7 +74,7 @@ Flinger.controller("AccountController", function ($scope, AccountService) {
         AccountService.DeleteAccountByUserId().then(function (response) {
             if (response != undefined) {
                 if (response.data.success == true) {
-                    location.assign("/Home/Thanks")
+                    $Flinger.GoTo.Action('Home', 'Thanks');
                 }
                 else {
                     $Flinger.Dialog.SetData(

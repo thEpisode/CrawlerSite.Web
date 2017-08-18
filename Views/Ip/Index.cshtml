@@ -32,8 +32,8 @@
                         <thead>
                             <tr>
                                 <td>
-                                    <a href="#" alt="Sort by IP" class="sort-element" ng-click="sortType = 'IP'; sortReverse = !sortReverse">
-                                        IP
+                                    <a href="#" alt="Sort by IP" class="sort-element" ng-click="sortType = 'PublicIP'; sortReverse = !sortReverse">
+                                        Public IP
                                         <span ng-hide="sortType == 'IP'" class="ti-exchange-vertical"></span>
                                         <span ng-show="sortType == 'IP' && !sortReverse" class="ti-angle-down"></span>
                                         <span ng-show="sortType == 'IP' && sortReverse" class="ti-angle-up"></span>
@@ -47,6 +47,7 @@
                                         <span ng-show="sortType == 'Name' && sortReverse" class="ti-angle-up"></span>
                                     </a>
                                 </td>
+                                <td>Private IPs</td>
                                 <td>
                                 </td>
                             </tr>
@@ -54,8 +55,9 @@
 
                         <tbody>
                             <tr ng-repeat="ip in Ips  | orderBy:sortType:sortReverse | filter:searchIP">
-                                <td>{{ ip.IP }}</td>
+                                <td>{{ ip.PublicIP }}</td>
                                 <td>{{ ip.Name }}</td>
+                                <td>{{ ip.PrivateIPs.join(", ") }}</td>
                                 <td class="text-center">
                                     <a href="@Url.Action("Edit")?Id={{ ip._id }}" class=" list-actions ti-pencil"></a>
                                     <a href="@Url.Action("Delete")?Id={{ ip._id }}" class=" list-actions ti-trash"></a>

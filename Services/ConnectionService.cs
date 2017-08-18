@@ -24,6 +24,7 @@ namespace CrawlerSite
         public ConnectionService()
         {
             _client = new HttpClient();
+            _client.Timeout = TimeSpan.FromMinutes(5);
             _serviceUri = AppSettings.ApiUri;
             _uri = AppSettings.Uri;
             
@@ -81,10 +82,10 @@ namespace CrawlerSite
                 if(!String.IsNullOrEmpty(content)){
                     return content;
                 }
-                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
+                return @"{""success"": false, ""message"": ""In this moment we have some problems, please try again in a moment"", ""result"": null}";
             }
             catch(Exception){
-                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
+                return @"{""success"": false, ""message"": ""In this moment we have some problems, please try again in a moment"", ""result"": null}";
             }
         }
 
@@ -103,10 +104,10 @@ namespace CrawlerSite
                 if(!String.IsNullOrEmpty(content)){
                     return content;
                 }
-                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
+                return @"{""success"": false, ""message"": ""In this moment we have some problems, please try again in a moment"", ""result"": null}";
             }
             catch(Exception){
-                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
+                return @"{""success"": false, ""message"": ""In this moment we have some problems, please try again in a moment"", ""result"": null}";
             }
         }
 
@@ -130,10 +131,10 @@ namespace CrawlerSite
                 if(!String.IsNullOrEmpty(content)){
                     return content;
                 }
-                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
+                return @"{""success"": false, ""message"": ""In this moment we have some problems, please try again in a moment"", ""result"": null}";
             }
             catch(Exception){
-                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
+                return @"{""success"": false, ""message"": ""In this moment we have some problems, please try again in a moment"", ""result"": null}";
             }
         }
 
@@ -149,8 +150,9 @@ namespace CrawlerSite
 
                 return await _client.GetStringAsync(uri);
             }
-            catch(Exception){
-                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
+            catch(Exception ex){
+                Console.WriteLine(ex);
+                return @"{""success"": false, ""message"": ""In this moment we have some problems, please try again in a moment"", ""result"": null}";
             }
         }
 
@@ -164,7 +166,7 @@ namespace CrawlerSite
                 return await _client.GetStringAsync(uri);
             }
             catch(Exception){
-                return "{\"success\": false, \"message\": \"In this moment we have some problems, please try again in a moment\", \"result\": null}";
+                return @"{""success"": false, ""message"": ""In this moment we have some problems, please try again in a moment"", ""result"": null}";
             }
         }
         
