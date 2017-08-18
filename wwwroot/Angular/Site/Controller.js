@@ -141,7 +141,7 @@ Flinger.controller("SiteController", function ($scope, SiteService) {
 
             console.log(response);
             if (response.data.result != undefined && response.data.result != null) {
-                $scope.CodeResult = '<script src="http://crawlersite-kernel.azurewebsites.net/build/flinger.js" data-flinger="' + response.data.result.ApiKey + '"></script>';
+                $scope.CodeResult = '<script src="http://crawlersite-kernel.azurewebsites.net/build/flinger.min.js" data-flinger="' + response.data.result.ApiKey + '"></script>';
                 $scope.ApiKeyResult = response.data.result.ApiKey;
             }
             else {
