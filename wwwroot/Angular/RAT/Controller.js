@@ -193,8 +193,10 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                         console.log('GetAllConnectedSocketsByApiKey#Response')
                         console.log(data);
                         $scope.ConnectedSockets = data.Values;
-                        for(var i = 0; i<$scope.ConnectedSockets.length; i++){
+                        if($scope.ConnectedSockets[i].ClientInformation.Geolocation !== undefined && $scope.ConnectedSockets[i].ClientInformation.Geolocation !== null){
+                            for(var i = 0; i<$scope.ConnectedSockets.length; i++){
                             $scope.PrintMapMarker($scope.ConnectedSockets[i].ClientInformation.Geolocation.location)
+                        }
                         }
                         $Flinger.Loader.Finish();
                     });
@@ -206,7 +208,9 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                             console.log('SubscribeSocketToApiKey#Request')
                             console.log($scope.ConnectedSockets);
 
-                            $scope.PrintMapMarker(data.Values.ClientInformation.Geolocation.location);
+                            if(data.Values.ClientInformation.Geolocation !== undefined && data.Values.ClientInformation.Geolocation !== null){
+                                $scope.PrintMapMarker(data.Values.ClientInformation.Geolocation.location);
+                            }
                         }
                     });
                     break

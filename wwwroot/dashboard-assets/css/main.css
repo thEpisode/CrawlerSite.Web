@@ -1036,9 +1036,19 @@ position: absolute;
   height: calc(100vh - 260px);
 }
 
-.user-online .avatar img{
+.user-online .avatar img:first-child{
     background-color: #ffffff;
     border: 2px solid #646262;
+}
+
+.user-online .avatar img:last-child{
+	position: absolute;
+	right: -2px;
+	bottom: -4px;
+	z-index: 1;
+	width: 18px;
+	height: 18px;
+	border-color: #ffffff;
 }
 
 .user-online .details .info{
