@@ -32,7 +32,7 @@ Flinger.service("RATService", function ($http) {
         });
         return response;
     }
-    this.BlockUser = function (ApiKey, SocketId) {
+    this.BlockUser = function (SocketId) {
         var response = $http({
             method: "POST",
             url: "/Ip/BlockUser",
