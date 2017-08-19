@@ -1,0 +1,260 @@
+<!DOCTYPE html><html lang="en" dir="ltr" data-environment="production"><head><base href="/"><title>Crisp</title><meta name="viewport" content="width=device-width, minimum-scale=1.0, initial-scale=1.0"><meta id="theme-color" name="theme-color" content="#308AD6"><meta charset="UTF-8"><link rel="manifest" href="manifest.json"><meta name="robots" content="nofollow"><meta name="referrer" content="origin-when-cross-origin"><meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests"><link rel="apple-touch-icon" href="/apple-touch-icon-144x144.png" sizes="144x144" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon-114x114.png" sizes="114x114" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon-72x72.png" sizes="72x72" type="image/png"><link rel="apple-touch-icon" href="/apple-touch-icon.png" type="image/png"><link rel="icon" href="/favicon-512x512.png" sizes="512x512" type="image/png"><link rel="icon" href="/favicon-256x256.png" sizes="256x256" type="image/png"><link rel="icon" href="/favicon-128x128.png" sizes="128x128" type="image/png"><link rel="icon" href="/favicon-32x32.png" sizes="32x32" type="image/png"><link rel="icon" href="/favicon.png" type="image/png"><link rel="shortcut icon" href="/favicon.ico" type="image/x-icon"><meta name="msapplication-TileColor" content="#C02935"><meta name="msapplication-TileImage" content="/tile.png"><meta property="og:title" content="Crisp"><meta property="og:type" content="website"><meta property="og:url" content="https://app.crisp.chat"><meta property="og:image" content="https://app.crisp.chat/favicon-512x512.png"><meta property="og:description" content="Operator dashboard to chat with your visitors"><style type="text/css">.cdc-sidebar-mask {
+  background: #1D2531;
+  width: 90px;
+  padding-top: 46px;
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  z-index: 99;
+}
+
+.cdc-sidebar-mask-item {
+  background: #212A37;
+  width: 42px;
+  height: 42px;
+  margin: 0 auto 53px auto;
+  box-shadow: 0 1px 10px 0 rgba(0,0,0,0.075);
+  border-radius: 2px;
+}
+
+@media screen and (max-height: 690px) {
+  .cdc-sidebar-mask-item {
+    display: none;
+  }
+}</style><style type="text/css">.cdc-load-wrapper {
+  font-family: "Proxima Nova", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-weight: regular;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  left: 90px;
+  background: #EFF3F6;
+  z-index: 100;
+}
+
+.cdc-load-wait,
+.cdc-load-wait-spinner {
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center;
+  display: block;
+}
+
+.cdc-load-wait {
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iOTJweCIgaGVpZ2h0PSI3NnB4IiB2aWV3Qm94PSIwIDAgOTIgNzYiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iU3ltYm9scyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9IkxvYWQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0xLjAwMDAwMCwgLTEuMDAwMDAwKSIgZmlsbD0iI0NDRDRERSI+CiAgICAgICAgICAgIDxnIGlkPSJMb2dvIj4KICAgICAgICAgICAgICAgIDxnPgogICAgICAgICAgICAgICAgICAgIDxwYXRoIGQ9Ik0zNy4wNDc0ODY4LDYwLjU4OTc4MDYgTDUxLjY2MTA4NDEsNzYuMDUyNjMxNiBMNjIuOTIyMDA3LDU3LjYwNDMyMDkgTDkzLDU0LjEzMzg1NTIgTDg3LjkxMjg2OTgsMSBMMSwxMS4wMjgyMDAzIEw2LjA4NzEzMDE3LDY0LjE2MjA1NTUgTDM3LjA0NzQ4NjgsNjAuNTg5NzgwNiBaIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg0Ny4wMDAwMDAsIDM4LjUyNjMxNikgcm90YXRlKDAuMjUwMDAwKSB0cmFuc2xhdGUoLTQ3LjAwMDAwMCwgLTM4LjUyNjMxNikgIj48L3BhdGg+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=');
+  width: 94px;
+  height: 77px;
+  margin: -38px auto 0;
+  right: 0;
+  left: 0;
+  top: 50%;
+  z-index: 2;
+  position: absolute;
+  animation: 0.25s zoom both;
+}
+
+.cdc-load-wait-spinner {
+  background-image: url('data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiPz4KPHN2ZyB3aWR0aD0iNDBweCIgaGVpZ2h0PSI0MHB4IiB2aWV3Qm94PSIwIDAgNDAgNDAiIHZlcnNpb249IjEuMSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB4bWxuczp4bGluaz0iaHR0cDovL3d3dy53My5vcmcvMTk5OS94bGluayI+CiAgICA8ZGVmcz48L2RlZnM+CiAgICA8ZyBpZD0iU3ltYm9scyIgc3Ryb2tlPSJub25lIiBzdHJva2Utd2lkdGg9IjEiIGZpbGw9Im5vbmUiIGZpbGwtcnVsZT0iZXZlbm9kZCI+CiAgICAgICAgPGcgaWQ9IkxvYWQiIHRyYW5zZm9ybT0idHJhbnNsYXRlKC0yNy4wMDAwMDAsIC0xNC4wMDAwMDApIiBzdHJva2Utd2lkdGg9IjciPgogICAgICAgICAgICA8ZyBpZD0iSXRzZWxmIj4KICAgICAgICAgICAgICAgIDxnIHRyYW5zZm9ybT0idHJhbnNsYXRlKDQ3LjAwMDAwMCwgMzMuNTAwMDAwKSBzY2FsZSgxLCAtMSkgdHJhbnNsYXRlKC00Ny4wMDAwMDAsIC0zMy41MDAwMDApIHRyYW5zbGF0ZSgzMS4wMDAwMDAsIDE3LjAwMDAwMCkiPgogICAgICAgICAgICAgICAgICAgIDxlbGxpcHNlIGlkPSJCb3JkZXJzIiBzdHJva2U9IiM1NTZEODYiIG9wYWNpdHk9IjAuMjUxOTI0ODE5IiBjeD0iMTYiIGN5PSIxNiIgcng9IjE2IiByeT0iMTYiPjwvZWxsaXBzZT4KICAgICAgICAgICAgICAgICAgICA8ZyBpZD0iQWN0aXZlIiB0cmFuc2Zvcm09InRyYW5zbGF0ZSg3LjM2MzYzNiwgMjkuMjAwMDAxKSIgc3Ryb2tlPSIjMUQyNTMxIiBzdHJva2UtbGluZWNhcD0icm91bmQiPgogICAgICAgICAgICAgICAgICAgICAgICA8cGF0aCBkPSJNMC4yNzI3MjcyNzMsMC40OTA5MDU3NjIgQzAuMjcyNzI3MjczLDAuNDkwOTA1NzYyIDMuNzIxNTQ4NDcsMi44OTk4NDg3MiA4LjYzNjM2MzY0LDIuODk5ODQ4NzIgQzEzLjU1MTE3ODgsMi44OTk4NDg3MiAxNywwLjQ5MDkwNTc2MiAxNywwLjQ5MDkwNTc2MiIgaWQ9IkxpbmUiPjwvcGF0aD4KICAgICAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgICAgICA8L2c+CiAgICAgICAgICAgIDwvZz4KICAgICAgICA8L2c+CiAgICA8L2c+Cjwvc3ZnPgo=');
+  width: 40px;
+  height: 40px;
+  margin: 13px auto 0;
+  animation: spin 1.1s ease-in-out infinite 0.15s;
+}
+
+.cdc-load-issue {
+  font-size: 16px;
+  text-align: center;
+  display: none;
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 46px;
+  animation: 0.5s fade both;
+}
+
+.cdc-load-issue-label,
+.cdc-load-issue-action {
+  color: #3B536D;
+}
+
+.cdc-load-issue-label {
+  font-weight: bold !important;
+}
+
+.cdc-load-issue-action {
+  text-decoration: underline;
+  margin-left: 20px;
+}
+
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+@keyframes zoom {
+  from {
+    opacity: 0;
+    transform: scale3d(.3, .3, .3);
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+@keyframes fade {
+  from {
+    opacity: 0;
+  }
+
+  50% {
+    opacity: 1;
+  }
+}
+
+</style><script type="text/javascript">window.DEPS_LOAD_CALLBACKS = [];
+
+var fn_app_loaded_cb = function() {
+  if (typeof window.DEPS_LOAD_CALLBACKS === "object") {
+    var deps_loaded = window.DEPS_LOAD_CALLBACKS;
+
+    delete window.DEPS_LOAD_CALLBACKS;
+
+    setTimeout(function() {
+      for (var _i = 0; _i < deps_loaded.length; _i++) {
+        deps_loaded[_i]();
+      }
+    }, 2000);
+  }
+};
+
+</script><script type="text/javascript">var LOCALE = "en";
+
+var _available_locales = ["en","fr","fi","ru","es","nl","pt","zh"];
+
+var _navigator_locales = (
+  (navigator.languages && navigator.languages.length > 0) ?
+    navigator.languages : []
+);
+
+if (_navigator_locales.length === 0) {
+  var _sole_language = (navigator.language || navigator.userLanguage);
+
+  if (_sole_language) {
+    _navigator_locales.push(_sole_language);
+  }
+}
+
+for (var _i = 0; _i < _navigator_locales.length; _i++) {
+  var _cur_locale = (_navigator_locales[_i].toLowerCase() || "");
+
+  _cur_locale     = (
+    (_cur_locale.indexOf("-") !== -1) ? _cur_locale[0] : _cur_locale
+  );
+
+  if (_cur_locale && _available_locales.indexOf(_cur_locale) !== -1) {
+    LOCALE = _cur_locale;
+    break;
+  }
+}
+
+</script><script type="text/javascript" async defer>var __inject_dependency_style = function(src, fn_handle_loaded) {
+  var style  = document.createElement("link");
+
+  var suffix = (
+    ("production" === "production") ? ".min" : ""
+  );
+
+  style.rel  = "stylesheet";
+  style.type = "text/css";
+  style.href = (src + suffix + ".css?9d47c19");
+
+  document.getElementsByTagName("head")[0].appendChild(style);
+};
+
+(function() {
+  __inject_dependency_style("stylesheets/application");
+
+  var _check_interval = setInterval(function() {
+    var _load_wrapper_sel = document.querySelector(".cdc-load-wrapper");
+    var _loader_dummy_sel = document.querySelector(".cdc-loader-dummy");
+
+    if (_load_wrapper_sel && _loader_dummy_sel  &&
+            (window.getComputedStyle(_loader_dummy_sel, null).display ===
+              "none")) {
+      _load_wrapper_sel.parentNode.removeChild(_load_wrapper_sel);
+      _loader_dummy_sel.parentNode.removeChild(_loader_dummy_sel);
+
+      clearTimeout(_check_interval);
+    }
+  }, 50);
+
+  setTimeout(function() {
+    _load_issue_el = document.getElementById("load-issue");
+
+    if (_load_issue_el) {
+      _load_issue_el.style.display = "block";
+    }
+  }, 15000);
+})();
+
+</script><script type="text/javascript" async defer>(function(){d=document;s=d.createElement("script");s.src=('./javascripts/application.' + LOCALE + '.min.js?9d47c19');s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();</script></head><body ng-app="app" ng-strict-di data-state="{{state}}" data-connected="{{connected}}" data-platform="{{platform}}" data-architecture="{{architecture}}" data-os="{{os}}" data-fullscreen="{{fullscreen}}" class="no-selection"><div class="cdc-sidebar-mask"><div class="cdc-sidebar-mask-item"></div><div class="cdc-sidebar-mask-item"></div><div class="cdc-sidebar-mask-item"></div><div class="cdc-sidebar-mask-item"></div><div class="cdc-sidebar-mask-item"></div><div class="cdc-sidebar-mask-item"></div></div><div class="cdc-load-wrapper"><div class="cdc-load-logo"><span class="cdc-load-logo-itself"></span></div><div class="cdc-load-wait"><span class="cdc-load-wait-spinner"></span></div><div id="load-issue" class="cdc-load-issue"><span class="cdc-load-issue-label">It is taking unusually long...</span><a href="#" onclick="if (setForceQuit) { setForceQuit(); } window.location.reload(true); return false;" class="cdc-load-issue-action">Reload Crisp?</a></div></div><div ui-view class="cdc-general-wrapper"></div><script type="text/javascript">window.DEPS_LOAD_CALLBACKS.push(function() {
+  (function(){d=document;s=d.createElement("script");s.src='https://cdn.onesignal.com/sdks/OneSignalSDK.js';s.async=1;d.getElementsByTagName("head")[0].appendChild(s);})();
+});
+</script><script type="text/javascript">var OneSignal = (OneSignal || []);
+
+OneSignal.push(["init", {
+  appId : "fe8209f2-b4a8-4d79-8cfc-51b5c51a0725",
+
+  autoRegister : false,
+
+  notifyButton : {
+    enable: false
+  },
+
+  persistNotification : false,
+  safari_web_id : "web.im.crisp.app"
+}]);</script><script type="text/javascript">window.DEPS_LOAD_CALLBACKS.push(function() {
+  (function(i,s,o,g,r,a,m){i["GoogleAnalyticsObject"]=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,"script","//www.google-analytics.com/analytics.js","ga");
+
+  ga("create", "UA-66558848-2", "auto");
+  ga("send", "pageview");
+});
+</script><script type="text/javascript">window.DEPS_LOAD_CALLBACKS.push(function() {
+  (function(e,t){var n=e.amplitude||{};var r=t.createElement("script");r.type="text/javascript";
+  r.async=true;r.src="https://d24n15hnbwhuhn.cloudfront.net/libs/amplitude-2.9.0-min.gz.js";
+  r.onload=function(){e.amplitude.runQueuedFunctions()};var s=t.getElementsByTagName("script")[0];
+  s.parentNode.insertBefore(r,s);var i=function(){this._q=[];return this};function a(e){
+  i.prototype[e]=function(){this._q.push([e].concat(Array.prototype.slice.call(arguments,0)));
+  return this}}var o=["add","append","clearAll","set","setOnce","unset"];for(var c=0;c<o.length;c++){
+  a(o[c])}n.Identify=i;n._q=[];function u(e){n[e]=function(){n._q.push([e].concat(Array.prototype.slice.call(arguments,0)));
+  }}var l=["init","logEvent","logRevenue","setUserId","setUserProperties","setOptOut","setVersionName","setDomain","setDeviceId","setGlobalUserProperties","identify","clearUserProperties"];
+  for(var p=0;p<l.length;p++){u(l[p])}e.amplitude=n})(window,document);
+
+  amplitude.init("fa4974f121eaf6df9833693e99263781", null, {includeReferrer: true, includeUtm: true});
+});
+</script><script type="text/javascript">window.DEPS_LOAD_CALLBACKS.push(function() {
+  !function(f,b,e,v,n,t,s){if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+  n.callMethod.apply(n,arguments):n.queue.push(arguments)};if(!f._fbq)f._fbq=n;
+  n.push=n;n.loaded=!0;n.version='2.0';n.queue=[];t=b.createElement(e);t.async=!0;
+  t.src=v;s=b.getElementsByTagName(e)[0];s.parentNode.insertBefore(t,s)}(window,
+  document,'script','https://connect.facebook.net/en_US/fbevents.js');
+  fbq('init', '1453962094668592'); // Insert your pixel ID here.
+  fbq('track', 'PageView');
+});
+</script><script type="text/javascript">window.DEPS_LOAD_CALLBACKS.push(function() {
+  (function(h,o,t,j,a,r){
+    h.hj=h.hj||function(){(h.hj.q=h.hj.q||[]).push(arguments)};
+    h._hjSettings={hjid:458229,hjsv:5};
+    a=o.getElementsByTagName('head')[0];
+    r=o.createElement('script');r.async=1;
+    r.src=t+h._hjSettings.hjid+j+h._hjSettings.hjsv;
+    a.appendChild(r);
+  })(window,document,'//static.hotjar.com/c/hotjar-','.js?sv=');
+});</script></body></html>
