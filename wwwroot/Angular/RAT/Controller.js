@@ -198,7 +198,7 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                     break;
                 case 'SubscribeSocketToApiKey#Request':
                     $rootScope.$apply(function () {
-                        if (data.Values.ApiKey === $scope.Site._id) {
+                        if (data.Values.ApiKey === $scope.Site.ApiKey) {
                             $scope.ConnectedSockets.push(data.Values);
                             console.log('SubscribeSocketToApiKey#Request')
                             console.log($scope.ConnectedSockets)
