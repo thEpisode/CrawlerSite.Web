@@ -213,10 +213,12 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                 case 'SubscribeSocketToApiKey#Request':
                     $rootScope.$apply(function () {
                         if (data.Values.ApiKey === $scope.Site.ApiKey) {
+                            data.Values.BackgroundClass = $scope.GetRandomClass();
+                            data.Values.CountryFlag = $scope.ConnectedSockets[i].ClientInformation.Geolocation != undefined ? `/dashboard-assets/img/flags/${$scope.ConnectedSockets[i].ClientInformation.Geolocation.country.iso_code.toLocaleLowerCase()}.png` : '/dashboard-assets/img/flags/default.png';
                             $scope.ConnectedSockets.push(data.Values);
                             console.log('SubscribeSocketToApiKey#Request')
                             console.log($scope.ConnectedSockets);
-
+                            
                             if (data.Values.ClientInformation.Geolocation !== undefined && data.Values.ClientInformation.Geolocation !== null) {
                                 $scope.PrintMapMarker(data.Values.ClientInformation.Geolocation.location);
                             }
