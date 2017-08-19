@@ -1031,6 +1031,9 @@ position: absolute;
 
 .users-list{
   padding-left: 0;
+  overflow: hidden; 
+  overflow-y: auto;
+  height: calc(100vh - 260px);
 }
 
 .user-online .avatar img{
@@ -1081,6 +1084,11 @@ position: absolute;
 
 .user-online .details .actions a{
     color: #646262;
+}
+
+.rat-map-correction{
+	height: calc(100vh - 184px);
+	min-height: 100%;
 }
 
 .no-padding {
