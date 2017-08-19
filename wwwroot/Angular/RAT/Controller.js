@@ -188,12 +188,9 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
 
         $scope._socket.on('Coplest.Flinger.RAT', function (data) {
             switch (data.Command) {
-                case 'GetAllConnectedSockets#Response':
-                    //console.log(data);
-                    $Flinger.Loader.Finish();
-                    break;
                 case 'GetAllConnectedSocketsByApiKey#Response':
                     $rootScope.$apply(function () {
+                        console.log('GetAllConnectedSocketsByApiKey#Response')
                         console.log(data);
                         $scope.ConnectedSockets = data.Values;
                         $Flinger.Loader.Finish();
@@ -201,8 +198,11 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                     break;
                 case 'SubscribeSocketToApiKey#Request':
                     $rootScope.$apply(function () {
-                        $scope.ConnectedSockets.push(data.Values);
-                        console.log($scope.ConnectedSockets)
+                        if (data.Values.ApiKey === $scope.Site._id) {
+                            $scope.ConnectedSockets.push(data.Values);
+                            console.log('SubscribeSocketToApiKey#Request')
+                            console.log($scope.ConnectedSockets)
+                        }
                     });
                     break
                 case 'UnsubscribeSocketToApiKey#Request':
