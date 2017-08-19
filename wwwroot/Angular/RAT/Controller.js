@@ -200,6 +200,8 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                         $scope.ConnectedSockets = data.Values;
 
                         for (var i = 0; i < $scope.ConnectedSockets.length; i++) {
+                            $scope.ConnectedSockets[i].BackgroundClass = $scope.GetRandomClass();
+                            $scope.ConnectedSockets[i].CountryFlag = $scope.ConnectedSockets[i].ClientInformation.Geolocation != undefined ? `/dashboard-assets/img/flags/${$scope.ConnectedSockets[i].ClientInformation.Geolocation.country.iso_code.toLocaleLowerCase()}.png` : '/dashboard-assets/img/flags/default.png';
                             if ($scope.ConnectedSockets[i].ClientInformation.Geolocation !== undefined && $scope.ConnectedSockets[i].ClientInformation.Geolocation !== null) {
                                 $scope.PrintMapMarker($scope.ConnectedSockets[i].ClientInformation.Geolocation.location)
                             }
