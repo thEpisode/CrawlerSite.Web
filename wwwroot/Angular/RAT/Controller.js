@@ -193,6 +193,9 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                         console.log('GetAllConnectedSocketsByApiKey#Response')
                         console.log(data);
                         $scope.ConnectedSockets = data.Values;
+                        for(var i = 0; i<$scope.ConnectedSockets.length; i++){
+                            $scope.PrintMapMarker($scope.ConnectedSockets[i].ClientInformation.Location.location)
+                        }
                         $Flinger.Loader.Finish();
                     });
                     break;
