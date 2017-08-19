@@ -124,6 +124,7 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
     $scope.isInFullScreen = false;
     $scope.IsMaximized = false;
     $scope._iframe = null;
+    $scope.UserOnlineColor = ["red-background", "purple-background", "orange-background", "yellow-background", "green-background", "light-green-background", "light-blue-background", "light-red-background", "blue-background"];
 
     $scope.InitializeView = function () {
 
@@ -185,6 +186,10 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                 $scope._socket.emit('Coplest.Flinger.RAT', { Command: 'GetAllConnectedSocketsByApiKey#Request', Values: { ApiKey: $scope.Site.ApiKey } });
             });
         })
+
+        $scope.GetRandomClass = function () {
+            return $scope.UserOnlineColor[Math.floor((Math.random() * $scope.UserOnlineColor.length) + 0)]
+        }
 
         $scope._socket.on('Coplest.Flinger.RAT', function (data) {
             switch (data.Command) {

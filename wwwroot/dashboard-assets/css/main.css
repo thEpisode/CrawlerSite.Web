@@ -1036,15 +1036,46 @@ position: absolute;
   height: calc(100vh - 260px);
 }
 
-.user-online .avatar img:first-child{
-    background-color: #ffffff;
-    border: 2px solid #646262;
+.purple-background{
+	background-color: #97438f;
+}
+
+.blue-background{
+	background-color: #437f97;
+}
+
+.light-red-background{
+	background-color: #c94949;
+}
+
+.light-blue-background{
+	background-color: #299ea4;
+}
+
+.light-green-background{
+	background-color: #4ab844;
+}
+
+.green-background{
+	background-color: #43974b;
+}
+
+.yellow-background{
+	background-color: #a4a838;
+}
+
+.orange-background{
+	background-color: #c34015;
+}
+
+.red-background{
+	background-color: #b83b3b;
 }
 
 .user-online .avatar img:last-child{
 	position: absolute;
 	right: -2px;
-	bottom: -4px;
+	bottom: -2px;
 	z-index: 1;
 	width: 18px;
 	height: 18px;
