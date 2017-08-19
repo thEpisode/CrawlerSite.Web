@@ -53,5 +53,11 @@ namespace CrawlerSite.Services
             string jsonResult = await _connection.SimplePostData("Ip/Delete", Token, HttpSimpleParameters.Of("_id", IpId));
             return JObject.Parse(jsonResult);
         }
+
+        public async Task<dynamic> BlockUser(string SocketId, string Token)
+        {
+            string jsonResult = await _connection.SimplePostData("Ip/BlockUser", Token, HttpSimpleParameters.Of("SocketId", SocketId));
+            return JObject.Parse(jsonResult);
+        }
     }
 }

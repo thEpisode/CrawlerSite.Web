@@ -126,5 +126,19 @@ namespace CrawlerSite.Controllers
             }
             return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
         }
+
+        [HttpPost]
+        public async Task<JsonResult> BlockUser(string SocketId)
+        {
+            string token =CrawlerSite.Utils.Token.Get(Request.Headers);
+
+            if(!String.IsNullOrEmpty(token))
+            {
+                dynamic result = await _ipService.BlockUser(SocketId, token);
+                
+                return Json(result);
+            }
+            return Json(new { success= false, message= "Something went wrong when retrieving data, try again." });
+        }
     }
 }

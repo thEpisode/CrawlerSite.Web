@@ -37,7 +37,6 @@ Flinger.service("RATService", function ($http) {
             method: "POST",
             url: "/Ip/BlockUser",
             params: {
-                ApiKey: ApiKey,
                 SocketId: SocketId
             }
         });

@@ -658,14 +658,12 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
 
     $scope.BlockUser = function (socketId) {
         if (socketId !== undefined && socketId !== null) {
-            var sd = $scope.ConnectedSockets;
-            debugger;
-           /*  RATService.BlockUser(socketId).then(function (response) {
+            RATService.BlockUser(socketId).then(function (response) {
                 // Do something
             },
                 function (response) {
                     console.log(response);
-                }) */
+                })
         }
     }
 
