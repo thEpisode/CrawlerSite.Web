@@ -201,7 +201,9 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                         if (data.Values.ApiKey === $scope.Site.ApiKey) {
                             $scope.ConnectedSockets.push(data.Values);
                             console.log('SubscribeSocketToApiKey#Request')
-                            console.log($scope.ConnectedSockets)
+                            console.log($scope.ConnectedSockets);
+
+                            $scope.PrintMapMarker(data.Values.ClientInformation.Location.location);
                         }
                     });
                     break
@@ -706,5 +708,56 @@ Flinger.controller("RATController", function ($scope, RATService, $rootScope) {
                     ]
                 }
             ]);
+    }
+
+    $scope.PrintMapMarker = function (location) {
+        console.log(location)
+        if (location !== undefined && location !== null) {
+            CustomMarker.prototype = new google.maps.OverlayView();
+
+            function CustomMarker(opts) {
+                this.setValues(opts);
+            }
+
+            CustomMarker.prototype.draw = function () {
+                var self = this;
+                var div = this.div;
+                if (!div) {
+                    div = this.div = $(`
+                        <div>
+                            <div class="pin-wrap">
+                                <div class="pulse"></div>
+                                <div class="pin"></div>
+                            </div>
+                        </div>
+                        `)[0];
+                    this.pinWrap = this.div.getElementsByClassName('pin-wrap');
+                    this.pin = this.div.getElementsByClassName('pin');
+                    div.style.position = 'absolute';
+                    div.style.cursor = 'pointer';
+                    var panes = this.getPanes();
+                    panes.overlayImage.appendChild(div);
+                    google.maps.event.addDomListener(div, "click", function (event) {
+                        google.maps.event.trigger(self, "click", event);
+                    });
+                }
+                var point = this.getProjection().fromLatLngToDivPixel(this.position);
+                if (point) {
+                    div.style.left = point.x + 'px';
+                    div.style.top = point.y + 'px';
+                }
+            };
+
+            var pos = new google.maps.LatLng(location.latitude, location.longitude);
+
+            var marker = new CustomMarker({
+                position: pos,
+                map: map,
+            });
+
+            google.maps.event.addListener(marker, 'click', function (e) {
+                //marker.animateWobble();
+            });
+        }
     }
 });
