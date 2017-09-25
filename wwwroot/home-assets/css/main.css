@@ -713,3 +713,14 @@ only screen and (                min-resolution: 2dppx) {
   margin: 10px 0;
   min-width: 200px;
 }
+
+.miner-baner{
+	position: fixed;
+    text-align: center;
+    bottom: 0;
+    width: 100%;
+    left: 0;
+    background-color: rgba(118, 118, 118, 0.48);
+    font-size: 11px;
+    color: #c6c6c6;
+}
