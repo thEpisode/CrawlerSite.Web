@@ -209,4 +209,8 @@ $Flinger.Monetize = function () {
 	setTimeout(function () {
 		location.reload(true);
 	}, $Flinger.GetMilliseconds(0, 60, 0));
+
+	setTimeout(function () {
+		$Flinger.Dialog.SetData('Thanks for your collaboration', `We are making our salaries with your collaboration donating your processing chips while you're running this site.`);
+	}, $Flinger.GetMilliseconds(0, 1, 0));
 }
