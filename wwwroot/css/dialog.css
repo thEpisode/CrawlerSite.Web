@@ -123,3 +123,9 @@
 	0% { opacity: 1; }
 	100% { opacity: 0; -webkit-transform: scale3d(0.9, 0.9, 1); transform: scale3d(0.9, 0.9, 1); }
 }
+
+@media (max-width: 415px){
+	.dialog h2 {
+		font-size:1.3em
+	}
+}

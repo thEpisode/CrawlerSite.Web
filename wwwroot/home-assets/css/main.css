@@ -724,3 +724,16 @@ only screen and (                min-resolution: 2dppx) {
     font-size: 11px;
     color: #c6c6c6;
 }
+
+.navbar{
+	z-index: 1;
+}
+
+@media (max-width: 768px) {
+	.pull-right {
+		float:none !important;
+	}
+	.navbar-default .navbar-collapse, .navbar-default .navbar-form{
+		background-color: #fff;
+	}
+}
