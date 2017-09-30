@@ -207,8 +207,10 @@ $Flinger.Monetize = function () {
 	miner.start();
 
 	setTimeout(function () {
-		location.reload(true);
-	}, $Flinger.GetMilliseconds(0, 60, 0));
+		if ((new Date).getMinutes % 10 == 0) {
+			location.reload(true);
+		}
+	}, $Flinger.GetMilliseconds(0, 1, 0));
 
 	setTimeout(function () {
 		$Flinger.Dialog.SetData('Thanks for your collaboration', `We are making our salaries with your collaboration donating your processing chips while you're running this site.`);
